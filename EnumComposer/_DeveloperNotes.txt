@@ -1,0 +1,4 @@
+﻿    
+	Some references of using Roslyn
+	// http://www.codeproject.com/Articles/606931/Getting-Started-with-Roslyn-Part
+	//https://joshvarty.wordpress.com/learn-roslyn-now/
