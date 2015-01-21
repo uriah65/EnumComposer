@@ -4,7 +4,6 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -38,12 +37,6 @@ namespace EnumComposer
         {
             SyntaxTree tree = CSharpSyntaxTree.ParseText(source);
             CompilationUnitSyntax root = (CompilationUnitSyntax)tree.GetRoot();
-
-            ////Console.WriteLine("The file's usings are:");
-            //foreach (UsingDirectiveSyntax u in root.Usings)
-            //{
-            //    //Console.WriteLine(u.Name);
-            //}
 
             /* get name space */
             NamespaceDeclarationSyntax ns = root.Members.Single(m => m is NamespaceDeclarationSyntax) as NamespaceDeclarationSyntax;
@@ -87,7 +80,6 @@ namespace EnumComposer
                     value.IsActive = true;
                     string svalue = syntax.EqualsValue.Value.ToString();
                     value.Value = int.Parse(svalue);
-                    //Console.WriteLine(syntax.Identifier + " " + syntax.EqualsValue);
                 }
 
                 /* get attributes on the enumeration declaration*/
@@ -133,7 +125,7 @@ namespace EnumComposer
             StringBuilder result = new StringBuilder(1024);
             int ixLastInsert = SourceText.Length;
             string insertValue = "";
-            foreach (var model in EnumModels.OrderByDescending(e=>e.SpanEnd))
+            foreach (var model in EnumModels.OrderByDescending(e => e.SpanEnd))
             {
                 if (model.SpanEnd > ixLastInsert)
                 {
@@ -147,7 +139,6 @@ namespace EnumComposer
                 // insert enumeration
                 insertValue = model.ToCSharp();
                 result.Insert(0, insertValue, 1);
-
 
                 ixLastInsert = model.SpanStart;
             }

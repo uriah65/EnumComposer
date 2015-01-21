@@ -1,5 +1,4 @@
-﻿using IEnumComposer;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -27,7 +26,6 @@ namespace EnumComposer
             }
         }
 
-
         public string NameSc
         {
             get
@@ -43,8 +41,6 @@ namespace EnumComposer
         public string Sql { get; set; }
 
         public List<EnumModelValue> Values { get; set; }
-
-       // public IEnumSqlRequest SqlRequest { get; set; }
 
         public void FillFromCode(int value, string nameCs, bool isActive)
         {

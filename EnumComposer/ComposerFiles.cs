@@ -22,7 +22,6 @@ namespace EnumComposer
                 }
             }
 
-
             ComposerStrings composer = new ComposerStrings(dbReader);
             string sourceText = File.ReadAllText(inputFile);
             composer.Compose(sourceText);

@@ -1,16 +1,11 @@
 ﻿using IEnumComposer;
-using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EnumComposer
 {
     public class EnumSqlDbReader : IEnumDbReader
     {
-        string _scnn;
+        private string _scnn;
 
         public EnumSqlDbReader(string scnn)
         {
@@ -39,7 +34,6 @@ namespace EnumComposer
                         model.FillFromDb(value, name);
                     }
                 }
-
             }
         }
     }

@@ -1,6 +1,4 @@
-﻿using IEnumComposer;
-using System;
-using System.Text.RegularExpressions;
+﻿using System;
 
 namespace EnumComposer
 {
@@ -23,7 +21,6 @@ namespace EnumComposer
 
                 if (char.IsDigit(ch) || char.IsLetter(ch) || ch == '_')
                 {
-
                     name2 += ch;
                 }
                 else
@@ -39,7 +36,6 @@ namespace EnumComposer
             }
             else
             {
-
             }
 
             return name;

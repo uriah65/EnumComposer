@@ -1,6 +1,6 @@
 ﻿namespace EnumComposer
 {
-    public class EnumModelValue 
+    public class EnumModelValue
     {
         public bool IsInDB { get; set; }
 

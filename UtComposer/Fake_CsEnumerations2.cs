@@ -12,21 +12,19 @@ namespace UtComposer
     [EnumSqlSelect("SELECT lkc__id, lkc_name FROM T_AwayType")]
     public enum AwayTypeEnum
     {
-        MediationFaceToFace = 2,
-        MediationPhone = 3,
-        Administrative = 4,
-        Vacation = 5,
-        WritingDay = 6,
-        Training = 22,
-        Seminar = 23,
-        NotAvailable = 24,
-        SickDays = 39,
-        Holiday = 42,
-        ExternalEvent = 43,
-        OldHoliday = 41,
-
-        //AH: 20100609
-        ReligiousHoliday = 46
+        //MediationFaceToFace = 2,
+        //MediationPhone = 3,
+        //Administrative = 4,
+        //Vacation = 5,
+        //WritingDay = 6,
+        //Training = 22,
+        //Seminar = 23,
+        //NotAvailable = 24,
+        //SickDays = 39,
+        //Holiday = 42,
+        //ExternalEvent = 43,
+        //OldHoliday = 41,
+        //ReligiousHoliday = 46
     }
     //b
     [EnumSqlSelect("SELECT lkc__id, lkc_name FROM T_MeetingType")]
