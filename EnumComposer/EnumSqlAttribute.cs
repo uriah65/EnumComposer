@@ -6,7 +6,6 @@ namespace EnumComposer
     public class EnumSqlSelectAttribute : Attribute
     {
         private string _selectSQL;
-
         public EnumSqlSelectAttribute(string selectSQL)
         {
             _selectSQL = selectSQL;
