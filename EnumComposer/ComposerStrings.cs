@@ -40,6 +40,31 @@ namespace EnumComposer
             foreach (EnumDeclarationSyntax enumeration in syntaxRoot.DescendantNodes().OfType<EnumDeclarationSyntax>())
             {
                 EnumModel model = new EnumModel();
+
+                /* get attributes on the enumeration declaration*/
+                SyntaxList<AttributeListSyntax> attributesList = enumeration.AttributeLists;
+                foreach (AttributeListSyntax attibutes in attributesList)
+                {
+                    foreach (AttributeSyntax attribute in attibutes.Attributes)
+                    {
+                        if (attribute.Name.ToString() == "EnumSqlSelect")
+                        {
+                            /* extract SqlSelect statement from EnumSqlSelectAttribute */
+                            model.SqlSelect = GetAttributeValue(attribute.ArgumentList.Arguments[0]);
+                        }
+                        if (attribute.Name.ToString() == "EnumSqlCnn")
+                        {
+                            model.SqlServer = GetAttributeValue(attribute.ArgumentList.Arguments[0]);
+                            model.SqlDatabase = GetAttributeValue(attribute.ArgumentList.Arguments[1]);
+                        }
+                    }
+                }
+
+                if (string.IsNullOrWhiteSpace(model.SqlSelect))
+                {
+                    continue;
+                }
+
                 EnumModels.Add(model);
                 model.Name = enumeration.Identifier.ToString();
                 model.SpanStart = enumeration.OpenBraceToken.SpanStart + 1;
@@ -77,24 +102,7 @@ namespace EnumComposer
                     value.Value = int.Parse(svalue);
                 }
 
-                /* get attributes on the enumeration declaration*/
-                SyntaxList<AttributeListSyntax> attributesList = enumeration.AttributeLists;
-                foreach (AttributeListSyntax attibutes in attributesList)
-                {
-                    foreach (AttributeSyntax attribute in attibutes.Attributes)
-                    {
-                        if (attribute.Name.ToString() == "EnumSqlSelect")
-                        {
-                            /* extract SqlSelect statement from EnumSqlSelectAttribute */
-                            model.SqlSelect = GetAttributeValue(attribute.ArgumentList.Arguments[0]);
-                        }
-                        if (attribute.Name.ToString() == "EnumSqlCnn")
-                        {
-                            model.SqlServer = GetAttributeValue(attribute.ArgumentList.Arguments[0]);
-                            model.SqlDatabase = GetAttributeValue(attribute.ArgumentList.Arguments[1]);
-                        }
-                    }
-                }
+
             }
         }
 
