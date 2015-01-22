@@ -19,9 +19,16 @@ namespace EnumComposer
 
         public void ReadEnumeration(EnumModel model)
         {
+            if (string.IsNullOrWhiteSpace(model.SqlServer) == false)
+            {
+                /* once new database location provided, the consecutive models will be using it */
+                _scnn = string.Format("Server={0};Database={1};Trusted_Connection=True;", model.SqlServer, model.SqlDatabase);
+            }
+
+
             using (SqlConnection cnn = new SqlConnection(_scnn))
             {
-                SqlCommand cmd = new SqlCommand(model.Sql, cnn);
+                SqlCommand cmd = new SqlCommand(model.SqlSelect, cnn);
                 cnn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
 

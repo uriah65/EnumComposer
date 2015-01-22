@@ -20,7 +20,7 @@ namespace UtComposer
             _model = new EnumModel();
             _dbReader = new Fake_DbReader();
 
-            _model.Sql = "SELECT id, name FROM T_Simple";
+            _model.SqlSelect = "SELECT id, name FROM T_Simple";
             _model.Name = "A Test Enumeration";
         }
 

@@ -18,6 +18,7 @@ namespace UtComposer
         Op2 = 23,
     }
 
+    [EnumSqlCnn("server1","database2")]
     [EnumSqlSelect("SELECT lkc__id, lkc_name FROM AcClaim.dbo.T_LookupCategories")]
     public enum E2
     {

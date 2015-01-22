@@ -6,9 +6,15 @@ namespace EnumComposer
 {
     public class EnumModel //: IEnumModel
     {
+        public string SqlServer { get; set; }
+        public string SqlDatabase { get; set; }
+        public string SqlSelect { get; set; }
+
         private EnumNameConverter _converter;
         private string _name;
         private string _nameCs;
+
+        
 
         public EnumModel()
         {
@@ -38,7 +44,6 @@ namespace EnumComposer
 
         public int SpanEnd { get; set; }
 
-        public string Sql { get; set; }
 
         public List<EnumModelValue> Values { get; set; }
 
@@ -95,7 +100,7 @@ namespace EnumComposer
         public string ToCSharp()
         {
             string result = "";
-            result += string.Format("[EnumSqlSelect(\"{1}\")]{0}", Environment.NewLine, Sql);
+            result += string.Format("[EnumSqlSelect(\"{1}\")]{0}", Environment.NewLine, SqlSelect);
             result += string.Format("public enum {1}{0}", Environment.NewLine, _nameCs);
             result += string.Format("{{{0}", Environment.NewLine);
             foreach (EnumModelValue value in Values.OrderBy(e => e.Value))

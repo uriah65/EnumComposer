@@ -86,18 +86,17 @@ namespace EnumComposer
                 SyntaxList<AttributeListSyntax> attributesList = enumeration.AttributeLists;
                 foreach (AttributeListSyntax attibutes in attributesList)
                 {
-                    foreach (AttributeSyntax assl in attibutes.Attributes)
+                    foreach (AttributeSyntax attribute in attibutes.Attributes)
                     {
-                        if (assl.Name.ToString() != "EnumSqlSelect")
+                        if (attribute.Name.ToString() == "EnumSqlSelect")
                         {
-                            continue;
+                            /* extract SqlSelect statement from EnumSqlSelectAttribute */
+                            model.SqlSelect = GetAttributeValue(attribute.ArgumentList.Arguments[0]);
                         }
-
-                        /* get sql statement for EnumSqlSelectAttribute */
-                        foreach (AttributeArgumentSyntax arg in assl.ArgumentList.Arguments)
+                        if (attribute.Name.ToString() == "EnumSqlCnn")
                         {
-                            model.Sql = arg.Expression.ToString();
-                            model.Sql = model.Sql.Substring(1, model.Sql.Length - 2); /* remove quotes */
+                            model.SqlServer = GetAttributeValue(attribute.ArgumentList.Arguments[0]);
+                            model.SqlDatabase = GetAttributeValue(attribute.ArgumentList.Arguments[1]);
                         }
                     }
                 }
@@ -147,6 +146,13 @@ namespace EnumComposer
             result.Insert(0, insertValue, 1);
 
             return result.ToString();
+        }
+
+        private string GetAttributeValue(AttributeArgumentSyntax argument)
+        {
+            string str = argument.Expression.ToString();
+            str = str.Substring(1, str.Length - 2); /* remove quotes */
+            return str;
         }
     }
 }

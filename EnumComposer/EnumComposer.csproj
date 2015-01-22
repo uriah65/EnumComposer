@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="ComposerFiles.cs" />
     <Compile Include="ComposerStrings.cs" />
+    <Compile Include="EnumCnnAttribute.cs" />
     <Compile Include="EnumNameConverter.cs" />
     <Compile Include="EmunModel.cs" />
     <Compile Include="EnumModelValue.cs" />

@@ -75,7 +75,8 @@ namespace UtComposer
 
             ComposerFiles composer = new ComposerFiles();
 
-            _dbReader = new EnumSqlDbReader("DELLSTUDIOXPS", "Arctics");
+            //_dbReader = new EnumSqlDbReader("DELLSTUDIOXPS", "Arctics");
+            _dbReader = new EnumSqlDbReader("", "");
 
             // do it first time
             composer.Compose(inputFile, outputFile, _dbReader);

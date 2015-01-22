@@ -9,13 +9,13 @@ namespace UtComposer
     {
         public void ReadEnumeration(EnumModel model)
         {
-            if (string.IsNullOrWhiteSpace(model.Sql))
+            if (string.IsNullOrWhiteSpace(model.SqlSelect))
             {
                 throw new ArgumentException("SQL is blank.");
             }
 
             Dictionary<int, string> source = null;
-            string sql = model.Sql;
+            string sql = model.SqlSelect;
             if (sql.Contains("T_Simple"))
             {
                 source = T_Simple;
