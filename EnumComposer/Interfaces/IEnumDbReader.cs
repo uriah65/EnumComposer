@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace IEnumComposer
 {
-    public interface IEnumDbReader
+    public interface IEnumDbReader 
     {
         void ReadEnumeration(EnumModel model);
     }

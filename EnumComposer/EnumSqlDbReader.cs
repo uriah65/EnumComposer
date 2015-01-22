@@ -28,13 +28,14 @@ namespace EnumComposer
             {
                 ReadEnumeration_Inner(model);
             }
-            catch(Exception exInner)
+            catch (Exception exInner)
             {
-                string message = string.Format("Error reading sql database for enumeration '{0}'. Connection string '{1}', select statement '{2}'.",
+                string message = string.Format("Error reading database for enumeration '{0}'. Connection string '{1}', select statement '{2}'.",
                    model.Name, _scnn, model.SqlSelect);
                 throw new ApplicationException(message, exInner);
             }
         }
+
         public void ReadEnumeration_Inner(EnumModel model)
         {
             if (string.IsNullOrWhiteSpace(model.SqlServer) == false)
@@ -42,7 +43,6 @@ namespace EnumComposer
                 /* once new database location provided, the consecutive models will be using it */
                 _scnn = string.Format("Server={0};Database={1};Trusted_Connection=True;", model.SqlServer, model.SqlDatabase);
             }
-
 
             using (SqlConnection cnn = new SqlConnection(_scnn))
             {

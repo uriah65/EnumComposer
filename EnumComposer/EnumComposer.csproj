@@ -72,12 +72,14 @@
     <Compile Include="ComposerFiles.cs" />
     <Compile Include="ComposerStrings.cs" />
     <Compile Include="EnumCnnAttribute.cs" />
+    <Compile Include="DebugLog.cs" />
     <Compile Include="EnumNameConverter.cs" />
     <Compile Include="EmunModel.cs" />
     <Compile Include="EnumModelValue.cs" />
     <Compile Include="EnumSqlAttribute.cs" />
     <Compile Include="EnumSqlDbReader.cs" />
     <Compile Include="Interfaces\IEnumDbReader.cs" />
+    <Compile Include="Interfaces\IEnumLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

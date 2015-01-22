@@ -6,7 +6,7 @@ namespace EnumComposer
 {
     public class ComposerFiles
     {
-        public void Compose(string inputFile, string outputFile, IEnumDbReader dbReader)
+        public void Compose(string inputFile, string outputFile, IEnumDbReader dbReader, IEnumLog log = null)
         {
             if (File.Exists(inputFile) == false)
             {
@@ -22,7 +22,7 @@ namespace EnumComposer
                 }
             }
 
-            ComposerStrings composer = new ComposerStrings(dbReader);
+            ComposerStrings composer = new ComposerStrings(dbReader, log);
             string sourceText = File.ReadAllText(inputFile);
             composer.Compose(sourceText);
 

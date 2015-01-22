@@ -12,14 +12,23 @@ namespace EnumComposer
     public class ComposerStrings
     {
         private IEnumDbReader _dbReader;
+        private IEnumLog _log;
 
         public List<EnumModel> EnumModels { get; set; }
 
         private string SourceText { get; set; }
 
-        public ComposerStrings(IEnumDbReader dbReader)
+        public ComposerStrings(IEnumDbReader dbReader, IEnumLog log = null)
         {
             _dbReader = dbReader;
+            if (log == null)
+            {
+                _log = new DedbugLog();
+            }
+            else
+            {
+                _log = log;
+            }
         }
 
         public void Compose(string sourceText)
@@ -111,6 +120,7 @@ namespace EnumComposer
         {
             if (_dbReader != null)
             {
+                _log.WriteLine("UpdateModelFromBD " + model.Name);
                 _dbReader.ReadEnumeration(model);
             }
         }
