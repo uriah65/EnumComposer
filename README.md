@@ -9,6 +9,6 @@ Generate and update C# enumerations from a SQL database using Roslyn.
  
  EnumComposerConsole, - windows console application to run the composer
  
- EnumConsoleVSP, - Visual Studio Pacakge for composer (NOT FINISHED)
+ EnumConsoleVSP, - Visual Studio Pacakge for composer
  
  Un_Composer, - tests
