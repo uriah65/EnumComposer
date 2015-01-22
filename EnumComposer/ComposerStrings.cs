@@ -47,8 +47,11 @@ namespace EnumComposer
                 EnumModel model = new EnumModel();
                 EnumModels.Add(model);
                 model.Name = enumeration.Identifier.ToString();
-                model.SpanStart = enumeration.Span.Start;
-                model.SpanEnd = enumeration.Span.End;
+                model.SpanStart = enumeration.OpenBraceToken.SpanStart + 1;// enumeration.Span.Start;
+                model.SpanEnd = enumeration.CloseBraceToken.SpanStart;// enumeration.Span.End;
+
+                
+
 
                 //SyntaxTokenList mds = enumeration.Modifiers;
                 //foreach (SyntaxToken md in mds)

@@ -99,10 +99,10 @@ namespace EnumComposer
 
         public string ToCSharp()
         {
-            string result = "";
-            result += string.Format("[EnumSqlSelect(\"{1}\")]{0}", Environment.NewLine, SqlSelect);
-            result += string.Format("public enum {1}{0}", Environment.NewLine, _nameCs);
-            result += string.Format("{{{0}", Environment.NewLine);
+            string result = Environment.NewLine;
+            //result += string.Format("[EnumSqlSelect(\"{1}\")]{0}", Environment.NewLine, SqlSelect);
+            //result += string.Format("public enum {1}{0}", Environment.NewLine, _nameCs);
+            //result += string.Format("{{{0}", Environment.NewLine);
             foreach (EnumModelValue value in Values.OrderBy(e => e.Value))
             {
                 if (value.IsInDB)
@@ -111,7 +111,7 @@ namespace EnumComposer
                     result += string.Format("\t\t{1}{0}", Environment.NewLine, value.ToString());
                 }
             }
-            result += string.Format(@"}}");
+           // result += string.Format(@"}}");
 
             return result;
         }

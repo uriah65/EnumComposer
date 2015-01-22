@@ -7,6 +7,10 @@ namespace EnumComposer
     {
         private string _scnn;
 
+        public EnumSqlDbReader()
+        {
+        }
+
         public EnumSqlDbReader(string scnn)
         {
             _scnn = scnn;
