@@ -10,7 +10,7 @@ namespace EnumComposer
         {
             if (File.Exists(inputFile) == false)
             {
-                throw new ApplicationException("Input file '" + inputFile + "' wasn't found.");
+                throw new ApplicationException("Input file wasn't found. File path: '" + inputFile + "'.");
             }
 
             if (File.Exists(outputFile))
@@ -18,7 +18,7 @@ namespace EnumComposer
                 FileInfo fi = new FileInfo(outputFile);
                 if (fi.IsReadOnly)
                 {
-                    throw new ApplicationException("Output file is '" + outputFile + "'read-only.");
+                    throw new ApplicationException("Output file is read-only. File path: '" + outputFile + "'.");
                 }
             }
 

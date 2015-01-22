@@ -40,6 +40,7 @@ namespace EnumComposer
             foreach (EnumDeclarationSyntax enumeration in syntaxRoot.DescendantNodes().OfType<EnumDeclarationSyntax>())
             {
                 EnumModel model = new EnumModel();
+                model.Name = enumeration.Identifier.ToString();
 
                 /* get attributes on the enumeration declaration*/
                 SyntaxList<AttributeListSyntax> attributesList = enumeration.AttributeLists;
@@ -50,10 +51,20 @@ namespace EnumComposer
                         if (attribute.Name.ToString() == "EnumSqlSelect")
                         {
                             /* extract SqlSelect statement from EnumSqlSelectAttribute */
+                            if (attribute.ArgumentList.Arguments.Count != 1)
+                            {
+                                throw new ApplicationException(string.Format("Invalid number of arguments {0} (expected 1), in EnumSqlSelectAttribute for {1} enumeration.",
+                                    attribute.ArgumentList.Arguments.Count, model.Name));
+                            }
                             model.SqlSelect = GetAttributeValue(attribute.ArgumentList.Arguments[0]);
                         }
                         if (attribute.Name.ToString() == "EnumSqlCnn")
                         {
+                            if (attribute.ArgumentList.Arguments.Count != 2)
+                            {
+                                throw new ApplicationException(string.Format("Invalid number of arguments {0} (expected 2), in EnumSqlCnnAttribute for {1} enumeration.",
+                                    attribute.ArgumentList.Arguments.Count, model.Name));
+                            }
                             model.SqlServer = GetAttributeValue(attribute.ArgumentList.Arguments[0]);
                             model.SqlDatabase = GetAttributeValue(attribute.ArgumentList.Arguments[1]);
                         }
@@ -66,25 +77,9 @@ namespace EnumComposer
                 }
 
                 EnumModels.Add(model);
-                model.Name = enumeration.Identifier.ToString();
+                
                 model.SpanStart = enumeration.OpenBraceToken.SpanStart + 1;
                 model.SpanEnd = enumeration.CloseBraceToken.SpanStart;
-
-                //SyntaxTokenList mds = enumeration.Modifiers;
-                //foreach (SyntaxToken md in mds)
-                //{
-                //    //SyntaxToken md1 = md[0];
-                //    var trivias = md.LeadingTrivia;
-                //    foreach (SyntaxTrivia trivia in trivias)
-                //    {
-                //        string strivia = trivia.ToString();
-                //        if (strivia.StartsWith(ConstantsPR.ENUM_COMMENT_START))
-                //        {
-                //            strivia = strivia.Substring(ConstantsPR.ENUM_COMMENT_START.Length);
-                //            model.SqlRequest.Parse(strivia);
-                //        }
-                //    }
-                //}
 
                 /* loop all enumeration values*/
                 foreach (EnumMemberDeclarationSyntax syntax in enumeration.Members)
@@ -101,8 +96,6 @@ namespace EnumComposer
                     string svalue = syntax.EqualsValue.Value.ToString();
                     value.Value = int.Parse(svalue);
                 }
-
-
             }
         }
 

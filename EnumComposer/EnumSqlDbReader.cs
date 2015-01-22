@@ -1,4 +1,5 @@
 ﻿using IEnumComposer;
+using System;
 using System.Data.SqlClient;
 
 namespace EnumComposer
@@ -22,6 +23,19 @@ namespace EnumComposer
         }
 
         public void ReadEnumeration(EnumModel model)
+        {
+            try
+            {
+                ReadEnumeration_Inner(model);
+            }
+            catch(Exception exInner)
+            {
+                string message = string.Format("Error reading sql database for enumeration '{0}'. Connection string '{1}', select statement '{2}'.",
+                   model.Name, _scnn, model.SqlSelect);
+                throw new ApplicationException(message, exInner);
+            }
+        }
+        public void ReadEnumeration_Inner(EnumModel model)
         {
             if (string.IsNullOrWhiteSpace(model.SqlServer) == false)
             {
