@@ -3,11 +3,11 @@ Generate and update C# enumerations from a SQL database using Roslyn.
 
  Please see: https://github.com/uriah65/EnumComposer/wiki
  
- Solution consist of the following projects:
+ Solution consists of the following projects:
  
- EnumComposer, - libarry with the main logic
+ EnumComposer, - libary with the main logic
  
- EnumComposerConsole, - windows console application to run composer
+ EnumComposerConsole, - windows console application to run the composer
  
  EnumConsoleVSP, - Visual Studio Pacakge for composer (NOT FINISHED)
  
