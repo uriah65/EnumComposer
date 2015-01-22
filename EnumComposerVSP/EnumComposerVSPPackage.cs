@@ -166,10 +166,7 @@ namespace Uriah65.EnumComposerVSP
             {
                 text = Reverse(text);
             }
-
-          
-
-
+         
             editPoint.Insert(text);
         }
 

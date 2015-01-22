@@ -36,22 +36,14 @@ namespace EnumComposer
         private void ParseSourceEnumerations(string source)
         {
             SyntaxTree tree = CSharpSyntaxTree.ParseText(source);
-            CompilationUnitSyntax root = (CompilationUnitSyntax)tree.GetRoot();
-
-            /* get name space */
-            NamespaceDeclarationSyntax ns = root.Members.Single(m => m is NamespaceDeclarationSyntax) as NamespaceDeclarationSyntax;
-
-            /* loop all root enumerations */
-            foreach (EnumDeclarationSyntax enumeration in ns.Members.Where(n => n is EnumDeclarationSyntax))
+            SyntaxNode syntaxRoot = tree.GetRoot();
+            foreach (EnumDeclarationSyntax enumeration in syntaxRoot.DescendantNodes().OfType<EnumDeclarationSyntax>())
             {
                 EnumModel model = new EnumModel();
                 EnumModels.Add(model);
                 model.Name = enumeration.Identifier.ToString();
-                model.SpanStart = enumeration.OpenBraceToken.SpanStart + 1;// enumeration.Span.Start;
-                model.SpanEnd = enumeration.CloseBraceToken.SpanStart;// enumeration.Span.End;
-
-                
-
+                model.SpanStart = enumeration.OpenBraceToken.SpanStart + 1;
+                model.SpanEnd = enumeration.CloseBraceToken.SpanStart;
 
                 //SyntaxTokenList mds = enumeration.Modifiers;
                 //foreach (SyntaxToken md in mds)

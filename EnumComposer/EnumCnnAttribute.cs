@@ -10,11 +10,8 @@ namespace EnumComposer
     [System.AttributeUsage(AttributeTargets.Enum)]
     public class EnumSqlCnnAttribute : Attribute
     {
-        //private string _selectSQL;
-
         public EnumSqlCnnAttribute(string sqlServer, string sqlDatabase)
         {
-            //_selectSQL = selectSQL;
         }
     }
 
