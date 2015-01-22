@@ -1,0 +1,229 @@
+﻿using System;
+
+namespace SnipperLib
+{
+    using EnumComposer;
+    using System.ComponentModel;
+    using System.Diagnostics.CodeAnalysis;
+
+    [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1401:FieldsMustBePrivate", Justification = "VC.ToFix.")]
+    public static partial class ConstantsPR
+    {
+        public const int ISSUE_TYPE_BLANK_ID = 10;
+        public const int ISSUE_TYPE_LOOKUP_ID = 1;
+        public const int MARSV = 1;
+        public const int PRIORITY_LOOKUP_ID = 2;
+        public const int PRIORITY_NORMAL = 9;
+        public const string SNIPPER_MYFLOW = @"http://fsco-uat-web/IssuesLog/snipper/snipper.application?view=MyFlow";
+        public static string AD_PEOPLE = "LDAP://OU=people,DC=fsco,DC=gov,DC=on,DC=ca";
+        public static string ApplicationName = "IT Issue Log";
+        public static bool RESTRICT_SER = false;
+
+        // VC: 20121023 To add application 1). put it here 2). That's it.
+        public enum Apps
+        {
+            Mars = 1,
+            TLight = 2,
+            Coredas = 3,
+            CETS = 4,
+            TimeTracking = 5,
+            Unibook = 6,
+            TimeIT = 7,
+            MBSLL = 8,
+            INSLL = 9,
+            AIR2011 = 10,
+            AADD = 11,
+            PSP = 12,
+            FEWS = 13,
+            ARCTICS = 14,
+            ALIAS = 15,
+            MBS = 16,
+            SSRS = 17,
+            PDS = 18,
+            LMCD = 19,
+            CAPSA = 20,
+            SPDIV = 21,
+            Intra = 22,
+            Inter = 23,
+            LNotes = 24,
+            MVAC = 25,
+            TEST = 26
+        }
+
+        public enum Permissions
+        {
+            EditSettings = 1,
+            NewEmailNotification = 2
+        }
+
+        public enum UIs
+        {
+            SnipperMainWindow = 0,
+            SnipEditor = 1,
+            OrangeLog = 2,
+            OwnerSettings = 3,
+        }
+
+        [EnumSqlCnn("DELLSTUDIOXPS ", "Arctics")]
+        [EnumSqlSelect("SELECT ur__id, ur_name FROM T_UserRoles")]
+        public enum UserRoles
+        {
+            ITOwner = 1,
+            PAOwner = 2,
+            CanSeeReports = 3,
+            CanSeeAppsSettings = 4,
+            //NotuseryetApplicationPAMSignature = 5,
+        }
+
+        [EnumSqlSelect("SELECT wst__id, wst_name FROM T_WorkflowStages")]
+        public enum WfStage
+        {
+            //blank = 1,
+            Acknowledge = 2,
+            //Approval = 3,
+            //Development = 4,
+            //QA = 5,
+            //UAT = 6,
+            //Production = 7,
+            Closure = 8,
+            //Approval2 = 9,
+            //Assessment = 10,
+            //Descign = 11,
+            Estimate = 12,
+            //Cancelled = 13,
+            //On_Hold = 14,
+            PAM = 15,
+            PMO = 16,
+            ITM = 17,
+            PAM2 = 18,
+            IBA = 19,
+        }
+
+        [EnumSqlSelect("SELECT gr__id, gr_name FROM T_Groups")]
+        public enum UserGroups
+        {
+            Developers = 1,
+            ProjectManagers = 2,
+        }
+
+        [EnumSqlSelect("SELECT ist__id, ist_name FROM T_IssueTypes")]
+        public enum IssueTypes
+        {
+            //blank = 1,
+            //Bug = 2,
+            ChangeRequest = 3,
+            //Maintenance = 4,
+            //NotanIssue = 5,
+            //Development = 6,
+            ServiceRequest = 7,
+        }
+
+        public static string WfStageName(int wst__id)
+        {
+            switch (wst__id)
+            {
+                case (int)WfStage.PAM:
+                    return "PAM";
+                case (int)WfStage.PMO:
+                    return "PMO";
+                case (int)WfStage.ITM:
+                    return "IT";
+                case (int)WfStage.PAM2:
+                    return "PAM";
+                case (int)WfStage.IBA:
+                    return "IBS";
+                default:
+                    return "";
+            }
+
+        }
+
+        [Description("T_Users")]
+        public enum WfDefaultUser
+        {
+            USER_PMO_SR = 138,  /* Jhenny */
+            USER_ITM_SR = 9,    /* Mario  */
+            USER_IBA_SR = 153,  /* David Lui */
+        }
+
+        public static bool IsSerWorkflowStep(int wst__id)
+        {
+            return (wst__id >= 15 && wst__id < 20);
+        }
+
+        public static string IssueTypeName(int iss_type_id)
+        {
+            string value = string.Empty;
+            switch (iss_type_id)
+            {
+                case 1:
+                    value = string.Empty;
+                    break;
+
+                case 2:
+                    value = "BUG";
+                    break;
+
+                case 3:
+                    value = "CR";
+                    break;
+
+                case 4:
+                    value = "MNT";
+                    break;
+
+                case 5:
+                    value = "NISS";
+                    break;
+
+                case 6:
+                    value = "DEV";
+                    break;
+
+                case (int)IssueTypes.ServiceRequest:
+                    value = "SER";
+                    break;
+            }
+
+            return value;
+        }
+
+        public static string ScnnOrangeLog { get; set; }
+
+        public static void Init()
+        {
+            string wname = Environment.UserName;
+
+            // DBG
+            if (wname.ToLower() == "vcherniav")
+            {
+                //wname = "EFaggian";
+                //wname = "echiu";
+                //wname = "mcruz";
+                //wname = "rcolceri";
+                //wname = "jvillagr";
+                //wname = "Rbatres";
+                //wname = "LDevine";
+                //wname = "rcolceri";
+                //wname = "Mivancic";
+                //wname = "fliu";
+                //wname = "GCampbel";
+                //wname = "dlui";
+            }
+
+            //SQLHARD
+            ScnnOrangeLog = @"Data Source=fsco-sql;Initial Catalog=OrangeLog;Integrated Security=False;User Id=OrangeLog_Application; Password=Oranges5160; Pooling=False; MultipleActiveResultSets=True";
+            CurrentUser.Inpersonate(wname);
+
+            T_User user = T_User.LogUser(wname);
+            CurrentUser.SetUserSetting(user);
+
+            Msb.EmailExceptionDelegate = Commons.EmailExceptionInjector;
+
+
+            T_UserUI.LoadAll();
+        }
+
+
+    }
+}

@@ -8,7 +8,8 @@ namespace EnumComposer
         {
             if (string.IsNullOrWhiteSpace(name))
             {
-                throw new ArgumentException();
+                name = "empty";
+                //throw new ArgumentException();
             }
 
             string name2 = "";
