@@ -3,6 +3,7 @@
 namespace FakeDellExpected
 {
 
+    [EnumSqlCnn("DELLSTUDIOXPS ", "Arctics")]
     [EnumSqlSelect("SELECT mt__id, mt_name FROM T_MeetingTypes")]
 public enum MeetingTypeEnum
 {

@@ -116,7 +116,7 @@ namespace Uriah65.EnumComposerVSP
                 uiShell.ShowMessageBox(0,
                        ref clsid,
                        "EnumComposer Visual Studio Package",
-                       "Sorry, and exception has occurred.",
+                       "Sorry, and exception has occurred." + ex.Message,
                        string.Empty,
                        0,
                        OLEMSGBUTTON.OLEMSGBUTTON_OK,
@@ -155,7 +155,7 @@ namespace Uriah65.EnumComposerVSP
             editPoint.Delete(endPoint);
             
 
-            if (false)
+            if (true)
             {
                 EnumSqlDbReader reader = new EnumSqlDbReader("", "");
                 ComposerStrings composer = new ComposerStrings(reader);
