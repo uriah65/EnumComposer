@@ -100,12 +100,11 @@ namespace Uriah65.EnumComposerVSP
             ////           out result));
 
             IVsOutputWindow outWindow = Package.GetGlobalService(typeof(SVsOutputWindow)) as IVsOutputWindow;
-            Guid generalPaneGuid = VSConstants.GUID_OutWindowGeneralPane; // P.S. There's also the GUID_OutWindowDebugPane available.
-            IVsOutputWindowPane outputPane;
-            outWindow.GetPane(ref generalPaneGuid, out outputPane);
-            log = new EnumLog(outputPane);
+            log = new EnumLog(outWindow);
 
+            log.WriteLine("Start.");
             RunComposerScan();
+            log.WriteLine("End.");
         }
 
         private void RunComposerScan()

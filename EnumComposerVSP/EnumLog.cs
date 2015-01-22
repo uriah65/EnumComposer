@@ -1,24 +1,29 @@
 ﻿using System;
 using EnumComposer;
 using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.VisualStudio;
 
 namespace Uriah65.EnumComposerVSP
 {
     internal class EnumLog : IEnumLog
     {
-        private IVsOutputWindowPane _outputPane;
+        IVsOutputWindow _outputWindow;
 
-        public EnumLog(IVsOutputWindowPane outputPane)
+        public EnumLog(IVsOutputWindow outputWindow)
         {
-            _outputPane = outputPane;
+            _outputWindow = outputWindow;
         }
 
         public void WriteLine(string format, params object[] arguments)
         {
-            if (_outputPane != null)
+            Guid generalPaneGuid = VSConstants.GUID_OutWindowDebugPane;//.GUID_OutWindowGeneralPane; 
+            IVsOutputWindowPane outputPane;
+            _outputWindow.GetPane(ref generalPaneGuid, out outputPane);
+            if (outputPane != null)
             {
-                string message = string.Format("EnumComposer: " + format, arguments);
-                _outputPane.OutputString(message);
+                string message = string.Format(Environment.NewLine + "EnumComposer: " + format, arguments);
+                outputPane.OutputString(message);
+                outputPane.Activate();
             }
         }
 
