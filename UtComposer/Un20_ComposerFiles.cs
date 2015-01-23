@@ -27,7 +27,7 @@ namespace UtComposer
         [TestMethod]
         public void ParseFileAndDb()
         {
-            string inputFile = @"..\..\Fake_CsEnumerations2.cs";
+            string inputFile = @"..\..\Fake20_.cs";
             string outputFile = Path.GetTempFileName() + ".txt";
 
             ComposerFiles composer = new ComposerFiles();
@@ -52,6 +52,21 @@ namespace UtComposer
         }
 
         [TestMethod]
+        public void ParseFileAndText()
+        {
+            string path = @"..\..\Fake20_.cs";
+            ComposerStrings composer = new ComposerStrings(_dbReader);
+            string sourceText = File.ReadAllText(path);
+
+            composer.Compose(sourceText);
+
+            string txt = composer.GetResultFile();// .ToString();
+
+            /* this test is for manual checking of text result above */
+            Assert.AreEqual(true, true);
+        }
+
+        [TestMethod]
         public void ParseFileAndDbDell()
         {
             if (ConstantsPR.IsDell == false)
@@ -60,8 +75,8 @@ namespace UtComposer
                 return;
             }
 
-            string inputFile = @"..\..\Fake_CsEnumDellXPS.cs";
-            string expectedFile = @"..\..\Fake_CsEnumDellXPSExpected.txt";
+            string inputFile = @"..\..\Fake20_Dell.cs";
+            string expectedFile = @"..\..\Fake20_Dell.txt";
 
             ComposerFiles composer = new ComposerFiles();
             _dbReader = new EnumSqlDbReader();

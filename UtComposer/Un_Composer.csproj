@@ -56,10 +56,10 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ConstantsPR.cs" />
-    <Content Include="Fake_CsEnumDellXPSExpected.txt" />
-    <Compile Include="Fake_CsEnumDellXPS.cs" />
-    <Compile Include="Fake_CsEnumerations.cs" />
-    <Compile Include="Fake_CsEnumerations2.cs" />
+    <Content Include="Fake20_Dell.txt" />
+    <Compile Include="Fake20_Dell.cs" />
+    <Compile Include="Fake30_.cs" />
+    <Compile Include="Fake20_.cs" />
     <Compile Include="Fake21_CsFakeDb.cs" />
     <Compile Include="Fake_DbReader.cs" />
     <Compile Include="Un21_BuildInFakeDb.cs" />

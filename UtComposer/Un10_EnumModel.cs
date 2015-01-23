@@ -46,7 +46,6 @@ namespace UtComposer
             actualCs = actualCs.Replace("\t", "");
             actualCs = actualCs.Replace(" ", "");
 
-            //string expectedCs = "[EnumSqlSelect(\"SELECTid,nameFROMT_Simple\")]publicenumATestEnumeration{inDb1=5,//inDb2=6,//inDbNew=7,}";
             string expectedCs = "inDb1=5,//inDb2=6,//inDbNew=7,";
             Assert.AreEqual(expectedCs, actualCs);
         }

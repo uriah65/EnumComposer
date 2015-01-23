@@ -30,7 +30,7 @@ namespace UtComposer
         {
             /* Parse C# file and make sure EmunModel array get filled correctly */
 
-            string path = @"..\..\Fake_CsEnumerations.cs";
+            string path = @"..\..\Fake30_.cs";
             string sourceText = File.ReadAllText(path);
 
             ComposerStrings composer = new ComposerStrings(null);
@@ -60,19 +60,6 @@ namespace UtComposer
 
 
 
-        [TestMethod]
-        public void ParseFileAndDb()
-        {
-            string path = @"..\..\Fake_CsEnumerations2.cs";
-            ComposerStrings composer = new ComposerStrings(_dbReader);
-            string sourceText = File.ReadAllText(path);
 
-            composer.Compose(sourceText);
-
-            string txt = composer.GetResultFile();// .ToString();
-
-            /* this test is for manual checking of text result above */
-            Assert.AreEqual(true, true);
-        }
     }
 }
