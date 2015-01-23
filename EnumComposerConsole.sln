@@ -11,11 +11,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Un_Composer", "UtComposer\U
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnumComposerVSP", "EnumComposerVSP\EnumComposerVSP.csproj", "{AF1310E8-8885-4706-AECD-A767C8156B4E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FBFE4260-369C-43C5-9C5E-FCF44988A6DF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Licenses", "Licenses", "{31FCD18F-928F-458E-AB08-286BC0626075}"
 	ProjectSection(SolutionItems) = preProject
-		..\Lisenses\License_CommandLineParserLibrary.txt = ..\Lisenses\License_CommandLineParserLibrary.txt
-		..\Lisenses\License_EnumComposer.txt = ..\Lisenses\License_EnumComposer.txt
-		..\Lisenses\Thanks.txt = ..\Lisenses\Thanks.txt
+		Lisenses\License_CommandLineParserLibrary.txt = Lisenses\License_CommandLineParserLibrary.txt
+		Lisenses\License_EnumComposer.txt = Lisenses\License_EnumComposer.txt
+		Lisenses\Thanks.txt = Lisenses\Thanks.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "e2eTests", "e2eTests", "{EC274A8B-E9E0-47F3-B4E5-DD9B6F7B1CAA}"
+	ProjectSection(SolutionItems) = preProject
+		e2eTests\01_fakedb.bat = e2eTests\01_fakedb.bat
+		e2eTests\01_fakedb.txt = e2eTests\01_fakedb.txt
 	EndProjectSection
 EndProject
 Global
