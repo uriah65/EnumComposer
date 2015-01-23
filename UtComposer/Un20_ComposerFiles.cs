@@ -6,7 +6,7 @@ using System.IO;
 namespace UtComposer
 {
     [TestClass]
-    public class Un_ComposerFiles
+    public class Un20_ComposerFiles
     {
         /* Test composer. Hight level test.
         */

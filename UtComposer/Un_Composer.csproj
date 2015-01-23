@@ -60,11 +60,13 @@
     <Compile Include="Fake_CsEnumDellXPS.cs" />
     <Compile Include="Fake_CsEnumerations.cs" />
     <Compile Include="Fake_CsEnumerations2.cs" />
+    <Compile Include="Fake_CsFakeDb.cs" />
     <Compile Include="Fake_DbReader.cs" />
-    <Compile Include="Un_ComposerFiles.cs" />
-    <Compile Include="Un_Composer.cs" />
-    <Compile Include="Un_NameConverter.cs" />
-    <Compile Include="Un_EnumModel.cs" />
+    <Compile Include="Un21_BuildInFakeDb.cs" />
+    <Compile Include="Un20_ComposerFiles.cs" />
+    <Compile Include="Un30_Composer.cs" />
+    <Compile Include="Un01_NameConverter.cs" />
+    <Compile Include="Un10_EnumModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

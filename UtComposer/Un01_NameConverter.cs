@@ -9,7 +9,7 @@ namespace UtComposer
     */
 
     [TestClass]
-    public class Un_NameConverter
+    public class Un01_NameConverter
     {
 
         EnumNameConverter _converter = null;

@@ -9,7 +9,7 @@ namespace UtComposer
     */
 
     [TestClass]
-    public class Un_EnumModel
+    public class Un10_EnumModel
     {
         EnumModel _model;
         IEnumDbReader _dbReader;

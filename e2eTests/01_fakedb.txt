@@ -1,0 +1,13 @@
+using System
+
+namespace nstest
+{
+    [EnumSqlCnn("FakeSqlServer", "FakeDb")]
+    [EnumSqlSelect("SELECT mt__id, mt_name FROM T_MeetingTypes")]
+    public enum MeetingTypeEnum
+    {
+        PreHearing = 7,
+        //Hearing = 8,
+        SD = 5,
+	}
+}

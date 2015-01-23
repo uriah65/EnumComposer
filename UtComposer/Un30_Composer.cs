@@ -1,6 +1,7 @@
 ﻿using EnumComposer;
 using IEnumComposer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.IO;
 
 namespace UtComposer
@@ -9,7 +10,7 @@ namespace UtComposer
     */
 
     [TestClass]
-    public class Un_Composer
+    public class Un30_Composer
     {
         private IEnumDbReader _dbReader = null;
 
@@ -30,9 +31,9 @@ namespace UtComposer
             /* Parse C# file and make sure EmunModel array get filled correctly */
 
             string path = @"..\..\Fake_CsEnumerations.cs";
-            ComposerStrings composer = new ComposerStrings(null);
             string sourceText = File.ReadAllText(path);
 
+            ComposerStrings composer = new ComposerStrings(null);
             composer.Compose(sourceText);
 
             Assert.AreEqual(1, composer.EnumModels.Count);
@@ -56,6 +57,8 @@ namespace UtComposer
             Assert.AreEqual(null, value.Name);
             Assert.AreEqual("K5", value.NameCs);
         }
+
+
 
         [TestMethod]
         public void ParseFileAndDb()
