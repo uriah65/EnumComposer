@@ -60,7 +60,7 @@
     <Compile Include="Fake_CsEnumDellXPS.cs" />
     <Compile Include="Fake_CsEnumerations.cs" />
     <Compile Include="Fake_CsEnumerations2.cs" />
-    <Compile Include="Fake_CsFakeDb.cs" />
+    <Compile Include="Fake21_CsFakeDb.cs" />
     <Compile Include="Fake_DbReader.cs" />
     <Compile Include="Un21_BuildInFakeDb.cs" />
     <Compile Include="Un20_ComposerFiles.cs" />

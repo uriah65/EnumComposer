@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace UtComposer
 {
-    class Fake_CsFakeDb
+    class Fake21_CsFakeDb
     {
         [EnumSqlCnn("FakeSqlServer", "FakeDb")]
         [EnumSqlSelect("SELECT id, name FROM T_Weekdays")]

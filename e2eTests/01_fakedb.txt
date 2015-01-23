@@ -1,13 +1,17 @@
-using System
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace nstest
+namespace UtComposer
 {
-    [EnumSqlCnn("FakeSqlServer", "FakeDb")]
-    [EnumSqlSelect("SELECT mt__id, mt_name FROM T_MeetingTypes")]
-    public enum MeetingTypeEnum
+    class Fake21_CsFakeDb
     {
-        PreHearing = 7,
-        //Hearing = 8,
-        SD = 5,
-	}
+        [EnumSqlCnn("FakeSqlServer", "FakeDb")]
+        [EnumSqlSelect("SELECT id, name FROM T_Weekdays")]
+        public enum Weekdays
+        {
+}
+    }
 }

@@ -21,6 +21,11 @@ namespace EnumComposerConsole
                     return Quit(-1);
                 }
 
+                if (string.IsNullOrWhiteSpace(_options.OutputFile))
+                {
+                    _options.OutputFile = _options.InputFile;
+                }
+
                 return Main_Inner();
             }
             catch (Exception ex)
@@ -37,11 +42,6 @@ namespace EnumComposerConsole
         {
             if (_options.Verbose)
             {
-                if (string.IsNullOrWhiteSpace(_options.OutputFile))
-                {
-                    _options.OutputFile = _options.InputFile;
-                }
-
                 Console.WriteLine("Input file: {0}", _options.InputFile);
                 Console.WriteLine("Output file: {0}", _options.OutputFile);
                 Console.WriteLine("SQL Server: {0}", _options.SqlServer);

@@ -28,7 +28,7 @@ namespace UtComposer
         [TestMethod]
         public void FakeBuildInDatabase()
         {
-            string path = @"..\..\Fake_CsFakeDb.cs";
+            string path = @"..\..\Fake21_CsFakeDb.cs";
             string sourceText = File.ReadAllText(path);
 
             ComposerStrings composer = new ComposerStrings(_dbReader);
@@ -44,7 +44,7 @@ namespace UtComposer
         [ExpectedException(typeof(ArgumentException))]
         public void FakeBuildInDatabaseException()
         {
-            string path = @"..\..\Fake_CsFakeDb.cs";
+            string path = @"..\..\Fake21_CsFakeDb.cs";
             string sourceText = File.ReadAllText(path);
             sourceText = sourceText.Replace("T_Weekdays", "T_Wds");
 
