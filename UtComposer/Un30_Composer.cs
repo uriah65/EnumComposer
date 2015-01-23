@@ -40,7 +40,7 @@ namespace UtComposer
 
             EnumModel model = composer.EnumModels[0];
             Assert.AreEqual("E2", model.Name);
-            Assert.AreEqual("E2", model.NameSc);
+            //Assert.AreEqual("E2", model.NameSc);
             Assert.AreEqual("SELECT lkc__id, lkc_name FROM AcClaim.dbo.T_LookupCategories", model.SqlSelect);
             Assert.AreEqual(2, model.Values.Count);
             Assert.AreEqual("server1", model.SqlServer);

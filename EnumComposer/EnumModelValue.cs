@@ -19,7 +19,7 @@
                 return "";
             }
 
-            string result = string.Format("{0}={1},", NameCs, Value);
+            string result = string.Format("{0} = {1},", NameCs, Value);
             if (IsActive == false)
             {
                 result = @"//" + result;

@@ -6,46 +6,27 @@ namespace EnumComposer
 {
     public class EnumModel //: IEnumModel
     {
+        private EnumNameConverter _converter;
+
         public string SqlServer { get; set; }
+
         public string SqlDatabase { get; set; }
+
         public string SqlSelect { get; set; }
 
-        private EnumNameConverter _converter;
-        private string _name;
-        private string _nameCs;
+        public string Name { get; set; }
 
+        public int SpanStart { get; set; }
 
+        public int SpanEnd { get; set; }
+
+        public List<EnumModelValue> Values { get; set; }
 
         public EnumModel()
         {
             _converter = new EnumNameConverter();
             Values = new List<EnumModelValue>();
         }
-
-        public string Name
-        {
-            get { return _name; }
-            set
-            {
-                _name = value.Trim(); // EXW
-                _nameCs = _converter.Convert(_name);
-            }
-        }
-
-        public string NameSc
-        {
-            get
-            {
-                return _nameCs;
-            }
-        }
-
-        public int SpanStart { get; set; }
-
-        public int SpanEnd { get; set; }
-
-
-        public List<EnumModelValue> Values { get; set; }
 
         public void FillFromCode(int value, string nameCs, bool isActive)
         {

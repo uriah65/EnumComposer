@@ -9,10 +9,8 @@ namespace EnumComposer
     {
         private string _scnn;
 
-        /* we have a fake imitation of SQL server build in to ease e2e testing */
+        /* a fake imitation of SQL server build in this class to ease e2e testing */
         private const string FAKE_SQL_SINATURE = "server=fakesqlserver;database=fakedb";
-        private bool _isFakeServer = false;
-
 
         public EnumSqlDbReader()
         {
@@ -34,11 +32,11 @@ namespace EnumComposer
             {
                 ReadEnumeration_Inner(model);
             }
-            catch (Exception exInner)
+            catch (Exception ex)
             {
                 string message = string.Format("Error reading database for the enumeration '{1}'.{0}Connection string is '{2}'.{0}SELECT statement is '{3}'.",
                    Environment.NewLine, model.Name, _scnn, model.SqlSelect);
-                throw new ApplicationException(message, exInner);
+                throw new ApplicationException(message, ex);
             }
         }
 
@@ -46,7 +44,7 @@ namespace EnumComposer
         {
             if (string.IsNullOrWhiteSpace(model.SqlServer) == false)
             {
-                /* once new database location provided, the consecutive models will be using it */
+                /* once new database location provided, the consecutive EnumModels will be using it */
                 _scnn = string.Format("Server={0};Database={1};Trusted_Connection=True;", model.SqlServer, model.SqlDatabase);
             }
 
@@ -80,11 +78,13 @@ namespace EnumComposer
             }
         }
 
+        #region Fake Database
+
         private void ProcessFake(EnumModel model)
         {
             if (model.SqlSelect.ToLower().Contains("t_weekdays") == false)
             {
-                throw new ApplicationException(string.Format("Error executing sql '{0}' against Fake database.", model.SqlSelect));
+                throw new ApplicationException(string.Format("Error executing statement '{0}' against Fake database.", model.SqlSelect));
             }
 
             Dictionary<int, string> T_Weekdays = new Dictionary<int, string>
@@ -104,5 +104,6 @@ namespace EnumComposer
             }
         }
 
+        #endregion Fake Database
     }
 }

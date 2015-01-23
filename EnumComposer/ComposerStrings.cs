@@ -86,7 +86,7 @@ namespace EnumComposer
                 }
 
                 EnumModels.Add(model);
-                
+
                 model.SpanStart = enumeration.OpenBraceToken.SpanStart + 1;
                 model.SpanEnd = enumeration.CloseBraceToken.SpanStart;
 
@@ -111,7 +111,7 @@ namespace EnumComposer
         private void UpdateModelsFromBD()
         {
             /* we need to keep SpanStart order, to honor connection EnumSqlCnnAttribute */
-            foreach (EnumModel model in EnumModels.OrderBy(e=>e.SpanStart)) 
+            foreach (EnumModel model in EnumModels.OrderBy(e => e.SpanStart))
             {
                 UpdateModelFromBD(model);
             }
