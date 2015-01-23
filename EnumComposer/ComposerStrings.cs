@@ -110,7 +110,8 @@ namespace EnumComposer
 
         private void UpdateModelsFromBD()
         {
-            foreach (EnumModel model in EnumModels)
+            /* we need to keep SpanStart order, to honor connection EnumSqlCnnAttribute */
+            foreach (EnumModel model in EnumModels.OrderBy(e=>e.SpanStart)) 
             {
                 UpdateModelFromBD(model);
             }
