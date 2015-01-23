@@ -116,7 +116,7 @@ namespace Uriah65.EnumComposerVSP
             catch (Exception ex)
             {
 
-                string message = "Sorry, and exception has occurred." + Environment.NewLine + ex.Message + Environment.NewLine + "See Output\\Debug window for details.";
+                string message = "Sorry, and exception has occurred." + Environment.NewLine + Environment.NewLine + ex.Message + Environment.NewLine + Environment.NewLine + "See the Output\\Debug window for details.";
                 if (log != null)
                 {
                     string logMessage = DedbugLog.ExceptionMessage(ex);
