@@ -55,6 +55,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Fake_MinimalApp.cs" />
     <Compile Include="ConstantsPR.cs" />
     <Content Include="Fake20_Dell.txt" />
     <Compile Include="Fake20_Dell.cs" />
