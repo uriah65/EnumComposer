@@ -1,13 +1,13 @@
-﻿using System;
-using EnumComposer;
-using Microsoft.VisualStudio.Shell.Interop;
+﻿using EnumComposer;
 using Microsoft.VisualStudio;
+using Microsoft.VisualStudio.Shell.Interop;
+using System;
 
 namespace Uriah65.EnumComposerVSP
 {
     internal class EnumLog : IEnumLog
     {
-        IVsOutputWindow _outputWindow;
+        private IVsOutputWindow _outputWindow;
 
         public EnumLog(IVsOutputWindow outputWindow)
         {
@@ -16,7 +16,7 @@ namespace Uriah65.EnumComposerVSP
 
         public void WriteLine(string format, params object[] arguments)
         {
-            Guid generalPaneGuid = VSConstants.GUID_OutWindowDebugPane;//.GUID_OutWindowGeneralPane; 
+            Guid generalPaneGuid = VSConstants.GUID_OutWindowDebugPane;//.GUID_OutWindowGeneralPane;
             IVsOutputWindowPane outputPane;
             _outputWindow.GetPane(ref generalPaneGuid, out outputPane);
             if (outputPane != null)
@@ -27,13 +27,5 @@ namespace Uriah65.EnumComposerVSP
                 outputPane.Activate();
             }
         }
-
-        //void AttemptPane()
-        //{
-        //    IVsOutputWindow outWindow = Package.GetGlobalService(typeof(SVsOutputWindow)) as IVsOutputWindow;
-        //    Guid generalPaneGuid = VSConstants.GUID_OutWindowGeneralPane; // P.S. There's also the GUID_OutWindowDebugPane available.
-        //    IVsOutputWindowPane outputPane;
-        //    outWindow.GetPane(ref generalPaneGuid, out outputPane);
-        //}
     }
 }
