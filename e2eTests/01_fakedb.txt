@@ -12,6 +12,7 @@ namespace UtComposer
         [EnumSqlSelect("SELECT id, name FROM T_Weekdays")]
         public enum Weekdays
         {
-}
+		}
+		/**/
     }
 }
