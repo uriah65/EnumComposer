@@ -102,9 +102,10 @@ namespace Uriah65.EnumComposerVSP
             IVsOutputWindow outWindow = Package.GetGlobalService(typeof(SVsOutputWindow)) as IVsOutputWindow;
             log = new EnumLog(outWindow);
 
-            log.WriteLine("Start.");
+            log.WriteLine("");
+            log.WriteLine("Started.");
             RunComposerScan();
-            log.WriteLine("End.");
+            log.WriteLine("Finished.");
         }
 
         private void RunComposerScan()
