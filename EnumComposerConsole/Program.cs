@@ -6,59 +6,87 @@ namespace EnumComposerConsole
 {
     internal class Program
     {
+        private static ConsoleColor _originalColor;
+        private static Options _options;
+
         private static int Main(string[] args)
         {
-            ConsoleColor originalColor = Console.ForegroundColor;
-
-            var options = new Options();
-            if (CommandLine.Parser.Default.ParseArguments(args, options) == false)
-            {
-                Console.ReadKey();
-                return -1;
-            }
-
-            if (options.Verbose)
-            {
-                Console.WriteLine("Input file: {0}", options.InputFile);
-                Console.WriteLine("Output file: {0}", options.OutputFile);
-                Console.WriteLine("SQL Server: {0}", options.SqlServer);
-                Console.WriteLine("Database: {0}", options.SqlDatabase);
-                Console.WriteLine("Press Y to continue");
-                if (Console.ReadKey().Key != ConsoleKey.Y)
-                {
-                    Console.WriteLine("");
-                    Console.WriteLine("Aborted by the user");
-                    return 0;
-                }
-            }
+            _originalColor = Console.ForegroundColor;
+            _options = new Options();
 
             try
             {
-                IEnumLog log = options.Verbose ? log = new Log() : null;
-                IEnumDbReader dbReader = new EnumSqlDbReader(options.SqlServer, options.SqlDatabase);
+                if (CommandLine.Parser.Default.ParseArguments(args, _options) == false)
+                {
+                    return Quit(-1);
+                }
 
-                ComposerFiles composer = new ComposerFiles();
-                composer.Compose(options.InputFile, options.OutputFile, dbReader, log);
-
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("");
-                Console.WriteLine("Enumerations has been updated.");
+                return Main_Inner();
             }
             catch (Exception ex)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine(ex.Message);
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine(ExceptionMessage(ex));
+                return Quit(-1);
             }
 
-            if (options.Verbose)
+            return Quit(0);
+        }
+
+        private static int Main_Inner()
+        {
+            if (_options.Verbose)
             {
-                Console.WriteLine("Press a key to quit.");
-                Console.ReadKey();
+                Console.WriteLine("Input file: {0}", _options.InputFile);
+                Console.WriteLine("Output file: {0}", _options.OutputFile);
+                Console.WriteLine("SQL Server: {0}", _options.SqlServer);
+                Console.WriteLine("Database: {0}", _options.SqlDatabase);
+                Console.WriteLine("Enter 'Y' to continue");
+                if (Console.ReadLine().ToUpper() != "Y")
+                {
+                    Console.WriteLine("");
+                    Console.WriteLine("Aborted by the user");
+                    return Quit(0);
+                }
             }
 
-            Console.ForegroundColor = originalColor;
+            IEnumLog log = _options.Verbose ? log = new Log() : null;
+            IEnumDbReader dbReader = new EnumSqlDbReader(_options.SqlServer, _options.SqlDatabase);
 
-            return 0;
+            ComposerFiles composer = new ComposerFiles();
+            composer.Compose(_options.InputFile, _options.OutputFile, dbReader, log);
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("");
+            Console.WriteLine("Enumerations has been updated.");
+
+            return Quit(0);
+        }
+
+        private static string ExceptionMessage(Exception ex)
+        {
+            string message = "";
+            while (ex != null)
+            {
+                message += "Exception:" + Environment.NewLine;
+                message += "Message:  " + ex.Message + Environment.NewLine;
+                message += "Stack:    " + ex.StackTrace + Environment.NewLine;
+                ex = ex.InnerException;
+            }
+            return message;
+        }
+
+        private static int Quit(int exitCode)
+        {
+            if (_options.Verbose)
+            {
+                Console.WriteLine("Press Enter to quit.");
+                Console.ReadLine().ToUpper();
+            }
+
+            Console.ForegroundColor = _originalColor;
+
+            return exitCode;
         }
     }
 }
