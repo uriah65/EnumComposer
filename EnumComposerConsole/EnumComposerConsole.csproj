@@ -113,7 +113,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Licenses\CommandLineParserLibrary.txt" />
+    <Content Include="Licenses\CommandLineParserLibraryLicense.txt" />
+    <Content Include="Licenses\EnumComposerLicense.txt" />
+    <Content Include="Licenses\Thanks.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
