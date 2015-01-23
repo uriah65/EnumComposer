@@ -34,10 +34,11 @@ namespace EnumComposerConsole
 
             try
             {
+                IEnumLog log = options.Verbose ? log = new Log() : null;
                 IEnumDbReader dbReader = new EnumSqlDbReader(options.SqlServer, options.SqlDatabase);
 
                 ComposerFiles composer = new ComposerFiles();
-                composer.Compose(options.InputFile, options.OutputFile, dbReader);
+                composer.Compose(options.InputFile, options.OutputFile, dbReader, log);
 
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("");
