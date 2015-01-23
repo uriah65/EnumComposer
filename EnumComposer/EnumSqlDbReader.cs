@@ -52,7 +52,7 @@ namespace EnumComposer
 
             if (string.IsNullOrWhiteSpace(_scnn))
             {
-                throw new ApplicationException(string.Format("Empty connection string for the enumeration '{0}'.", model.Name));
+                throw new ApplicationException(string.Format("Connection string for the enumeration '{0}' is blank.", model.Name));
             }
 
             if (_scnn.ToLower().Contains(FAKE_SQL_SINATURE))
