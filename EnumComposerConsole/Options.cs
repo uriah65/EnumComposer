@@ -32,8 +32,15 @@ namespace EnumComposerConsole
         [HelpOption]
         public string GetUsage()
         {
-            return HelpText.AutoBuild(this,
-              (HelpText current) => HelpText.DefaultParsingErrorsHandler(this, current));
+            HelpText help = HelpText.AutoBuild(this, (HelpText current) => HelpText.DefaultParsingErrorsHandler(this, current));
+            help.AddPreOptionsLine("ARGUMENTS:");
+            help.AddPostOptionsLine("USEAGE:");
+            help.AddPostOptionsLine("");
+            help.AddPostOptionsLine("If output file is not specified, input file will be used instead.");
+            help.AddPostOptionsLine("If sqlserver/database are not specified, EnumSqlCnn attribute should be set up in C# code.");
+            help.AddPostOptionsLine("");
+            help.AddPostOptionsLine("");
+            return help;
         }
     }
 }

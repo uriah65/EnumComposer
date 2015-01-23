@@ -35,9 +35,9 @@ namespace UtComposer
 
             composer.Compose(sourceText);
 
-            Assert.AreEqual(3, composer.EnumModels.Count);
+            Assert.AreEqual(1, composer.EnumModels.Count);
 
-            EnumModel model = composer.EnumModels[1];
+            EnumModel model = composer.EnumModels[0];
             Assert.AreEqual("E2", model.Name);
             Assert.AreEqual("E2", model.NameSc);
             Assert.AreEqual("SELECT lkc__id, lkc_name FROM AcClaim.dbo.T_LookupCategories", model.SqlSelect);

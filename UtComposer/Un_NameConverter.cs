@@ -35,14 +35,17 @@ namespace UtComposer
             Assert.AreEqual("we", _converter.Convert(" w  e"));
             Assert.AreEqual("_2we", _converter.Convert("2w  e"));
             Assert.AreEqual("_2w_____e", _converter.Convert("2w#$%^&e"));
+            Assert.AreEqual("empty", _converter.Convert("  "));
+
         }
 
+        /* replacing blanks with 'empty' 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void InvalidArgument()
         {
             _converter.Convert(" ");
-        }
+        }*/
 
     }
 }
