@@ -1,8 +1,0 @@
-﻿
-Thanks Giacomo Stelluti Scala for the nice CommandLineParserLibrary
-https://commandline.codeplex.com/license
-https://github.com/gsscoder/commandline
-
-
-Thanks for Roslyn introduction:
-https://joshvarty.wordpress.com/learn-roslyn-now/
