@@ -20,8 +20,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Licenses", "_Licenses", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_e2eTests", "_e2eTests", "{EC274A8B-E9E0-47F3-B4E5-DD9B6F7B1CAA}"
 	ProjectSection(SolutionItems) = preProject
-		e2eTests\01_fakedb.bat = e2eTests\01_fakedb.bat
-		e2eTests\01_fakedb.txt = e2eTests\01_fakedb.txt
+		_e2eTests\01_fakedb.bat = _e2eTests\01_fakedb.bat
+		_e2eTests\01_fakedb.txt = _e2eTests\01_fakedb.txt
 	EndProjectSection
 EndProject
 Global
