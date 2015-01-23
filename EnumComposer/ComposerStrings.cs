@@ -120,7 +120,7 @@ namespace EnumComposer
         {
             if (_dbReader != null)
             {
-                _log.WriteLine("UpdateModelFromBD " + model.Name);
+                _log.WriteLine("Reading database for " + model.Name +".");
                 _dbReader.ReadEnumeration(model);
             }
         }
