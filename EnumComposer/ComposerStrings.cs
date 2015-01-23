@@ -121,7 +121,7 @@ namespace EnumComposer
         {
             if (_dbReader != null)
             {
-                _log.WriteLine("Reading database for " + model.Name +".");
+                _log.WriteLine("'{0}' enumeration. Reading database.", model.Name);
                 _dbReader.ReadEnumeration(model);
             }
         }

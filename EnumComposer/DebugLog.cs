@@ -14,5 +14,19 @@ namespace EnumComposer
             message += string.Format(format, arguments);
             System.Diagnostics.Debug.WriteLine(message);
         }
+
+
+        public static string ExceptionMessage(Exception ex)
+        {
+            string message = "";
+            while (ex != null)
+            {
+                message += "Exception:" + Environment.NewLine;
+                message += "Message:  " + ex.Message + Environment.NewLine;
+                message += "Stack:    " + ex.StackTrace + Environment.NewLine;
+                ex = ex.InnerException;
+            }
+            return message;
+        }
     }
 }

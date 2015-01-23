@@ -33,7 +33,7 @@ namespace Uriah65.EnumComposerVSP
     [Guid(GuidList.guidEnumComposerVSPPkgString)]
     public sealed class EnumComposerVSPPackage : Package
     {
-        
+
         IEnumLog log;
 
         /// <summary>
@@ -115,13 +115,21 @@ namespace Uriah65.EnumComposerVSP
             }
             catch (Exception ex)
             {
+
+                string message = "Sorry, and exception has occurred." + Environment.NewLine + ex.Message + Environment.NewLine + "See Output\\Debug window for details.";
+                if (log != null)
+                {
+                    string logMessage = DedbugLog.ExceptionMessage(ex);
+                    log.WriteLine(logMessage);
+                }
+
                 IVsUIShell uiShell = (IVsUIShell)GetService(typeof(SVsUIShell));
                 Guid clsid = Guid.Empty;
                 int result;
                 uiShell.ShowMessageBox(0,
                        ref clsid,
                        "EnumComposer Visual Studio Package",
-                       "Sorry, and exception has occurred." + ex.Message,
+                       message,
                        string.Empty,
                        0,
                        OLEMSGBUTTON.OLEMSGBUTTON_OK,

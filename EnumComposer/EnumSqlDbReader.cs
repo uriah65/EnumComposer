@@ -36,8 +36,8 @@ namespace EnumComposer
             }
             catch (Exception exInner)
             {
-                string message = string.Format("Error reading database for enumeration '{0}'. Connection string '{1}', select statement '{2}'.",
-                   model.Name, _scnn, model.SqlSelect);
+                string message = string.Format("Error reading database for the enumeration '{1}'.{0}Connection string is '{2}'.{0}SELECT statement is '{3}'.",
+                   Environment.NewLine, model.Name, _scnn, model.SqlSelect);
                 throw new ApplicationException(message, exInner);
             }
         }

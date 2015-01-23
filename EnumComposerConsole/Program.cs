@@ -31,7 +31,7 @@ namespace EnumComposerConsole
             catch (Exception ex)
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine(ExceptionMessage(ex));
+                Console.WriteLine(DedbugLog.ExceptionMessage(ex));
                 return Quit(-1);
             }
 
@@ -68,18 +68,7 @@ namespace EnumComposerConsole
             return Quit(0);
         }
 
-        private static string ExceptionMessage(Exception ex)
-        {
-            string message = "";
-            while (ex != null)
-            {
-                message += "Exception:" + Environment.NewLine;
-                message += "Message:  " + ex.Message + Environment.NewLine;
-                message += "Stack:    " + ex.StackTrace + Environment.NewLine;
-                ex = ex.InnerException;
-            }
-            return message;
-        }
+
 
         private static int Quit(int exitCode)
         {

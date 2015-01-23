@@ -13,9 +13,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnumComposerVSP", "EnumComp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Licenses", "_Licenses", "{31FCD18F-928F-458E-AB08-286BC0626075}"
 	ProjectSection(SolutionItems) = preProject
-		Lisenses\License_CommandLineParserLibrary.txt = Lisenses\License_CommandLineParserLibrary.txt
-		Lisenses\License_EnumComposer.txt = Lisenses\License_EnumComposer.txt
-		Lisenses\Thanks.txt = Lisenses\Thanks.txt
+		_Lisenses\License_CommandLineParserLibrary.txt = _Lisenses\License_CommandLineParserLibrary.txt
+		_Lisenses\License_EnumComposer.txt = _Lisenses\License_EnumComposer.txt
+		_Lisenses\Thanks.txt = _Lisenses\Thanks.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_e2eTests", "_e2eTests", "{EC274A8B-E9E0-47F3-B4E5-DD9B6F7B1CAA}"
