@@ -40,7 +40,7 @@ namespace UtComposer
 
             string output = File.ReadAllText(outputFile);            
             string expected = File.ReadAllText(expectedFile);
-            Assert.AreEqual(expected, output, "Output should be as expected");
+            Assert.AreEqual(expected, output, "Output should be as expected.");
         }
     }
 }
