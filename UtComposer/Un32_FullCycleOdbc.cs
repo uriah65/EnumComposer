@@ -33,7 +33,7 @@ namespace UtComposer
             _dbReader = new EnumDbReader("#ODBC", scnn);
 
     
-            //string expectedFile = @"..\..\Fake31_Dell.txt";
+            //string expectedFile = @"..\..\Fake31_Dell.txt";T
 
             ComposerFiles composer = new ComposerFiles();
 
