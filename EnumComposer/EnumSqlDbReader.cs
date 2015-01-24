@@ -9,6 +9,8 @@ namespace EnumComposer
     {
         private string _scnn;
 
+        private const string SQL_CONN_MARKER = "#SQL";
+
         /* a fake imitation of SQL server build in this class to ease e2e testing */
         private const string FAKE_SQL_SINATURE = "server=fakesqlserver;database=fakedb";
 
@@ -16,14 +18,14 @@ namespace EnumComposer
         {
         }
 
-        public EnumSqlDbReader(string scnn)
-        {
-            _scnn = scnn;
-        }
+        //public EnumSqlDbReader(string scnn)
+        //{
+        //    _scnn = scnn;
+        //}
 
         public EnumSqlDbReader(string sqlServer, string sqlDatabase)
         {
-            _scnn = string.Format("Server={0};Database={1};Trusted_Connection=True;", sqlServer, sqlDatabase);
+            _scnn = BuildConnection(sqlServer, sqlDatabase);
         }
 
         public void ReadEnumeration(EnumModel model)
@@ -45,7 +47,7 @@ namespace EnumComposer
             if (string.IsNullOrWhiteSpace(model.SqlServer) == false)
             {
                 /* once new database location provided, the consecutive EnumModels will be using it */
-                _scnn = string.Format("Server={0};Database={1};Trusted_Connection=True;", model.SqlServer, model.SqlDatabase);
+                _scnn = BuildConnection(model.SqlServer, model.SqlDatabase);
             }
 
             if (string.IsNullOrWhiteSpace(_scnn))
@@ -76,6 +78,22 @@ namespace EnumComposer
                     }
                 }
             }
+        }
+
+
+        private string BuildConnection(string part1, string part2)
+        {
+            string scnn;
+            if (part1.ToUpper() == SQL_CONN_MARKER)
+            {
+                scnn = part2;
+            }
+            else
+            {
+                scnn = string.Format("Server={0};Database={1};Trusted_Connection=True;", part1, part2);
+            }
+
+            return scnn;
         }
 
         #region Fake Database

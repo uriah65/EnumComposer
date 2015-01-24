@@ -1,0 +1,25 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace UtComposer
+{
+    class Fake21_CsFakeDb
+    {
+        [EnumSqlCnn("FakeSqlServer", "FakeDb")]
+        [EnumSqlSelect("SELECT id, name FROM T_Weekdays")]
+        public enum Weekdays
+        {
+		//Sunday=1,
+		//Monday=2,
+		//Tuesday=3,
+		//Vacation=4,
+		//Wednesday=5,
+		//Thursday=6,
+		//Friday=7,
+}
+		/**/
+    }
+}

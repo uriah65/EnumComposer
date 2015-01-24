@@ -55,6 +55,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Content Include="Fake31_Dell3.txt" />
+    <Content Include="Fake31_Dell2.txt" />
     <Compile Include="Fake_MinimalApp.cs" />
     <Compile Include="ConstantsPR.cs" />
     <Compile Include="Un31_FullCycleDell.cs" />
