@@ -56,6 +56,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Fake32_.cs" />
+    <Compile Include="Fake33_.cs" />
+    <Compile Include="Un33_FullCycleOleDbDell.cs" />
     <Compile Include="Un32_FullCycleOdbc.cs" />
     <Content Include="Fake31_Dell3.txt" />
     <Content Include="Fake31_Dell2.txt" />
@@ -76,6 +78,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Fake32_OdbcData.txt" />
     <Content Include="Fake32_Expected.txt" />
+    <Content Include="Fake33_Expected.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EnumComposer\EnumComposer.csproj">

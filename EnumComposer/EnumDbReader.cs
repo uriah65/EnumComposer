@@ -81,6 +81,9 @@ namespace EnumComposer
             _dbType = DbTypeEnum.SqlServer;
             string scnn;
 
+            part1 = "" + part1.Trim();
+            part2 = "" + part2.Trim();
+
             switch (part1.ToUpper())
             {
                 case SQL_MARKER:
