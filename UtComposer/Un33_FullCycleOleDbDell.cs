@@ -25,6 +25,12 @@ namespace UtComposer
         [TestMethod]
         public void TestMethod1()
         {
+            if (ConstantsPR.IsDell == false)
+            {
+                /* this test is using live SQL server connection and will work only on specific machine.*/
+                return;
+            }
+
             string path = @"..\..\";
             string inputFile = @"..\..\Fake33_.cs";
             string expectedFile = @"..\..\Fake33_Expected.txt";
