@@ -6,7 +6,7 @@ using System.IO;
 namespace UtComposer
 {
     [TestClass]
-    public class Un20_ComposerFiles
+    public class Un30_ComposerFiles
     {
         /* Test composer. Hight level test.
         */
@@ -27,7 +27,7 @@ namespace UtComposer
         [TestMethod]
         public void ParseFileAndDb()
         {
-            string inputFile = @"..\..\Fake20_.cs";
+            string inputFile = @"..\..\Fake30_.cs";
             string outputFile = Path.GetTempFileName() + ".txt";
 
             ComposerFiles composer = new ComposerFiles();
@@ -54,7 +54,7 @@ namespace UtComposer
         [TestMethod]
         public void ParseFileAndText()
         {
-            string path = @"..\..\Fake20_.cs";
+            string path = @"..\..\Fake30_.cs";
             ComposerStrings composer = new ComposerStrings(_dbReader);
             string sourceText = File.ReadAllText(path);
 
