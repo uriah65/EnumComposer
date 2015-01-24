@@ -18,7 +18,7 @@ namespace UtComposer
         [TestInitialize()]
         public void Initialize()
         {
-            _dbReader = new EnumSqlDbReader();
+            _dbReader = new EnumDbReader();
         }
 
         [TestCleanup()]
@@ -48,7 +48,7 @@ namespace UtComposer
             string sourceText = File.ReadAllText(path);
             sourceText = sourceText.Replace("T_Weekdays", "T_Wds");
 
-            ComposerStrings composer = new ComposerStrings(new EnumSqlDbReader());
+            ComposerStrings composer = new ComposerStrings(new EnumDbReader());
             composer.Compose(sourceText);
 
             Assert.AreEqual(1, composer.EnumModels.Count);

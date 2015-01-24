@@ -168,7 +168,7 @@ namespace Uriah65.EnumComposerVSP
 
             if (true)
             {
-                EnumSqlDbReader reader = new EnumSqlDbReader();
+                EnumDbReader reader = new EnumDbReader();
                 ComposerStrings composer = new ComposerStrings(reader, log);
                 composer.Compose(text);
                 text = composer.GetResultFile();

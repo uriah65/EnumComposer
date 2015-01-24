@@ -14,7 +14,7 @@ namespace UtComposer
         [TestInitialize()]
         public void Initialize()
         {
-            _dbReader = new EnumSqlDbReader();
+            _dbReader = new EnumDbReader();
         }
 
         [TestCleanup()]
@@ -111,7 +111,5 @@ namespace UtComposer
             output2 = output2.RemoveTextBetween("[EnumSqlCnn(", ")]");
             Assert.AreEqual(output2, expected, "Second run of composer should not change the file.");
         }
-
-
     }
 }

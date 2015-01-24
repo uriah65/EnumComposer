@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 
 namespace EnumComposer
 {
-    public class EnumSqlDbReader : IEnumDbReader
+    public class EnumDbReader : IEnumDbReader
     {
         private string _scnn;
 
@@ -14,7 +14,7 @@ namespace EnumComposer
         /* a fake imitation of SQL server build in this class to ease e2e testing */
         private const string FAKE_SQL_SINATURE = "server=fakesqlserver;database=fakedb";
 
-        public EnumSqlDbReader()
+        public EnumDbReader()
         {
         }
 
@@ -23,7 +23,7 @@ namespace EnumComposer
         //    _scnn = scnn;
         //}
 
-        public EnumSqlDbReader(string sqlServer, string sqlDatabase)
+        public EnumDbReader(string sqlServer, string sqlDatabase)
         {
             _scnn = BuildConnection(sqlServer, sqlDatabase);
         }
