@@ -10,7 +10,7 @@ namespace UtComposer
     */
 
     [TestClass]
-    public class Un20n_Composer
+    public class Un20_Composer
     {
         private IEnumDbReader _dbReader = null;
 
@@ -30,7 +30,7 @@ namespace UtComposer
         {
             /* Parse C# file and make sure EmunModel array get filled correctly */
 
-            string path = @"..\..\Fake20n_.cs";
+            string path = @"..\..\Fake20_.cs";
             string sourceText = File.ReadAllText(path);
 
             ComposerStrings composer = new ComposerStrings(null);

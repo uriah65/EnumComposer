@@ -57,15 +57,16 @@
   <ItemGroup>
     <Compile Include="Fake_MinimalApp.cs" />
     <Compile Include="ConstantsPR.cs" />
-    <Content Include="Fake20_Dell.txt" />
-    <Compile Include="Fake20_Dell.cs" />
-    <Compile Include="Fake20n_.cs" />
+    <Compile Include="Un31_FullCycleDell.cs" />
+    <Content Include="Fake31_Dell.txt" />
+    <Compile Include="Fake31_Dell.cs" />
+    <Compile Include="Fake20_.cs" />
     <Compile Include="Fake30_.cs" />
     <Compile Include="Fake21_CsFakeDb.cs" />
     <Compile Include="Fake_DbReader.cs" />
     <Compile Include="Un21_BuildInFakeDb.cs" />
-    <Compile Include="Un30_ComposerFiles.cs" />
-    <Compile Include="Un20n_Composer.cs" />
+    <Compile Include="Un30_FullCycle.cs" />
+    <Compile Include="Un20_Composer.cs" />
     <Compile Include="Un01_NameConverter.cs" />
     <Compile Include="Un10_EnumModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

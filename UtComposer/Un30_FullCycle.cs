@@ -6,12 +6,12 @@ using System.IO;
 namespace UtComposer
 {
     [TestClass]
-    public class Un30_ComposerFiles
+    public class Un30_FullCycle
     {
         /* Test composer. Hight level test.
         */
 
-        private IEnumDbReader _dbReader = null;
+        private IEnumDbReader _dbReader;
 
         [TestInitialize()]
         public void Initialize()
@@ -66,38 +66,6 @@ namespace UtComposer
             Assert.AreEqual(true, true);
         }
 
-        [TestMethod]
-        public void ParseFileAndDbDell()
-        {
-            if (ConstantsPR.IsDell == false)
-            {
-                /* this test is using live SQL server connection and will work only on specific machine.*/
-                return;
-            }
 
-            string inputFile = @"..\..\Fake20_Dell.cs";
-            string expectedFile = @"..\..\Fake20_Dell.txt";
-
-            ComposerFiles composer = new ComposerFiles();
-            _dbReader = new EnumSqlDbReader();
-
-            // do it first time
-            string outputFile = Path.GetTempFileName() + ".txt";
-            composer.Compose(inputFile, outputFile, _dbReader);
-
-            // compare with expected
-            string output = File.ReadAllText(outputFile);
-            string expected = File.ReadAllText(expectedFile);
-            Assert.AreEqual(output, expected, "Output file should match expected file.");
-
-            // do it second time
-            inputFile = outputFile;
-            outputFile = outputFile + "2.txt";
-            composer.Compose(inputFile, outputFile, _dbReader);
-
-            // compare with expected
-            string output2 = File.ReadAllText(outputFile);
-            Assert.AreEqual(output2, expected, "Second run of composer should not change the file.");
-        }
     }
 }
