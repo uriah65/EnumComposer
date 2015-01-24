@@ -7,7 +7,7 @@ using System.IO;
 namespace UtComposer
 {
     [TestClass]
-    public class Un33_FullCycleOleDbDell
+    public class Un33_FullCycleOLEDB
     {
         private IEnumDbReader _dbReader;
 
@@ -23,7 +23,7 @@ namespace UtComposer
         }
 
         [TestMethod]
-        public void TestMethod1()
+        public void ReadingAcccessDB()
         {
             if (ConstantsPR.IsDell == false)
             {
@@ -33,11 +33,12 @@ namespace UtComposer
 
             string path = @"..\..\";
             string inputFile = @"..\..\Fake33_.cs";
+            string dataFile = @"..\..\AccessTest.accdb";
             string expectedFile = @"..\..\Fake33_Expected.txt";
 
-            _dbReader = new EnumDbReader();
-
-
+            //[EnumSqlCnn("#OleDb", @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\__GitHub\EnumComposer\EnumComposer\UtComposer\AccessTest.accdb;Persist Security Info=False")]
+            _dbReader = new EnumDbReader("#OleDb", @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + dataFile + ";Persist Security Info=False");
+            
             ComposerFiles composer = new ComposerFiles();
 
             // do it first time

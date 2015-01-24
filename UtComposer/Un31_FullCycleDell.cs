@@ -23,7 +23,7 @@ namespace UtComposer
         }
 
         [TestMethod]
-        public void SqlServer_NameParir()
+        public void SqlServer_NamePair()
         {
             if (ConstantsPR.IsDell == false)
             {
@@ -57,7 +57,7 @@ namespace UtComposer
 
         [TestMethod]
         [ExpectedException(typeof(ApplicationException))]
-        public void SqlServer_NameParirWrong()
+        public void SqlServer_NamePairWrong()
         {
             if (ConstantsPR.IsDell == false)
             {

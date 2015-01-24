@@ -57,8 +57,11 @@
   <ItemGroup>
     <Compile Include="Fake32_.cs" />
     <Compile Include="Fake33_.cs" />
-    <Compile Include="Un33_FullCycleOleDbDell.cs" />
-    <Compile Include="Un32_FullCycleOdbc.cs" />
+    <Compile Include="Un33_FullCycleOLEDB.cs" />
+    <Compile Include="Un32_FullCycleODBC.cs" />
+    <Content Include="AccessTest.accdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Fake31_Dell3.txt" />
     <Content Include="Fake31_Dell2.txt" />
     <Compile Include="Fake_MinimalApp.cs" />

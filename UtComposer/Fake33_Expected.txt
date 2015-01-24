@@ -9,13 +9,13 @@ namespace UtComposer
 {
     class Fake33_
     {
-        [EnumSqlCnn("#OleDb", "Provider=sqloledb;Data Source=DELLSTUDIOXPS;Initial Catalog=Arctics;Integrated Security=SSPI;")]
-        [EnumSqlSelect("SELECT mt__id, mt_name FROM T_MeetingTypes")]
+    
+        [EnumSqlSelect("SELECT id, name FROM T_Colors")]
         public enum MeetingTypeEnum
         {
-		//SD = 5,
-		//PreHearing = 7,
-		//Hearing = 8,
+		//Red = 1,
+		//Blue = 2,
+		//Green = 3,
 }
     }
 }

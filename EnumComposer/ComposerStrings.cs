@@ -158,7 +158,15 @@ namespace EnumComposer
         private string GetAttributeValue(AttributeArgumentSyntax argument)
         {
             string str = argument.Expression.ToString();
-            str = str.Substring(1, str.Length - 2); /* remove quotes */
+            /* remove quotes */
+            if (str.StartsWith("@"))
+            {
+                str = str.Substring(2, str.Length - 3);
+            }
+            else
+            {
+                str = str.Substring(1, str.Length - 2); 
+            }
             return str;
         }
     }

@@ -7,7 +7,7 @@ using System.IO;
 namespace UtComposer
 {
     [TestClass]
-    public class Un32_FullCycleOdbc
+    public class Un32_FullCycleODBC
     {
         private IEnumDbReader _dbReader;
 
@@ -23,18 +23,18 @@ namespace UtComposer
         }
 
         [TestMethod]
-        public void TestMethod1()
+        public void ReadingTextFile()
         {
             string path = @"..\..\";
             string inputFile = @"..\..\Fake32_.cs";
             string expectedFile = @"..\..\Fake32_Expected.txt";
 
-            string scnn = @"Driver={Microsoft Text Driver (*.txt; *.csv)};Dbq=" + path + ";Extensions=asc,csv,tab,txt;Persist Security Info=False";
-            _dbReader = new EnumDbReader("#ODBC", scnn);
 
-    
-            //string expectedFile = @"..\..\Fake31_Dell.txt";T
+            //string scnn = @"Driver={Microsoft Text Driver (*.txt; *.csv)};Dbq=" + path + ";Extensions=asc,csv,tab,txt;Persist Security Info=False";
+            //_dbReader = new EnumDbReader("#ODBC", scnn);
+            _dbReader = new EnumDbReader();
 
+            _dbReader = new EnumDbReader();
             ComposerFiles composer = new ComposerFiles();
 
             // do it first time
