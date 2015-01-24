@@ -55,6 +55,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Fake32_.cs" />
+    <Compile Include="Un32_FullCycleOdbc.cs" />
     <Content Include="Fake31_Dell3.txt" />
     <Content Include="Fake31_Dell2.txt" />
     <Compile Include="Fake_MinimalApp.cs" />
@@ -72,6 +74,8 @@
     <Compile Include="Un01_NameConverter.cs" />
     <Compile Include="Un10_EnumModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Fake32_OdbcData.txt" />
+    <Content Include="Fake32_Expected.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EnumComposer\EnumComposer.csproj">

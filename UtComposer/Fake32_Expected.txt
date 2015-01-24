@@ -1,0 +1,28 @@
+﻿using EnumComposer;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace UtComposer
+{
+    class Fake32_
+    {
+        [EnumSqlSelect("SELECT * FROM [Fake32_OdbcData.txt]")]
+        public enum E
+        {
+		//AliceBlue = 1,
+		//AntiqueWhite = 2,
+		//Aqua = 3,
+		//Aquamarine = 4,
+		//Azure = 5,
+		//Beige = 6,
+		//Bisque = 7,
+		//Black = 8,
+		//BlanchedAlmond = 9,
+		//Blue = 10,
+		//BlueViolet = 11,
+}
+    }
+}

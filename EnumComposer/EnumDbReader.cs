@@ -1,15 +1,21 @@
 ﻿using IEnumComposer;
 using System;
 using System.Collections.Generic;
+using System.Data.Odbc;
+using System.Data.OleDb;
 using System.Data.SqlClient;
 
 namespace EnumComposer
 {
     public class EnumDbReader : IEnumDbReader
     {
+        private DbTypeEnum _dbType;
         private string _scnn;
 
-        private const string SQL_CONN_MARKER = "#SQL";
+        private const string SQL_MARKER = "#SQL";
+        private const string OLEDB_MARKER = "#OLEDB";
+        private const string ODBC_MARKER = "#ODBC";
+        private const string FAKE_MARKER = "#FAKE";
 
         /* a fake imitation of SQL server build in this class to ease e2e testing */
         private const string FAKE_SQL_SINATURE = "server=fakesqlserver;database=fakedb";
@@ -17,11 +23,6 @@ namespace EnumComposer
         public EnumDbReader()
         {
         }
-
-        //public EnumSqlDbReader(string scnn)
-        //{
-        //    _scnn = scnn;
-        //}
 
         public EnumDbReader(string sqlServer, string sqlDatabase)
         {
@@ -55,13 +56,68 @@ namespace EnumComposer
                 throw new ApplicationException(string.Format("Connection string for the enumeration '{0}' is blank.", model.Name));
             }
 
-            if (_scnn.ToLower().Contains(FAKE_SQL_SINATURE))
+            switch (_dbType)
             {
-                /* build in fake mini-database for e2e testing*/
-                ProcessFake(model);
-                return;
+                case DbTypeEnum.SqlServer:
+                    ReadSqlServer(model);
+                    break;
+
+                case DbTypeEnum.Oledb:
+                    ReadOledb(model);
+                    break;
+
+                case DbTypeEnum.Odbc:
+                    ReadOdbc(model);
+                    break;
+
+                case DbTypeEnum.BuildInFake:
+                    ReadFake(model);
+                    break;
+            }
+        }
+
+        private string BuildConnection(string part1, string part2)
+        {
+            _dbType = DbTypeEnum.SqlServer;
+            string scnn;
+
+            switch (part1.ToUpper())
+            {
+                case SQL_MARKER:
+                    _dbType = DbTypeEnum.SqlServer;
+                    scnn = part2;
+                    break;
+                case OLEDB_MARKER:
+                    _dbType = DbTypeEnum.Oledb;
+                    scnn = part2;
+                    break;
+                case ODBC_MARKER:
+                    _dbType = DbTypeEnum.Odbc;
+                    scnn = part2;
+                    break;
+                case FAKE_MARKER:
+                    _dbType = DbTypeEnum.BuildInFake;
+                    scnn = part2;
+                    break;
+                default:
+                    scnn = string.Format("Server={0};Database={1};Trusted_Connection=True;", part1, part2);
+                    break;
             }
 
+
+
+            if (scnn.ToLower().Contains(FAKE_SQL_SINATURE))
+            {
+                _dbType = DbTypeEnum.BuildInFake;
+            }
+
+            return scnn;
+        }
+
+        #region SqlServer
+
+        private void ReadSqlServer(EnumModel model)
+        {
             using (SqlConnection cnn = new SqlConnection(_scnn))
             {
                 SqlCommand cmd = new SqlCommand(model.SqlSelect, cnn);
@@ -80,25 +136,60 @@ namespace EnumComposer
             }
         }
 
+        #endregion SqlServer
 
-        private string BuildConnection(string part1, string part2)
+        #region OleDb
+
+        private void ReadOledb(EnumModel model)
         {
-            string scnn;
-            if (part1.ToUpper() == SQL_CONN_MARKER)
+            using (OleDbConnection cnn = new OleDbConnection(_scnn))
             {
-                scnn = part2;
-            }
-            else
-            {
-                scnn = string.Format("Server={0};Database={1};Trusted_Connection=True;", part1, part2);
-            }
+                OleDbCommand cmd = new OleDbCommand(model.SqlSelect, cnn);
+                cnn.Open();
+                OleDbDataReader reader = cmd.ExecuteReader();
 
-            return scnn;
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        int value = reader.GetInt32(0);
+                        string name = reader.GetString(1);
+                        model.FillFromDb(value, name);
+                    }
+                }
+            }
         }
+
+        #endregion OleDb
+
+        #region ODBC
+
+        private void ReadOdbc(EnumModel model)
+        {
+            using (OdbcConnection cnn = new OdbcConnection(_scnn))
+            {
+                OdbcCommand cmd = new OdbcCommand(model.SqlSelect, cnn);
+                cnn.Open();
+                OdbcDataReader reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+
+                    while (reader.Read())
+                    {
+                        int value = reader.GetInt32(0);
+                        string name = reader.GetString(1);
+                        model.FillFromDb(value, name);
+                    }
+                }
+            }
+        }
+
+        #endregion ODBC
 
         #region Fake Database
 
-        private void ProcessFake(EnumModel model)
+        private void ReadFake(EnumModel model)
         {
             if (model.SqlSelect.ToLower().Contains("t_weekdays") == false)
             {
