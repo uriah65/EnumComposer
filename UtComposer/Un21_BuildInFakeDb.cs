@@ -32,7 +32,7 @@ namespace UtComposer
             composer.Compose(sourceText);
 
             string txt = composer.GetResultFile();
-
+            
             Assert.AreEqual(1, composer.EnumModels.Count);
             Assert.AreEqual(7, composer.EnumModels[0].Values.Count);
 

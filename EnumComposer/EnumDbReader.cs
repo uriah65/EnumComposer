@@ -208,10 +208,10 @@ namespace EnumComposer
                 "Sunday",
                 "Monday",
                 "Tuesday",
-                "Vacation",
                 "Wednesday",
                 "Thursday",
                 "Friday",
+                "Saturday",
             };
 
             List<string> descriptions = new List<string>
