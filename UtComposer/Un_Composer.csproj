@@ -71,7 +71,7 @@
     <Compile Include="Fake31_Dell.cs" />
     <Compile Include="Fake20_.cs" />
     <Compile Include="Fake30_.cs" />
-    <Compile Include="Fake21_CsFakeDb.cs" />
+    <Compile Include="Fake21_BuildInFakeDb.cs" />
     <Compile Include="Fake_DbReader.cs" />
     <Compile Include="Un21_BuildInFakeDb.cs" />
     <Compile Include="Un30_FullCycle.cs" />

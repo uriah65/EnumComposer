@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="a9d36138-b3cc-4978-802d-208260eefcef" Version="1.0" Language="en-US" Publisher="Uriah65" />
+    <Identity Id="a9d36138-b3cc-4978-802d-208260eefcef" Version="1.2" Language="en-US" Publisher="Uriah65" />
     <DisplayName>Enum Composer</DisplayName>
-    <Description>Generate and update C# enumerations from a SQL database</Description>
+    <Description xml:space="preserve">Generate and update C# enumerations from a SQL database, ODBC or OLEDB data source.</Description>
     <MoreInfo>https://github.com/uriah65/EnumComposer/wiki</MoreInfo>
     <License>License_EnumComposer.txt</License>
   </Metadata>

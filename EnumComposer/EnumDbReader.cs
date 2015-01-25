@@ -191,8 +191,9 @@ namespace EnumComposer
                 throw new ApplicationException(string.Format("Error executing statement '{0}' against Fake database.", model.SqlSelect));
             }
 
+            bool useDescriptions = model.SqlSelect.ToLower().Contains("description");
 
-            List<string> T_Weekdays = new List<string>
+                List<string> T_Weekdays = new List<string>
             {
                 "Sunday",
                 "Monday",
@@ -216,7 +217,8 @@ namespace EnumComposer
 
             for (int i = 0; i < 7; i++)
             {
-                model.FillFromDb(i, T_Weekdays[i], descriptions[i]);
+                string desciption = useDescriptions ? descriptions[i] : null;
+                model.FillFromDb(i, T_Weekdays[i], desciption);
             }
         }
 
