@@ -1,0 +1,12 @@
+﻿id, name, description
+1, AliceBlue,  	#F0F8FF	 	Shades	Mix
+2, AntiqueWhite,  	#FAEBD7	 	Shades	Mix
+3, Aqua,  	#00FFFF	 	Shades	Mix
+4, Aquamarine,  	#7FFFD4	 	Shades	Mix
+5, Azure,  	#F0FFFF	 	Shades	Mix
+6, Beige, 	#F5F5DC	 	Shades	Mix
+7, Bisque, 	#FFE4C4	 	Shades	Mix
+8, Black,  	#000000	 	Shades	Mix
+9, BlanchedAlmond, 	#FFEBCD	 	Shades	Mix
+10, Blue,  	#0000FF	 	Shades	Mix
+11, BlueViolet, 	#8A2BE2

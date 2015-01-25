@@ -79,6 +79,7 @@
     <Compile Include="Un01_NameConverter.cs" />
     <Compile Include="Un10_EnumModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Fake32_OdbcData2.txt" />
     <Content Include="Fake32_OdbcData.txt" />
     <Content Include="Fake32_Expected.txt" />
     <Content Include="Fake33_Expected.txt" />
