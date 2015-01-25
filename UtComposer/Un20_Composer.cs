@@ -49,12 +49,12 @@ namespace UtComposer
             EnumModelValue value = null;
             value = model.Values[0];
             Assert.AreEqual(344, value.Value);
-            Assert.AreEqual(null, value.Name);
+            //Assert.AreEqual(null, value.Name);
             Assert.AreEqual("K2", value.NameCs);
 
             value = model.Values[1];
             Assert.AreEqual(534, value.Value);
-            Assert.AreEqual(null, value.Name);
+            //Assert.AreEqual(null, value.Name);
             Assert.AreEqual("K5", value.NameCs);
         }
 

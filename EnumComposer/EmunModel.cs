@@ -40,7 +40,7 @@ namespace EnumComposer
             Values.Add(modelValue);
         }
 
-        public void FillFromDb(int value, string name)
+        public void FillFromDb(int value, string name, string description = null)
         {
             string nameCs = _converter.Convert(name);
 
@@ -51,14 +51,16 @@ namespace EnumComposer
                 modelValue = new EnumModelValue();
                 modelValue.Value = value;
                 modelValue.NameCs = nameCs;
+                modelValue.Description = description;                
                 modelValue.IsActive = false;
                 Values.Add(modelValue);
             }
             else
             {
                 /* Was found both in DB and in code.*/
-                modelValue.Name = name;
+                //modelValue.Name = name;
                 modelValue.NameCs = _converter.Convert(name);  /* Refresh CS name. */
+                modelValue.Description = description;
             }
             modelValue.IsInDB = true;
         }

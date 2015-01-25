@@ -12,3 +12,6 @@ http://www.codeproject.com/Articles/417283/Creating-Enums-from-Database-Lookup-T
 http://www.codeproject.com/Articles/281656/Using-DescriptionAttribute-for-enumerations-bound
 http://www.codeproject.com/Articles/16225/Enum-Code-Generator-Generating-enum-code-automatic
 http://www.codeproject.com/Articles/136181/Human-readable-Enumeration-Meta-data
+
+some enum ideas
+http://stackoverflow.com/questions/1799370/getting-attributes-of-enums-value

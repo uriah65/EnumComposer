@@ -11,8 +11,17 @@ namespace UtComposer
     {
         [EnumSqlCnn("#OleDb", @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source =..\..\AccessTest.accdb;Persist Security Info=False")]
         [EnumSqlSelect("SELECT id, name FROM T_Colors")]
-        public enum MeetingTypeEnum
+        public enum ColorsEnum
         {
+        }
+
+        [EnumSqlCnn("#OleDb", @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source =..\..\AccessTest.accdb;Persist Security Info=False")]
+        [EnumSqlSelect("SELECT id, name, description FROM T_Colors")]
+        public enum ColorsWithDescriptionEnum
+        {
+            //Red = 1,
+            Blue = 2,
+            Green = 3,
         }
     }
 }

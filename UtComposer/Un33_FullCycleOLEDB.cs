@@ -22,11 +22,9 @@ namespace UtComposer
         }
 
         [TestMethod]
-        public void ReadingAcccessDB()
+        public void AcccessOleDB()
         {
-            //string path = @"..\..\";
             string inputFile = @"..\..\Fake33_.cs";
-           // string dataFile = @"..\..\AccessTest.accdb";
             string expectedFile = @"..\..\Fake33_Expected.txt";
 
             _dbReader = new EnumDbReader();
@@ -40,5 +38,6 @@ namespace UtComposer
             string expected = File.ReadAllText(expectedFile);
             Assert.AreEqual(expected, output, "Output should be as expected.");
         }
+
     }
 }

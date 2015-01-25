@@ -40,5 +40,17 @@ namespace EnumComposer
 
             return name;
         }
+
+        //todo: not nice mixing static and instance
+        public static string EscapeDescription(string description)
+        {
+            if (description == null)
+            {
+                return description;
+            }
+
+            return description.Replace("\"", "\\\"");
+        }
+
     }
 }

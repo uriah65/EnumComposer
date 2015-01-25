@@ -1,6 +1,7 @@
 ﻿using IEnumComposer;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Data.Odbc;
 using System.Data.OleDb;
 using System.Data.SqlClient;
@@ -117,6 +118,25 @@ namespace EnumComposer
             return scnn;
         }
 
+
+        private void Read(DbDataReader reader, EnumModel model)
+        {
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    int value = reader.GetInt32(0);
+                    string name = reader.GetString(1);
+                    string description = null;
+                    if (reader.FieldCount > 2)
+                    {
+                        description = "" + reader.GetString(2);
+                    }
+                    model.FillFromDb(value, name, description);
+                }
+            }
+        }
+
         #region SqlServer
 
         private void ReadSqlServer(EnumModel model)
@@ -126,17 +146,8 @@ namespace EnumComposer
                 SqlCommand cmd = new SqlCommand(model.SqlSelect, cnn);
                 cnn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
-
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        int value = reader.GetInt32(0);
-                        string name = reader.GetString(1);
-                        model.FillFromDb(value, name);
-                    }
-                }
-            }
+                Read(reader, model);
+              }
         }
 
         #endregion SqlServer
@@ -150,16 +161,7 @@ namespace EnumComposer
                 OleDbCommand cmd = new OleDbCommand(model.SqlSelect, cnn);
                 cnn.Open();
                 OleDbDataReader reader = cmd.ExecuteReader();
-
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        int value = reader.GetInt32(0);
-                        string name = reader.GetString(1);
-                        model.FillFromDb(value, name);
-                    }
-                }
+                Read(reader, model);
             }
         }
 
@@ -174,17 +176,7 @@ namespace EnumComposer
                 OdbcCommand cmd = new OdbcCommand(model.SqlSelect, cnn);
                 cnn.Open();
                 OdbcDataReader reader = cmd.ExecuteReader();
-
-                if (reader.HasRows)
-                {
-
-                    while (reader.Read())
-                    {
-                        int value = reader.GetInt32(0);
-                        string name = reader.GetString(1);
-                        model.FillFromDb(value, name);
-                    }
-                }
+                Read(reader, model);
             }
         }
 
