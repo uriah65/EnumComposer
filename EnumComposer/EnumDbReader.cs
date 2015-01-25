@@ -191,17 +191,6 @@ namespace EnumComposer
                 throw new ApplicationException(string.Format("Error executing statement '{0}' against Fake database.", model.SqlSelect));
             }
 
-            //Dictionary<int, string> T_Weekdays = new Dictionary<int, string>
-            //{
-            //    [1] = "Sunday",
-            //    [2] = "Monday",
-            //    [3] = "Tuesday",
-            //    [4] = "Vacation",
-            //    [5] = "Wednesday",
-            //    [6] = "Thursday",
-            //    [7] = "Friday",
-            //};
-
 
             List<string> T_Weekdays = new List<string>
             {
@@ -225,9 +214,9 @@ namespace EnumComposer
                  "The only day of the week to retain its Roman origin in English, named after the Roman god Saturn",
             };
 
-            for(int i=0; i< 7; i++)
+            for (int i = 0; i < 7; i++)
             {
-                model.FillFromDb(i+1, T_Weekdays[i], descriptions[i]);
+                model.FillFromDb(i, T_Weekdays[i], descriptions[i]);
             }
         }
 
