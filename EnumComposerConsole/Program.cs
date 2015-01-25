@@ -74,7 +74,7 @@ namespace EnumComposerConsole
         {
             if (_options.Verbose)
             {
-                Console.WriteLine("Press Enter to quit.");
+                Console.WriteLine("Enter any char to quit.");
                 Console.ReadLine().ToUpper();
             }
 
