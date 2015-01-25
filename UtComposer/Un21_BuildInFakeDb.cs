@@ -40,7 +40,7 @@ namespace UtComposer
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [ExpectedException(typeof(ApplicationException))]
         public void FakeBuildInDatabaseException()
         {
             string path = @"..\..\Fake21_CsFakeDb.cs";

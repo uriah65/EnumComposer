@@ -228,7 +228,6 @@ namespace EnumComposer
             for(int i=0; i< 7; i++)
             {
                 model.FillFromDb(i+1, T_Weekdays[i], descriptions[i]);
-                i++;
             }
         }
 
