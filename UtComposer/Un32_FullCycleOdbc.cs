@@ -24,7 +24,7 @@ namespace UtComposer
         [TestMethod]
         public void ReadingTextFile()
         {
-            string path = @"..\..\";
+            //string path = @"..\..\";
             string inputFile = @"..\..\Fake32_.cs";
             string expectedFile = @"..\..\Fake32_Expected.txt";
 

@@ -166,17 +166,17 @@ namespace Uriah65.EnumComposerVSP
             string text = editPoint.GetText(document.EndPoint);
             EditPoint endPoint = (EditPoint)textDoc.EndPoint.CreateEditPoint();
 
-            if (true)
-            {
+            //if (true)
+            //{
                 EnumDbReader reader = new EnumDbReader();
                 ComposerStrings composer = new ComposerStrings(reader, log);
                 composer.Compose(text);
                 text = composer.GetResultFile();
-            }
-            else
-            {
-                text = Reverse(text);
-            }
+            //}
+            //else
+            //{
+            //    text = Reverse(text);
+            //}
 
             editPoint.Delete(endPoint);
             editPoint.Insert(text);

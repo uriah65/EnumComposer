@@ -35,7 +35,7 @@ namespace EnumComposerConsole
                 return Quit(-1);
             }
 
-            return Quit(0);
+            //return Quit(0);
         }
 
         private static int Main_Inner()

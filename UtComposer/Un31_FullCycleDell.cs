@@ -66,7 +66,7 @@ namespace UtComposer
             }
 
             string inputFile = @"..\..\Fake31_Dell2.txt";
-            string expectedFile = @"..\..\Fake31_Dell.txt";
+            //string expectedFile = @"..\..\Fake31_Dell.txt";
 
             ComposerFiles composer = new ComposerFiles();
 

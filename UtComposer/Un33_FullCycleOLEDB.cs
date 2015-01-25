@@ -24,9 +24,9 @@ namespace UtComposer
         [TestMethod]
         public void ReadingAcccessDB()
         {
-            string path = @"..\..\";
+            //string path = @"..\..\";
             string inputFile = @"..\..\Fake33_.cs";
-            string dataFile = @"..\..\AccessTest.accdb";
+           // string dataFile = @"..\..\AccessTest.accdb";
             string expectedFile = @"..\..\Fake33_Expected.txt";
 
             _dbReader = new EnumDbReader();
