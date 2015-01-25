@@ -6,7 +6,7 @@ namespace EnumComposer
 {
     public class EnumModel //: IEnumModel
     {
-        private EnumNameConverter _converter;
+        //private EnumNameConverter _converter;
 
         public string SqlServer { get; set; }
 
@@ -24,7 +24,7 @@ namespace EnumComposer
 
         public EnumModel()
         {
-            _converter = new EnumNameConverter();
+            //_converter = new EnumNameConverter();
             Values = new List<EnumModelValue>();
         }
 
@@ -42,7 +42,7 @@ namespace EnumComposer
 
         public void FillFromDb(int value, string name, string description = null)
         {
-            string nameCs = _converter.Convert(name);
+            string nameCs = EnumNameConverter.MakeValidIdentifier(name);
 
             EnumModelValue modelValue = Values.SingleOrDefault(e => e.Value == value);
             if (modelValue == null)
@@ -59,7 +59,7 @@ namespace EnumComposer
             {
                 /* Was found both in DB and in code.*/
                 //modelValue.Name = name;
-                modelValue.NameCs = _converter.Convert(name);  /* Refresh CS name. */
+                modelValue.NameCs = EnumNameConverter.MakeValidIdentifier(name);  /* Refresh CS name. */
                 modelValue.Description = description;
             }
             modelValue.IsInDB = true;

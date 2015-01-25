@@ -15,3 +15,6 @@ http://www.codeproject.com/Articles/136181/Human-readable-Enumeration-Meta-data
 
 some enum ideas
 http://stackoverflow.com/questions/1799370/getting-attributes-of-enums-value
+
+valid identifiers
+http://stackoverflow.com/questions/1904252/is-there-a-method-in-c-sharp-to-check-if-a-string-is-a-valid-identifier

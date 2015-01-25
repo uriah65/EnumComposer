@@ -1,48 +1,27 @@
-﻿using System;
+﻿using System.Collections;
 
 namespace EnumComposer
 {
     public class EnumNameConverter
     {
-        public string Convert(string name)
-        {
-            if (string.IsNullOrWhiteSpace(name))
-            {
-                name = "empty";
-            }
+        private static Hashtable keywordsTable;
 
-            string name2 = "";
-            foreach (char ch in name.ToCharArray())
-            {
-                if (ch == ' ')
-                {
-                    continue;
-                }
+        private static string[] keywords = new string[]  {
+                "abstract","event","new","struct","as","explicit","null","switch","base","extern",
+                "this","false","operator","throw","break","finally","out","true",
+                "fixed","override","try","case","params","typeof","catch","for",
+                "private","foreach","protected","checked","goto","public",
+                "unchecked","class","if","readonly","unsafe","const","implicit","ref",
+                "continue","in","return","using","virtual","default",
+                "interface","sealed","volatile","delegate","internal","do","is",
+                "sizeof","while","lock","stackalloc","else","static","enum",
+                "namespace",
+                "object","bool","byte","float","uint","char","ulong","ushort",
+                "decimal","int","sbyte","short","double","long","string","void",
+                "partial", "yield", "where"};
 
-                if (char.IsDigit(ch) || char.IsLetter(ch) || ch == '_')
-                {
-                    name2 += ch;
-                }
-                else
-                {
-                    name2 += "_";
-                }
-            }
-            name = name2;
 
-            if (char.IsDigit(name[0]))
-            {
-                name = "_" + name;
-            }
-            else
-            {
-            }
-
-            return name;
-        }
-
-        //todo: not nice mixing static and instance
-        public static string EscapeDescription(string description)
+        public static string MakeValidDescription(string description)
         {
             if (description == null)
             {
@@ -52,5 +31,96 @@ namespace EnumComposer
             return description.Replace("\"", "\\\"");
         }
 
+        public static string MakeValidIdentifier(string identifier)
+        {
+            const string EMPTY = "empty";
+
+            if (identifier == null)
+            {
+                return EMPTY;
+            }
+
+            identifier = identifier.Trim();
+            if (identifier.Length == 0)
+            {
+                return EMPTY;
+            }
+
+            identifier = SyntaxCompline(identifier);
+            identifier = KeywordCompline(identifier);
+
+            return identifier;
+        }
+
+        private static string KeywordCompline(string identifier)
+        {
+            if (keywordsTable == null)
+            {
+                FillKeywordTable();
+            }
+
+            if (keywordsTable.Contains(identifier))
+            {
+                identifier = "_" + identifier;
+            }
+
+            return identifier;
+        }
+
+        private static string SyntaxCompline(string identifier)
+        {
+            /* check 1st character */
+            if (is_identifier_start_character(identifier[0]) == false)
+            {
+                identifier = "_" + identifier;
+            }
+
+            string result = "" + identifier[0];
+
+            /* check the rest characters */
+            for (int i = 1; i < identifier.Length; i++)
+            {
+                if (is_identifier_part_character(identifier[i]))
+                {
+                    result += identifier[i];
+                }
+                else
+                {
+                    /* we ignore spaces and replace other characters with _, but not several _ in a row*/
+                    //if (identifier[i] != ' ' && result[i-1] != '_')
+                    if (identifier[i] != ' ')
+                        {
+                        result += "_";
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        private static bool is_identifier_start_character(char c)
+        {
+            return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c == '_' || c == '@' || char.IsLetter(c);
+        }
+
+        private static bool is_identifier_part_character(char c)
+        {
+            return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c == '_' || (c >= '0' && c <= '9') || char.IsLetter(c);
+        }
+
+        private static void FillKeywordTable()
+        {
+            lock (keywords)
+            {
+                if (keywordsTable == null)
+                {
+                    keywordsTable = new System.Collections.Hashtable();
+                    foreach (string keyword in keywords)
+                    {
+                        keywordsTable.Add(keyword, keyword);
+                    }
+                }
+            }
+        }
     }
 }

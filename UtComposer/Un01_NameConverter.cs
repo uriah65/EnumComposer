@@ -29,13 +29,16 @@ namespace UtComposer
         [TestMethod]
         public void TestMethod1()
         {
-            // start with letter, or _
-            // no spaces
-            // contains only numbers and digits or _
-            Assert.AreEqual("we", _converter.Convert(" w  e"));
-            Assert.AreEqual("_2we", _converter.Convert("2w  e"));
-            Assert.AreEqual("_2w_____e", _converter.Convert("2w#$%^&e"));
-            Assert.AreEqual("empty", _converter.Convert("  "));
+            Assert.AreEqual("we", EnumNameConverter.MakeValidIdentifier(" w  e"));
+            Assert.AreEqual("_2we", EnumNameConverter.MakeValidIdentifier("2w  e"));
+            Assert.AreEqual("_2w_____e", EnumNameConverter.MakeValidIdentifier("2w#$%^&e"));
+            Assert.AreEqual("empty", EnumNameConverter.MakeValidIdentifier("  "));
+            Assert.AreEqual("_as", EnumNameConverter.MakeValidIdentifier("as"));
+            Assert.AreEqual("_as", EnumNameConverter.MakeValidIdentifier("  a   s  "));
+
+            //string s = "";
+            //s = EnumNameConverter.MakeValidIdentifier("as");
+            //s = EnumNameConverter.MakeValidIdentifier("a    s");
 
         }
 

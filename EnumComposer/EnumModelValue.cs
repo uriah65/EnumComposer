@@ -31,7 +31,7 @@ namespace EnumComposer
 
             if (Description != null)
             {
-                description = string.Format("[Description(\"{0}\")]", EnumNameConverter.EscapeDescription(Description));
+                description = string.Format("[Description(\"{0}\")]", EnumNameConverter.MakeValidDescription(Description));
                 if (IsActive == false)
                 {
                     description = @"//" + description;

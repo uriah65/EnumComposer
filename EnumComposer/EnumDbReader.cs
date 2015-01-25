@@ -147,7 +147,7 @@ namespace EnumComposer
                 cnn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
                 Read(reader, model);
-              }
+            }
         }
 
         #endregion SqlServer
@@ -191,20 +191,44 @@ namespace EnumComposer
                 throw new ApplicationException(string.Format("Error executing statement '{0}' against Fake database.", model.SqlSelect));
             }
 
-            Dictionary<int, string> T_Weekdays = new Dictionary<int, string>
+            //Dictionary<int, string> T_Weekdays = new Dictionary<int, string>
+            //{
+            //    [1] = "Sunday",
+            //    [2] = "Monday",
+            //    [3] = "Tuesday",
+            //    [4] = "Vacation",
+            //    [5] = "Wednesday",
+            //    [6] = "Thursday",
+            //    [7] = "Friday",
+            //};
+
+
+            List<string> T_Weekdays = new List<string>
             {
-                [1] = "Sunday",
-                [2] = "Monday",
-                [3] = "Tuesday",
-                [4] = "Vacation",
-                [5] = "Wednesday",
-                [6] = "Thursday",
-                [7] = "Friday",
+                "Sunday",
+                "Monday",
+                "Tuesday",
+                "Vacation",
+                "Wednesday",
+                "Thursday",
+                "Friday",
             };
 
-            foreach (var entry in T_Weekdays)
+            List<string> descriptions = new List<string>
             {
-                model.FillFromDb(entry.Key, entry.Value);
+                 "Old English Sunnandæg (pronounced [ˈsunnɑndæj), meaning \"sun's day.\"",
+                 "Old English Mōnandæg (pronounced [ˈmoːnɑndæj]), meaning \"Moon's day.\"",
+                 "Old English Tīwesdæg (pronounced [ˈtiːwezdæj], meaning \"Tiw's day.\"",
+                 "Old English Wōdnesdæg (pronounced [ˈwoːdnezdæj) meaning the day of the Germanic god Wodan",
+                 "Old English Þūnresdæg (pronounced [ˈθuːnrezdæj]), meaning 'Þunor's day'.",
+                 "Old English Frīgedæg (pronounced [ˈfriːjedæj]), meaning the day of the Anglo-Saxon goddess Fríge",
+                 "The only day of the week to retain its Roman origin in English, named after the Roman god Saturn",
+            };
+
+            for(int i=0; i< 7; i++)
+            {
+                model.FillFromDb(i+1, T_Weekdays[i], descriptions[i]);
+                i++;
             }
         }
 
