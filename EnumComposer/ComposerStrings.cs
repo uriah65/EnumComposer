@@ -1,4 +1,5 @@
-﻿using IEnumComposer;
+﻿#define NO_TRIVIA
+using IEnumComposer;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -105,7 +106,7 @@ namespace EnumComposer
                     string svalue = syntax.EqualsValue.Value.ToString();
                     value.Value = int.Parse(svalue);
 
-#if DEBUG
+#if TRIVIA
                     if (model.LeadingTrivia == null)
                     {
                         string triviaS = "";

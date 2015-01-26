@@ -23,11 +23,11 @@ namespace UtComposer
         public enum ColorsWithDescriptionEnum
         {
 		//[Description("The color of tomato")]
-//Red = 1,
+		//Red = 1,
 		[Description("Blue is the colour of the clear sky and the deep sea.[2][3] It is located between \" violet and \" ] [ green [on the(\"\"\") optical] spect {} ru )( - m.")]
-Blue = 2,
+		Blue = 2,
 		[Description("Grass is green")]
-Green = 3,
+		Green = 3,
 }
     }
 }

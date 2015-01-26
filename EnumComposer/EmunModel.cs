@@ -86,7 +86,7 @@ namespace EnumComposer
         {
             if (LeadingTrivia == null)
             {
-                LeadingTrivia = "";
+                LeadingTrivia = "\t\t";
             }
 
             string result = Environment.NewLine;
@@ -96,11 +96,11 @@ namespace EnumComposer
                 {
                     /* only need to output if there is a reference in DB */
 
-#if DEBUG
-                    result += string.Format("{2}\t\t{1}{0}", Environment.NewLine, value.ToString(), LeadingTrivia);
-#else
-                    result += string.Format("\t\t{1}{0}", Environment.NewLine, value.ToString());
-#endif
+//#if DEBUG
+                    result += string.Format("{1}{0}", Environment.NewLine, value.ToString2(LeadingTrivia));
+//#else
+//                    result += string.Format("\t\t{1}{0}", Environment.NewLine, value.ToString());
+//#endif
                 }
             }
 
