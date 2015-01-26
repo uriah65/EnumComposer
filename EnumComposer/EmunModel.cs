@@ -20,6 +20,8 @@ namespace EnumComposer
 
         public int SpanEnd { get; set; }
 
+        public string LeadingTrivia { get; set; }
+
         public List<EnumModelValue> Values { get; set; }
 
         public EnumModel()
@@ -51,7 +53,7 @@ namespace EnumComposer
                 modelValue = new EnumModelValue();
                 modelValue.Value = value;
                 modelValue.NameCs = nameCs;
-                modelValue.Description = description;                
+                modelValue.Description = description;
                 modelValue.IsActive = false;
                 Values.Add(modelValue);
             }
@@ -82,13 +84,23 @@ namespace EnumComposer
 
         public string ToCSharp()
         {
+            if (LeadingTrivia == null)
+            {
+                LeadingTrivia = "";
+            }
+
             string result = Environment.NewLine;
             foreach (EnumModelValue value in Values.OrderBy(e => e.Value))
             {
                 if (value.IsInDB)
                 {
                     /* only need to output if there is a reference in DB */
+
+#if DEBUG
+                    result += string.Format("{2}\t\t{1}{0}", Environment.NewLine, value.ToString(), LeadingTrivia);
+#else
                     result += string.Format("\t\t{1}{0}", Environment.NewLine, value.ToString());
+#endif
                 }
             }
 

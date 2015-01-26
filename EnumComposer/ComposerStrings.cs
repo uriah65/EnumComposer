@@ -104,6 +104,19 @@ namespace EnumComposer
                     value.IsActive = true;
                     string svalue = syntax.EqualsValue.Value.ToString();
                     value.Value = int.Parse(svalue);
+
+#if DEBUG
+                    if (model.LeadingTrivia == null)
+                    {
+                        string triviaS = "";
+                        var triviaList = syntax.GetLeadingTrivia();
+                        foreach (SyntaxTrivia trivia in triviaList)
+                        {
+                            triviaS += trivia.ToFullString();
+                        }
+                        model.LeadingTrivia = triviaS;
+                    }
+#endif
                 }
             }
         }

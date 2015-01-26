@@ -21,7 +21,6 @@ namespace EnumComposer
                 return "";
             }
 
-
             string description = "";
             string result = string.Format("{0} = {1},", NameCs, Value);
             if (IsActive == false)
