@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EnumComposer
 {
@@ -14,7 +10,6 @@ namespace EnumComposer
             message += string.Format(format, arguments);
             System.Diagnostics.Debug.WriteLine(message);
         }
-
 
         public static string ExceptionMessage(Exception ex)
         {

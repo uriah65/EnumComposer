@@ -1,4 +1,5 @@
 ﻿#define NO_TRIVIA
+
 using IEnumComposer;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -90,7 +91,6 @@ namespace EnumComposer
 
                 model.SpanStart = enumeration.OpenBraceToken.SpanStart + 1;
                 model.SpanEnd = enumeration.CloseBraceToken.SpanStart;
-
 
 #if TRIVIA
                 {
@@ -195,7 +195,7 @@ namespace EnumComposer
             }
             else
             {
-                str = str.Substring(1, str.Length - 2); 
+                str = str.Substring(1, str.Length - 2);
             }
             return str;
         }

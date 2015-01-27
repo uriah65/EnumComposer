@@ -20,7 +20,6 @@ namespace EnumComposer
                 "decimal","int","sbyte","short","double","long","string","void",
                 "partial", "yield", "where"};
 
-
         public static string MakeValidDescription(string description)
         {
             if (description == null)
@@ -86,10 +85,9 @@ namespace EnumComposer
                 }
                 else
                 {
-                    /* we ignore spaces and replace other characters with _, but not several _ in a row*/
-                    //if (identifier[i] != ' ' && result[i-1] != '_')
+                    /* we ignore spaces and replace other characters with '_' */
                     if (identifier[i] != ' ')
-                        {
+                    {
                         result += "_";
                     }
                 }

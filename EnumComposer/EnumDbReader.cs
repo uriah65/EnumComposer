@@ -91,24 +91,26 @@ namespace EnumComposer
                     _dbType = DbTypeEnum.SqlServer;
                     scnn = part2;
                     break;
+
                 case OLEDB_MARKER:
                     _dbType = DbTypeEnum.Oledb;
                     scnn = part2;
                     break;
+
                 case ODBC_MARKER:
                     _dbType = DbTypeEnum.Odbc;
                     scnn = part2;
                     break;
+
                 case FAKE_MARKER:
                     _dbType = DbTypeEnum.BuildInFake;
                     scnn = part2;
                     break;
+
                 default:
                     scnn = string.Format("Server={0};Database={1};Trusted_Connection=True;", part1, part2);
                     break;
             }
-
-
 
             if (scnn.ToLower().Contains(FAKE_SQL_SINATURE))
             {
@@ -117,7 +119,6 @@ namespace EnumComposer
 
             return scnn;
         }
-
 
         private void Read(DbDataReader reader, EnumModel model)
         {
@@ -193,7 +194,7 @@ namespace EnumComposer
 
             bool useDescriptions = model.SqlSelect.ToLower().Contains("description");
 
-                List<string> T_Weekdays = new List<string>
+            List<string> T_Weekdays = new List<string>
             {
                 "Sunday",
                 "Monday",

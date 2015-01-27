@@ -95,12 +95,7 @@ namespace EnumComposer
                 if (value.IsInDB)
                 {
                     /* only need to output if there is a reference in DB */
-
-//#if DEBUG
-                    result += string.Format("{1}{0}", Environment.NewLine, value.ToString2(LeadingTrivia));
-//#else
-//                    result += string.Format("\t\t{1}{0}", Environment.NewLine, value.ToString());
-//#endif
+                    result += string.Format("{1}{0}", Environment.NewLine, value.ToCsCode(LeadingTrivia));
                 }
             }
 

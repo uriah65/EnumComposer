@@ -8,7 +8,6 @@ namespace IEnumComposer
         Oledb,
         Odbc,
         BuildInFake
-
     }
 
     public interface IEnumDbReader
