@@ -68,8 +68,6 @@ namespace EnumComposerConsole
             return Quit(0);
         }
 
-
-
         private static int Quit(int exitCode)
         {
             if (_options.Verbose)
