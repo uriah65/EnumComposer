@@ -55,6 +55,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Fake20_Play.cs" />
     <Compile Include="Fake32_.cs" />
     <Compile Include="Fake33_.cs" />
     <Compile Include="Un33_FullCycleOLEDB.cs" />

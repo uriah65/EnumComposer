@@ -52,5 +52,25 @@ namespace UtComposer
             Assert.AreEqual(534, value.Value);
             Assert.AreEqual("K5", value.NameCs);
         }
+
+
+        [TestMethod]
+        public void Play()
+        {
+            if (ConstantsPR.IsNotDell)
+            {
+                return;
+            }
+
+            string path = @"..\..\Fake20_.cs";
+            string sourceText = File.ReadAllText(path);
+
+            ComposerStrings composer = new ComposerStrings(null);
+            composer.Compose(sourceText);
+
+            /* no-tfinished */
+
+        }
+
     }
 }

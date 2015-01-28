@@ -92,7 +92,8 @@ namespace EnumComposer
                 model.SpanStart = enumeration.OpenBraceToken.SpanStart + 1;
                 model.SpanEnd = enumeration.CloseBraceToken.SpanStart;
 
-#if TRIVIA
+#if TRIVIA && DEBUG
+
                 {
                     int spanEnd = model.SpanEnd;
                     var triviaList = enumeration.CloseBraceToken.LeadingTrivia;
@@ -122,7 +123,7 @@ namespace EnumComposer
                     string svalue = syntax.EqualsValue.Value.ToString();
                     value.Value = int.Parse(svalue);
 
-#if TRIVIA
+#if TRIVIA && DEBUG
                     if (model.LeadingTrivia == null)
                     {
                         string triviaS = "";

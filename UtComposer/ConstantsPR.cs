@@ -4,9 +4,9 @@ namespace UtComposer
 {
     public static class ConstantsPR
     {
-        public static bool IsDell
+        public static bool IsNotDell
         {
-            get { return Environment.MachineName.ToLower() == "dellstudioxps"; }
+            get { return Environment.MachineName.ToLower() != "dellstudioxps"; }
         }
 
         public static string RemoveTextBetween(this string text, string fromPart, string toPart)

@@ -25,7 +25,7 @@ namespace UtComposer
         [TestMethod]
         public void SqlServer_NamePair()
         {
-            if (ConstantsPR.IsDell == false)
+            if (ConstantsPR.IsNotDell)
             {
                 /* this test is using live SQL server connection and will work only on specific machine.*/
                 return;
@@ -59,10 +59,10 @@ namespace UtComposer
         [ExpectedException(typeof(ApplicationException))]
         public void SqlServer_NamePairWrong()
         {
-            if (ConstantsPR.IsDell == false)
+            if (ConstantsPR.IsNotDell)
             {
                 /* this test is using live SQL server connection and will work only on specific machine.*/
-                return;
+                throw new ApplicationException();
             }
 
             string inputFile = @"..\..\Fake31_Dell2.txt";
@@ -78,7 +78,7 @@ namespace UtComposer
         [TestMethod]
         public void SqlServer_ConnectionString()
         {
-            if (ConstantsPR.IsDell == false)
+            if (ConstantsPR.IsNotDell)
             {
                 /* this test is using live SQL server connection and will work only on specific machine.*/
                 return;
