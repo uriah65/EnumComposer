@@ -3,10 +3,10 @@ using IEnumComposer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 
-namespace UtComposer
+namespace TestComposer
 {
     [TestClass]
-    public class Un30_FullCycle
+    public class T30_FullCycle
     {
         /* Test composer. Hight level test.
         */
@@ -27,7 +27,7 @@ namespace UtComposer
         [TestMethod]
         public void ParseFileAndDb()
         {
-            string inputFile = @"..\..\Fake30_.cs";
+            string inputFile = @"..\..\T30\Input.cs";
             string outputFile = Path.GetTempFileName() + ".txt";
 
             ComposerFiles composer = new ComposerFiles();
@@ -54,7 +54,7 @@ namespace UtComposer
         [TestMethod]
         public void ParseFileAndText()
         {
-            string path = @"..\..\Fake30_.cs";
+            string path = @"..\..\T30\Input.cs";
             ComposerStrings composer = new ComposerStrings(_dbReader);
             string sourceText = File.ReadAllText(path);
 
@@ -65,6 +65,7 @@ namespace UtComposer
             /* this test is for manual checking of text result above */
             Assert.AreEqual(true, true);
         }
+
 
 
     }

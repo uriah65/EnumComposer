@@ -1,8 +1,7 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using EnumComposer;
 using IEnumComposer;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
-using EnumComposer;
 
 namespace TestComposer
 {
@@ -23,7 +22,7 @@ namespace TestComposer
         }
 
         [TestMethod]
-        public void AcccessOleDB()
+        public void Reading_Access_OleDB()
         {
             string inputFile = @"..\..\T33\Input.cs";
             string expectedFile = @"..\..\T33\Output.cs";

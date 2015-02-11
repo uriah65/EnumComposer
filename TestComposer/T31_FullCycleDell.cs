@@ -4,10 +4,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
 
-namespace UtComposer
+namespace TestComposer
 {
     [TestClass]
-    public class Un31_FullCycleDell
+    public class T31_FullCycleDell
     {
         private IEnumDbReader _dbReader;
 
@@ -31,8 +31,8 @@ namespace UtComposer
                 return;
             }
 
-            string inputFile = @"..\..\Fake31_Dell.cs";
-            string expectedFile = @"..\..\Fake31_Dell.txt";
+            string inputFile = @"..\..\T31\Fake31_Dell.cs";
+            string expectedFile = @"..\..\T31\Fake31_Dell.txt";
 
             ComposerFiles composer = new ComposerFiles();
 
@@ -65,7 +65,7 @@ namespace UtComposer
                 throw new ApplicationException();
             }
 
-            string inputFile = @"..\..\Fake31_Dell2.txt";
+            string inputFile = @"..\..\T31\Fake31_Dell2.txt";
             //string expectedFile = @"..\..\Fake31_Dell.txt";
 
             ComposerFiles composer = new ComposerFiles();
@@ -84,8 +84,8 @@ namespace UtComposer
                 return;
             }
 
-            string inputFile = @"..\..\Fake31_Dell3.txt";
-            string expectedFile = @"..\..\Fake31_Dell.txt";
+            string inputFile = @"..\..\T31\Fake31_Dell3.txt";
+            string expectedFile = @"..\..\T31\Fake31_Dell.txt";
 
             ComposerFiles composer = new ComposerFiles();
 
@@ -111,5 +111,6 @@ namespace UtComposer
             output2 = output2.RemoveTextBetween("[EnumSqlCnn(", ")]");
             Assert.AreEqual(output2, expected, "Second run of composer should not change the file.");
         }
+
     }
 }

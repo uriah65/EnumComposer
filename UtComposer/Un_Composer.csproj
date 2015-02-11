@@ -55,27 +55,10 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Fake20_Play.cs" />
-    <Compile Include="Fake32_.cs" />
-    <Compile Include="Un32_FullCycleODBC.cs" />
-    <Content Include="Fake31_Dell3.txt" />
-    <Content Include="Fake31_Dell2.txt" />
     <Compile Include="Fake_MinimalApp.cs" />
     <Compile Include="ConstantsPR.cs" />
-    <Compile Include="Un31_FullCycleDell.cs" />
-    <Content Include="Fake31_Dell.txt" />
-    <Compile Include="Fake31_Dell.cs" />
-    <Compile Include="Fake20_.cs" />
-    <Compile Include="Fake30_.cs" />
-    <Compile Include="Fake21_BuildInFakeDb.cs" />
     <Compile Include="Fake_DbReader.cs" />
-    <Compile Include="Un21_BuildInFakeDb.cs" />
-    <Compile Include="Un30_FullCycle.cs" />
-    <Compile Include="Un20_Composer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Fake32_OdbcData2.txt" />
-    <Content Include="Fake32_OdbcData.txt" />
-    <Content Include="Fake32_Expected.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EnumComposer\EnumComposer.csproj">

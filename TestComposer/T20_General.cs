@@ -3,13 +3,10 @@ using IEnumComposer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 
-namespace UtComposer
+namespace TestComposer
 {
-    /* Test composer. Hight level test.
-    */
-
     [TestClass]
-    public class Un20_Composer
+    public class T20_General
     {
         private IEnumDbReader _dbReader = null;
 
@@ -28,7 +25,7 @@ namespace UtComposer
         public void ParseFile()
         {
             /* Parse C# file and make sure EmunModel array get filled correctly */
-            string path = @"..\..\Fake20_.cs";
+            string path = @"..\..\T20\Input.cs";
             string sourceText = File.ReadAllText(path);
 
             ComposerStrings composer = new ComposerStrings(null);
@@ -52,25 +49,5 @@ namespace UtComposer
             Assert.AreEqual(534, value.Value);
             Assert.AreEqual("K5", value.NameCs);
         }
-
-
-        [TestMethod]
-        public void Play()
-        {
-            if (ConstantsPR.IsNotDell)
-            {
-                return;
-            }
-
-            string path = @"..\..\Fake20_.cs";
-            string sourceText = File.ReadAllText(path);
-
-            ComposerStrings composer = new ComposerStrings(null);
-            composer.Compose(sourceText);
-
-            /* no-finished */
-
-        }
-
     }
 }

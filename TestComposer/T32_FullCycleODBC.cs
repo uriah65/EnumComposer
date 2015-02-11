@@ -3,10 +3,10 @@ using IEnumComposer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 
-namespace UtComposer
+namespace TestComposer
 {
     [TestClass]
-    public class Un32_FullCycleODBC
+    public class T32_FullCycleODBC
     {
         private IEnumDbReader _dbReader;
 
@@ -22,11 +22,11 @@ namespace UtComposer
         }
 
         [TestMethod]
-        public void ReadingTextFile()
+        public void Reading_Csv_ODBC()
         {
             //string path = @"..\..\";
-            string inputFile = @"..\..\Fake32_.cs";
-            string expectedFile = @"..\..\Fake32_Expected.txt";
+            string inputFile = @"..\..\T32\Input.cs";
+            string expectedFile = @"..\..\T32\Output.cs";
 
             _dbReader = new EnumDbReader();
             ComposerFiles composer = new ComposerFiles();
@@ -37,7 +37,7 @@ namespace UtComposer
 
             string output = File.ReadAllText(outputFile);
             string expected = File.ReadAllText(expectedFile);
-            Assert.AreEqual(expected, output, "Output should be as expected");
+            ConstantsPR.AssertSpaceEqual(expected, output, "Output should be as expected");
         }
     }
 }
