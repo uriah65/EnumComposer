@@ -5,7 +5,7 @@ namespace TestComposer
 {
     public static class ConstantsPR
     {
-        public static bool IsNotDell
+        public static bool HasNoAdventureWorks
         {
             get { return Environment.MachineName.ToLower() != "dellstudioxps"; }
         }
@@ -14,6 +14,16 @@ namespace TestComposer
         {
             actual = StripSpace(actual);
             expected = StripSpace(expected);
+
+            for (int i = 0; i < actual.Length; i++)
+            {
+                if (actual[i] != expected[i])
+                {
+                    string difference = actual.Substring(i);
+                }
+            }
+
+
             Assert.AreEqual(expected, actual, message);
         }
 

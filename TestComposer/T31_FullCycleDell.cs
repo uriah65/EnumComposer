@@ -25,9 +25,9 @@ namespace TestComposer
         [TestMethod]
         public void SqlServer_NamePair()
         {
-            if (ConstantsPR.IsNotDell)
+            if (ConstantsPR.HasNoAdventureWorks)
             {
-                /* this test is using live SQL server connection and will work only on specific machine.*/
+                /* AdventureWorks sample database has to be available. */
                 return;
             }
 
@@ -43,7 +43,8 @@ namespace TestComposer
             // compare with expected
             string output = File.ReadAllText(outputFile);
             string expected = File.ReadAllText(expectedFile);
-            Assert.AreEqual(output, expected, "Output file should match expected file.");
+            ConstantsPR.AssertSpaceEqual(expected, output, "Files should match.");
+            //Assert.AreEqual(output, expected, "Output file should match expected file.");
 
             // do it second time
             inputFile = outputFile;
@@ -52,16 +53,17 @@ namespace TestComposer
 
             // compare with expected
             string output2 = File.ReadAllText(outputFile);
-            Assert.AreEqual(output2, expected, "Second run of composer should not change the file.");
+            ConstantsPR.AssertSpaceEqual(output2, expected, "Second run of composer should not change the file.");
+            //Assert.AreEqual(output2, expected, "Second run of composer should not change the file.");
         }
 
         [TestMethod]
         [ExpectedException(typeof(ApplicationException))]
         public void SqlServer_NamePairWrong()
         {
-            if (ConstantsPR.IsNotDell)
+            if (ConstantsPR.HasNoAdventureWorks)
             {
-                /* this test is using live SQL server connection and will work only on specific machine.*/
+                /* AdventureWorks sample database has to be available. */
                 throw new ApplicationException();
             }
 
@@ -78,9 +80,9 @@ namespace TestComposer
         [TestMethod]
         public void SqlServer_ConnectionString()
         {
-            if (ConstantsPR.IsNotDell)
+            if (ConstantsPR.HasNoAdventureWorks)
             {
-                /* this test is using live SQL server connection and will work only on specific machine.*/
+                /* AdventureWorks sample database has to be available. */
                 return;
             }
 
@@ -99,7 +101,7 @@ namespace TestComposer
             output = output.RemoveTextBetween("[EnumSqlCnn(", ")]");
             expected = expected.RemoveTextBetween("[EnumSqlCnn(", ")]");
 
-            Assert.AreEqual(output, expected, "Output file should match expected file.");
+            ConstantsPR.AssertSpaceEqual(expected, output, "Output file should match expected file.");
 
             // do it second time
             inputFile = outputFile;
@@ -109,7 +111,7 @@ namespace TestComposer
             // compare with expected
             string output2 = File.ReadAllText(outputFile);
             output2 = output2.RemoveTextBetween("[EnumSqlCnn(", ")]");
-            Assert.AreEqual(output2, expected, "Second run of composer should not change the file.");
+            ConstantsPR.AssertSpaceEqual(expected, output2, "Second run of composer should not change the file.");
         }
 
     }
