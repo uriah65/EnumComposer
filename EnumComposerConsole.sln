@@ -13,7 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Licenses", "_Licenses", "{
 	ProjectSection(SolutionItems) = preProject
 		_Lisenses\License_CommandLineParserLibrary.txt = _Lisenses\License_CommandLineParserLibrary.txt
 		_Lisenses\License_EnumComposer.txt = _Lisenses\License_EnumComposer.txt
-		_Lisenses\Thanks.txt = _Lisenses\Thanks.txt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsole", "TestConsole\TestConsole.csproj", "{DC03DF08-9A3C-4EEB-9867-42A5A36A25CB}"
