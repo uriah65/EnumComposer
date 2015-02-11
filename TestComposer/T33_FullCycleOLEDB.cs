@@ -1,12 +1,13 @@
-﻿using EnumComposer;
-using IEnumComposer;
+﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using IEnumComposer;
 using System.IO;
+using EnumComposer;
 
-namespace UtComposer
+namespace TestComposer
 {
     [TestClass]
-    public class Un33_FullCycleOLEDB
+    public class T33_FullCycleOLEDB
     {
         private IEnumDbReader _dbReader;
 
@@ -24,8 +25,8 @@ namespace UtComposer
         [TestMethod]
         public void AcccessOleDB()
         {
-            string inputFile = @"..\..\Fake33_.cs";
-            string expectedFile = @"..\..\Fake33_Expected.txt";
+            string inputFile = @"..\..\T33\Input.cs";
+            string expectedFile = @"..\..\T33\Output.cs";
 
             _dbReader = new EnumDbReader();
             ComposerFiles composer = new ComposerFiles();
@@ -36,8 +37,7 @@ namespace UtComposer
 
             string output = File.ReadAllText(outputFile);
             string expected = File.ReadAllText(expectedFile);
-            Assert.AreEqual(expected, output, "Output should be as expected.");
+            ConstantsPR.AssertSpaceEqual(output, expected, "Output should be as expected.");
         }
-
     }
 }

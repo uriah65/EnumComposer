@@ -57,12 +57,7 @@
   <ItemGroup>
     <Compile Include="Fake20_Play.cs" />
     <Compile Include="Fake32_.cs" />
-    <Compile Include="Fake33_.cs" />
-    <Compile Include="Un33_FullCycleOLEDB.cs" />
     <Compile Include="Un32_FullCycleODBC.cs" />
-    <Content Include="AccessTest.accdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Fake31_Dell3.txt" />
     <Content Include="Fake31_Dell2.txt" />
     <Compile Include="Fake_MinimalApp.cs" />
@@ -77,13 +72,10 @@
     <Compile Include="Un21_BuildInFakeDb.cs" />
     <Compile Include="Un30_FullCycle.cs" />
     <Compile Include="Un20_Composer.cs" />
-    <Compile Include="Un01_NameConverter.cs" />
-    <Compile Include="Un10_EnumModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Fake32_OdbcData2.txt" />
     <Content Include="Fake32_OdbcData.txt" />
     <Content Include="Fake32_Expected.txt" />
-    <Content Include="Fake33_Expected.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EnumComposer\EnumComposer.csproj">

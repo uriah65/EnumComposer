@@ -3,10 +3,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using EnumComposer;
 using IEnumComposer;
 
-namespace UtComposer
+namespace TestComposer
 {
     /* Test Enumeration Model class
-    */
+        */
 
     [TestClass]
     public class Un10_EnumModel
@@ -68,5 +68,4 @@ namespace UtComposer
             _model.FillFromCode(3, "aaa", false);
         }
     }
-
 }

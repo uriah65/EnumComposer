@@ -9,13 +9,13 @@ namespace UtComposer
 {
     class Fake33_
     {
-        [EnumSqlCnn("#OleDb", @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source =..\..\AccessTest.accdb;Persist Security Info=False")]
+        [EnumSqlCnn("#OleDb", @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source =..\..\T33\AccessTest.accdb;Persist Security Info=False")]
         [EnumSqlSelect("SELECT id, name FROM T_Colors")]
         public enum ColorsEnum
         {
         }
 
-        [EnumSqlCnn("#OleDb", @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source =..\..\AccessTest.accdb;Persist Security Info=False")]
+        [EnumSqlCnn("#OleDb", @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source =..\..\T33\AccessTest.accdb;Persist Security Info=False")]
         [EnumSqlSelect("SELECT id, name, description FROM T_Colors")]
         public enum ColorsWithDescriptionEnum
         {

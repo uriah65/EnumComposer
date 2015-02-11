@@ -1,10 +1,10 @@
 ﻿using EnumComposer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace UtComposer
+namespace TestComposer
 {
     [TestClass]
-    public class Un01_NameConverter
+    public class T01_NameConverter
     {
         [TestInitialize()]
         public void Initialize()
@@ -28,5 +28,6 @@ namespace UtComposer
             Assert.AreEqual("_as", EnumNameConverter.MakeValidIdentifier("  a   s  "));
             Assert.AreEqual("_enum", EnumNameConverter.MakeValidIdentifier("enum"));
         }
+
     }
 }

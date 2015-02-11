@@ -68,7 +68,7 @@ namespace UtComposer
             ComposerStrings composer = new ComposerStrings(null);
             composer.Compose(sourceText);
 
-            /* no-tfinished */
+            /* no-finished */
 
         }
 
