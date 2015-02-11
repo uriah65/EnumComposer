@@ -29,12 +29,15 @@ namespace TestConsole
         }
 
         [TestMethod]
-        public void String_HelpScreen()
+        public void Showing_HelpScreen()
         {
-            string[] result = ConstantsPR.RunHidden("-help -u -v");
+            string[] result = ConstantsPR.RunHidden("--help");
 
             string output = result[0];
             string errors = result[1];
+
+            Assert.AreEqual(0, output.Length, "No output with --help argument");
+            Assert.AreEqual(true, errors.Length > 980, "Help text shown with --help argument");
         }
     }
 }

@@ -31,8 +31,8 @@ namespace TestComposer
                 return;
             }
 
-            string inputFile = @"..\..\T31\Fake31_Dell.cs";
-            string expectedFile = @"..\..\T31\Fake31_Dell.txt";
+            string inputFile = @"..\..\T31\Input.cs";
+            string expectedFile = @"..\..\T31\Output.cs";
 
             ComposerFiles composer = new ComposerFiles();
 
@@ -65,7 +65,7 @@ namespace TestComposer
                 throw new ApplicationException();
             }
 
-            string inputFile = @"..\..\T31\Fake31_Dell2.txt";
+            string inputFile = @"..\..\T31\Input2.cs";
             //string expectedFile = @"..\..\Fake31_Dell.txt";
 
             ComposerFiles composer = new ComposerFiles();
@@ -84,8 +84,8 @@ namespace TestComposer
                 return;
             }
 
-            string inputFile = @"..\..\T31\Fake31_Dell3.txt";
-            string expectedFile = @"..\..\T31\Fake31_Dell.txt";
+            string inputFile = @"..\..\T31\Input3.cs";
+            string expectedFile = @"..\..\T31\Output.cs";
 
             ComposerFiles composer = new ComposerFiles();
 

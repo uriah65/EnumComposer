@@ -55,7 +55,7 @@
     <Compile Include="T20\Input.cs" />
     <Compile Include="T21\Input.cs" />
     <Compile Include="T30\Input.cs" />
-    <Compile Include="T31\Fake31_Dell.cs" />
+    <Content Include="T31\Input.cs" />
     <Compile Include="T32\Input.cs" />
     <Compile Include="T33\Input.cs" />
     <Compile Include="Fake_DbReader.cs" />
@@ -76,9 +76,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="T31\Fake31_Dell.txt" />
-    <Content Include="T31\Fake31_Dell2.txt" />
-    <Content Include="T31\Fake31_Dell3.txt" />
+    <Content Include="T31\Output.cs" />
+    <Content Include="T31\Input2.cs" />
+    <Content Include="T31\Input3.cs" />
     <Content Include="T32\Output.cs" />
     <Content Include="T32\Data.txt" />
     <None Include="T32\Data2.csv" />
