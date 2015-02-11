@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{61401AF0-DE10-46CB-A858-82C347DC0FD3}</ProjectGuid>
+    <ProjectGuid>{C36AAA21-E1F6-443D-8011-B361B80571AC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UtComposer</RootNamespace>
-    <AssemblyName>UtComposer</AssemblyName>
+    <RootNamespace>TestComposer</RootNamespace>
+    <AssemblyName>TestComposer</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -16,10 +16,6 @@
     <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -29,7 +25,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -55,10 +50,24 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Fake_MinimalApp.cs" />
     <Compile Include="ConstantsPR.cs" />
+    <Compile Include="ExampleOf_MinimalApp.cs" />
+    <Compile Include="T20\Input.cs" />
+    <Compile Include="T21\Input.cs" />
+    <Compile Include="T30\Input.cs" />
+    <Compile Include="T31\Fake31_Dell.cs" />
+    <Compile Include="T32\Input.cs" />
+    <Compile Include="T33\Input.cs" />
     <Compile Include="Fake_DbReader.cs" />
+    <Compile Include="T01_NameConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="T10_EnumModel.cs" />
+    <Compile Include="T33_FullCycleOLEDB.cs" />
+    <Compile Include="T32_FullCycleODBC.cs" />
+    <Compile Include="T20_General.cs" />
+    <Compile Include="T21_BuildInFakeDb.cs" />
+    <Compile Include="T30_FullCycle.cs" />
+    <Compile Include="T31_FullCycleDell.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EnumComposer\EnumComposer.csproj">
@@ -66,6 +75,19 @@
       <Name>EnumComposer</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="T31\Fake31_Dell.txt" />
+    <Content Include="T31\Fake31_Dell2.txt" />
+    <Content Include="T31\Fake31_Dell3.txt" />
+    <Content Include="T32\Output.cs" />
+    <Content Include="T32\Data.txt" />
+    <None Include="T32\Data2.csv" />
+    <Content Include="T33\AccessTest.accdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T33\Output.cs" />
+  </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

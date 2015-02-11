@@ -3,7 +3,7 @@ using IEnumComposer;
 using System;
 using System.Collections.Generic;
 
-namespace UtComposer
+namespace TestComposer
 {
     public class Fake_DbReader : IEnumDbReader
     {
