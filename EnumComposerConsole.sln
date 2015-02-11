@@ -16,12 +16,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Licenses", "_Licenses", "{
 		_Lisenses\Thanks.txt = _Lisenses\Thanks.txt
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_e2eTests", "_e2eTests", "{EC274A8B-E9E0-47F3-B4E5-DD9B6F7B1CAA}"
-	ProjectSection(SolutionItems) = preProject
-		_e2eTests\01_fakedb.bat = _e2eTests\01_fakedb.bat
-		_e2eTests\01_fakedb.txt = _e2eTests\01_fakedb.txt
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsole", "TestConsole\TestConsole.csproj", "{DC03DF08-9A3C-4EEB-9867-42A5A36A25CB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestComposer", "TestComposer\TestComposer.csproj", "{C36AAA21-E1F6-443D-8011-B361B80571AC}"
