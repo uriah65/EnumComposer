@@ -24,6 +24,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_e2eTests", "_e2eTests", "{
 		_e2eTests\01_fakedb.txt = _e2eTests\01_fakedb.txt
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsole", "TestConsole\TestConsole.csproj", "{DC03DF08-9A3C-4EEB-9867-42A5A36A25CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +64,14 @@ Global
 		{AF1310E8-8885-4706-AECD-A767C8156B4E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AF1310E8-8885-4706-AECD-A767C8156B4E}.Release|x86.ActiveCfg = Release|Any CPU
 		{AF1310E8-8885-4706-AECD-A767C8156B4E}.Release|x86.Build.0 = Release|Any CPU
+		{DC03DF08-9A3C-4EEB-9867-42A5A36A25CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC03DF08-9A3C-4EEB-9867-42A5A36A25CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC03DF08-9A3C-4EEB-9867-42A5A36A25CB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DC03DF08-9A3C-4EEB-9867-42A5A36A25CB}.Debug|x86.Build.0 = Debug|Any CPU
+		{DC03DF08-9A3C-4EEB-9867-42A5A36A25CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC03DF08-9A3C-4EEB-9867-42A5A36A25CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC03DF08-9A3C-4EEB-9867-42A5A36A25CB}.Release|x86.ActiveCfg = Release|Any CPU
+		{DC03DF08-9A3C-4EEB-9867-42A5A36A25CB}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -8,6 +8,7 @@ using System;
 using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Globalization;
+using System.Linq;
 using System.Runtime.InteropServices;
 
 namespace Uriah65.EnumComposerVSP
@@ -156,34 +157,66 @@ namespace Uriah65.EnumComposerVSP
                 return;
             }
 
-            TextDocument textDoc = document as TextDocument;
-            if (textDoc == null)
-            {
-                return;
-            }
+            EnumDbReader reader = new EnumDbReader();
+            ComposerStrings composer = new ComposerStrings(reader, log);
+            ApplyComposer(document, composer);
 
-            var editPoint = document.CreateEditPoint(document.StartPoint);
-            string text = editPoint.GetText(document.EndPoint);
-            EditPoint endPoint = (EditPoint)textDoc.EndPoint.CreateEditPoint();
-
-            //if (true)
-            //{
-                EnumDbReader reader = new EnumDbReader();
-                ComposerStrings composer = new ComposerStrings(reader, log);
-                composer.Compose(text);
-                text = composer.GetResultFile();
-            //}
-            //else
-            //{
-            //    text = Reverse(text);
-            //}
-
-            editPoint.Delete(endPoint);
-            editPoint.Insert(text);
         }
+
+        //public void ApplyComposer_New(TextDocument document, ComposerStrings composer)
+        //{
+        //    /* get document bounds */
+        //    EditPoint startEdit = document.CreateEditPoint(document.StartPoint);
+        //    EditPoint endEdit = document.EndPoint.CreateEditPoint();
+
+        //    /* run composer */
+        //    string text = startEdit.GetText(document.EndPoint);
+        //    composer.Compose(text);
+
+
+        //    int ixLastInsert = text.Length;
+
+        //    foreach (var model in composer.EnumModels.OrderByDescending(e => e.SpanEnd))
+        //    {
+        //        if (model.SpanEnd > ixLastInsert)
+        //        {
+        //            throw new ApplicationException("Invalid enumeration order for '" + model.Name + "'.");
+        //        }
+
+        //        EditPoint from = document.CreateEditPoint(document.StartPoint);
+        //        EditPoint to = document.CreateEditPoint(document.StartPoint);
+        //        int ix = endEdit.AbsoluteCharOffset;
+        //        from.MoveToAbsoluteOffset(model.SpanStart);
+        //        to.MoveToAbsoluteOffset(model.SpanEnd);
+
+        //        from.Delete(to);
+        //        from.Insert(model.ToCSharp());
+
+        //    }
+        //}
+
+        public void ApplyComposer(TextDocument document, ComposerStrings composer)
+        {
+            /* get document bounds */
+            EditPoint startEdit = document.CreateEditPoint(document.StartPoint);
+            EditPoint endEdit = document.EndPoint.CreateEditPoint();
+
+            /* run composer */
+            string text = startEdit.GetText(document.EndPoint);           
+            composer.Compose(text);
+            text = composer.GetResultFile();
+
+            /* delete and re-insert full document */
+            startEdit.Delete(endEdit);
+            startEdit.Insert(text);
+        }
+
+
+
 
         public string Reverse(string text)
         {
+            /* test method, not used */
             char[] cArray = text.ToCharArray();
             string reverse = "";
             for (int i = cArray.Length - 1; i > -1; i--)

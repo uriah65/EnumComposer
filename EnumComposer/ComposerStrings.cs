@@ -161,7 +161,7 @@ namespace EnumComposer
         {
             StringBuilder result = new StringBuilder(1024);
             int ixLastInsert = SourceText.Length;
-            string insertValue = "";
+            string insertString = "";
             foreach (var model in EnumModels.OrderByDescending(e => e.SpanEnd))
             {
                 if (model.SpanEnd > ixLastInsert)
@@ -170,18 +170,18 @@ namespace EnumComposer
                 }
 
                 // insert in-between section
-                insertValue = SourceText.Substring(model.SpanEnd, ixLastInsert - model.SpanEnd);
-                result.Insert(0, insertValue, 1);
+                insertString = SourceText.Substring(model.SpanEnd, ixLastInsert - model.SpanEnd);
+                result.Insert(0, insertString, 1);
 
                 // insert enumeration
-                insertValue = model.ToCSharp();
-                result.Insert(0, insertValue, 1);
+                insertString = model.ToCSharp();
+                result.Insert(0, insertString, 1);
 
                 ixLastInsert = model.SpanStart;
             }
 
-            insertValue = SourceText.Substring(0, ixLastInsert);
-            result.Insert(0, insertValue, 1);
+            insertString = SourceText.Substring(0, ixLastInsert);
+            result.Insert(0, insertString, 1);
 
             return result.ToString();
         }

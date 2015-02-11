@@ -44,10 +44,11 @@ namespace EnumComposerConsole
             {
                 Console.WriteLine("Input file: {0}", _options.InputFile);
                 Console.WriteLine("Output file: {0}", _options.OutputFile);
-                Console.WriteLine("SQL Server: {0}", _options.SqlServer);
+                Console.WriteLine("Server: {0}", _options.SqlServer);
                 Console.WriteLine("Database: {0}", _options.SqlDatabase);
-                Console.WriteLine("Enter 'Y' to continue");
-                if (Console.ReadLine().ToUpper() != "Y")
+                Console.WriteLine("Press 'Y' to continue");
+                //if (Console.ReadLine().ToUpper() != "Y")
+                if (Console.ReadKey().Key != ConsoleKey.Y)
                 {
                     Console.WriteLine("");
                     Console.WriteLine("Aborted by the user");
@@ -72,8 +73,11 @@ namespace EnumComposerConsole
         {
             if (_options.Verbose)
             {
-                Console.WriteLine("Enter any char to quit.");
-                Console.ReadLine().ToUpper();
+                Console.WriteLine("Press any key to quit.");
+                if (_options.NoUser == false)
+                {
+                    Console.ReadKey();
+                }
             }
 
             Console.ForegroundColor = _originalColor;

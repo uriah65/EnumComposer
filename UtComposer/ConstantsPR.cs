@@ -12,7 +12,7 @@ namespace UtComposer
         public static string RemoveTextBetween(this string text, string fromPart, string toPart)
         {
             int ix1 = text.IndexOf(fromPart) + fromPart.Length ;
-            int ix2 = text.IndexOf(toPart, ix1);// + toPart.Length;
+            int ix2 = text.IndexOf(toPart, ix1);
 
             string result = text.Remove(ix1, ix2 - ix1);
             return result;
