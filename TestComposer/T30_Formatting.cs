@@ -60,6 +60,23 @@ namespace TestComposer
         public void Formatting()
         {
             string inputFile = @"..\..\T30\Input.cs";
+            string expectedFile = @"..\..\T30\Output.cs";
+
+            ComposerFiles composer = new ComposerFiles();
+
+            string outputFile = Path.GetTempFileName() + ".txt";
+            composer.Compose(inputFile, outputFile, _dbReader);
+
+            string output = File.ReadAllText(outputFile);
+            string expected = File.ReadAllText(expectedFile);
+            ConstantsPR.AssertSpaceEqual(expected, output, "Output should have expected syntax.");
+            ConstantsPR.AssertFormatEqual(expected, output, "Output should have expected format.");
+        }
+
+        [TestMethod]
+        public void Formatting2()
+        {
+            string inputFile = @"..\..\T30\Input2.cs";
             string expectedFile = @"..\..\T30\Output2.cs";
 
             ComposerFiles composer = new ComposerFiles();

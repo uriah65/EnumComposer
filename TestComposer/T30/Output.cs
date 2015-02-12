@@ -1,4 +1,4 @@
-﻿using EnumComposer;
+using EnumComposer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,14 +27,21 @@ namespace UtComposer
         //ReligiousHoliday = 46,
     }
     //b
+    class X
+    {
+        class Y
+        {
             [EnumSqlSelect("SELECT lkc__id, lkc_name FROM T_MeetingType")]
             public enum MeetingTypeEnum
-            {
-                SD = 5,
-                PreHearing = 7,
-                Hearing = 8,
-            }//c
-    //c2
+                {
+                    SD = 5,
+                    PreHearing = 7,
+                    Hearing = 8,
+                }//c
+        }
+    }
+
+     //c2
     [EnumSqlSelect("SELECT lkc__id, lkc_name FROM T_AwaySystem")]
     public enum AwaySystemTypeEnum
     {
@@ -43,8 +50,9 @@ namespace UtComposer
         Arbitration = 98002,
         Appeals = 98003,
     }//end
-//and    
-/*    */[EnumSqlSelect("SELECT lkc__id, lkc_name FROM T_Location")]
+     //and    
+     /*    */
+    [EnumSqlSelect("SELECT lkc__id, lkc_name FROM T_Location")]
     public enum LocationEnum
     {
         ToBeScheduledArb = 100,

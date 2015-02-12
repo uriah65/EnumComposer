@@ -27,14 +27,21 @@ namespace UtComposer
         //ReligiousHoliday = 46
     }
     //b
+    class X
+    {
+        class Y
+        {
             [EnumSqlSelect("SELECT lkc__id, lkc_name FROM T_MeetingType")]
             public enum MeetingTypeEnum
-            {
-                        PreHearing = 7,
-                        Hearing = 8,
-                        SD = 5,
+                {
+                PreHearing = 7,
+                Hearing = 8,
+                SD = 5,
             }//c
-    //c2
+        }
+    }
+
+     //c2
     [EnumSqlSelect("SELECT lkc__id, lkc_name FROM T_AwaySystem")]
     public enum AwaySystemTypeEnum
     {
@@ -43,8 +50,9 @@ namespace UtComposer
         Arbitration = 98002,
         Appeals = 98003
     }//end
-//and    
-/*    */[EnumSqlSelect("SELECT lkc__id, lkc_name FROM T_Location")]
+     //and    
+     /*    */
+    [EnumSqlSelect("SELECT lkc__id, lkc_name FROM T_Location")]
     public enum LocationEnum
     {
         WrittenSubmissions = 129,
