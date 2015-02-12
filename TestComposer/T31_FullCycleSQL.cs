@@ -7,7 +7,7 @@ using System.IO;
 namespace TestComposer
 {
     [TestClass]
-    public class T31_FullCycleDell
+    public class T31_FullCycleSQL
     {
         private IEnumDbReader _dbReader;
 

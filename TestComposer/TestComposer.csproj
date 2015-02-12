@@ -56,6 +56,7 @@
     <Compile Include="T21\Input.cs" />
     <Compile Include="T30\Input.cs" />
     <Content Include="T31\Input.cs" />
+    <Content Include="T30\Output.cs" />
     <Compile Include="T32\Input.cs" />
     <Compile Include="T33\Input.cs" />
     <Compile Include="Fake_DbReader.cs" />
@@ -66,8 +67,8 @@
     <Compile Include="T32_FullCycleODBC.cs" />
     <Compile Include="T20_General.cs" />
     <Compile Include="T21_BuildInFakeDb.cs" />
-    <Compile Include="T30_FullCycle.cs" />
-    <Compile Include="T31_FullCycleDell.cs" />
+    <Compile Include="T30_Formatting.cs" />
+    <Compile Include="T31_FullCycleSQL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EnumComposer\EnumComposer.csproj">

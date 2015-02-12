@@ -6,8 +6,6 @@ namespace EnumComposer
 {
     public class EnumModel //: IEnumModel
     {
-        //private EnumNameConverter _converter;
-
         public string SqlServer { get; set; }
 
         public string SqlDatabase { get; set; }
@@ -21,6 +19,8 @@ namespace EnumComposer
         public int SpanEnd { get; set; }
 
         public string LeadingTrivia { get; set; }
+
+        public int OpenBraceCharacterPosition { get; set; }
 
         public List<EnumModelValue> Values { get; set; }
 
@@ -84,7 +84,17 @@ namespace EnumComposer
 
         public string ToCSharp()
         {
-            if (LeadingTrivia == null)
+            string openBracePad = "";
+            if (OpenBraceCharacterPosition > 0)
+            {
+                openBracePad = new string(' ', OpenBraceCharacterPosition);
+            }
+
+            if (OpenBraceCharacterPosition > 0)
+            {
+                LeadingTrivia = openBracePad + "\t";
+            }
+            else
             {
                 LeadingTrivia = "\t\t";
             }
@@ -98,6 +108,9 @@ namespace EnumComposer
                     result += string.Format("{1}{0}", Environment.NewLine, value.ToCsCode(LeadingTrivia));
                 }
             }
+
+            /* position ClosingBrace in the same column with the OpeningBrace*/
+            result += openBracePad;
 
             return result;
         }

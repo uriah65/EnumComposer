@@ -1,4 +1,4 @@
-﻿#define NO_TRIVIA
+﻿#define TRIVIA
 
 using IEnumComposer;
 using Microsoft.CodeAnalysis;
@@ -94,18 +94,20 @@ namespace EnumComposer
 
 #if TRIVIA && DEBUG
 
-                {
-                    int spanEnd = model.SpanEnd;
-                    var triviaList = enumeration.CloseBraceToken.LeadingTrivia;
-                    foreach (SyntaxTrivia trivia in triviaList)
-                    {
-                        if (trivia.SpanStart < spanEnd)
-                        {
-                            spanEnd = trivia.SpanStart;
-                        }
-                    }
-                    model.SpanEnd = spanEnd;
-                }
+                var lineSpan = tree.GetLineSpan(enumeration.OpenBraceToken.Span);
+                model.OpenBraceCharacterPosition = lineSpan.StartLinePosition.Character;
+                //{
+                //    int spanEnd = model.SpanEnd;
+                //    var triviaList = enumeration.CloseBraceToken.LeadingTrivia;
+                //    foreach (SyntaxTrivia trivia in triviaList)
+                //    {
+                //        if (trivia.SpanStart < spanEnd)
+                //        {
+                //            spanEnd = trivia.SpanStart;
+                //        }
+                //    }
+                //    model.SpanEnd = spanEnd;
+                //}
 #endif
 
                 /* loop all enumeration values*/
@@ -123,18 +125,18 @@ namespace EnumComposer
                     string svalue = syntax.EqualsValue.Value.ToString();
                     value.Value = int.Parse(svalue);
 
-#if TRIVIA && DEBUG
-                    if (model.LeadingTrivia == null)
-                    {
-                        string triviaS = "";
-                        var triviaList = syntax.GetLeadingTrivia();
-                        foreach (SyntaxTrivia trivia in triviaList)
-                        {
-                            triviaS += trivia.ToFullString();
-                        }
-                        model.LeadingTrivia = triviaS;
-                    }
-#endif
+//#if TRIVIA && DEBUG
+//                    if (model.LeadingTrivia == null)
+//                    {
+//                        string triviaS = "";
+//                        var triviaList = syntax.GetLeadingTrivia();
+//                        foreach (SyntaxTrivia trivia in triviaList)
+//                        {
+//                            triviaS += trivia.ToFullString();
+//                        }
+//                        model.LeadingTrivia = triviaS;
+//                    }
+//#endif
                 }
             }
         }

@@ -6,7 +6,7 @@ using System.IO;
 namespace TestComposer
 {
     [TestClass]
-    public class T30_FullCycle
+    public class T30_Formatting
     {
         /* Test composer. Hight level test.
         */
@@ -25,7 +25,7 @@ namespace TestComposer
         }
 
         [TestMethod]
-        public void ParseFileAndDb()
+        public void NoMultipleFormatting()
         {
             string inputFile = @"..\..\T30\Input.cs";
             string outputFile = Path.GetTempFileName() + ".txt";
@@ -34,8 +34,9 @@ namespace TestComposer
 
             // do it first time
             composer.Compose(inputFile, outputFile, _dbReader);
+            string s1 = File.ReadAllText(outputFile);
 
-            // do it second time
+            // do it second time 
             inputFile = outputFile;
             outputFile = outputFile + "2.txt";
             composer.Compose(inputFile, outputFile, _dbReader);
@@ -45,25 +46,31 @@ namespace TestComposer
             outputFile = outputFile + "3.txt";
             composer.Compose(inputFile, outputFile, _dbReader);
 
-            string s1 = File.ReadAllText(inputFile);
+            // do it forth time
+            inputFile = outputFile;
+            outputFile = outputFile + "4.txt";
+            composer.Compose(inputFile, outputFile, _dbReader);
+
             string s2 = File.ReadAllText(outputFile);
 
-            Assert.AreEqual(s1, s2, "Second run of composer should not change file");
+            Assert.AreEqual(s1, s2, "Multiple runs do not cause multiple reformatting.");
         }
 
         [TestMethod]
-        public void ParseFileAndText()
+        public void Formatting()
         {
-            string path = @"..\..\T30\Input.cs";
-            ComposerStrings composer = new ComposerStrings(_dbReader);
-            string sourceText = File.ReadAllText(path);
+            string inputFile = @"..\..\T30\Input.cs";
+            string expectedFile = @"..\..\T30\Output.cs";
 
-            composer.Compose(sourceText);
+            ComposerFiles composer = new ComposerFiles();
 
-            string txt = composer.GetResultFile();// .ToString();
+            string outputFile = Path.GetTempFileName() + ".txt";
+            composer.Compose(inputFile, outputFile, _dbReader);
 
-            /* this test is for manual checking of text result above */
-            Assert.AreEqual(true, true);
+            string output = File.ReadAllText(outputFile);
+            string expected = File.ReadAllText(expectedFile);
+            ConstantsPR.AssertSpaceEqual(expected, output, "Output should have expected syntax.");
+            Assert.AreEqual(expected, output, "Output should be formatted as expected");
         }
 
 
