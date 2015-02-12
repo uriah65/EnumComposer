@@ -1,14 +1,12 @@
 ﻿using EnumComposer;
 using EnvDTE;
 using EnvDTE80;
-using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using System;
 using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Globalization;
-using System.Linq;
 using System.Runtime.InteropServices;
 
 namespace Uriah65.EnumComposerVSP
@@ -34,8 +32,7 @@ namespace Uriah65.EnumComposerVSP
     [Guid(GuidList.guidEnumComposerVSPPkgString)]
     public sealed class EnumComposerVSPPackage : Package
     {
-
-        IEnumLog log;
+        private IEnumLog log;
 
         /// <summary>
         /// Default constructor of the package.
@@ -117,7 +114,6 @@ namespace Uriah65.EnumComposerVSP
             }
             catch (Exception ex)
             {
-
                 string message = "Sorry, and exception has occurred." + Environment.NewLine + Environment.NewLine + ex.Message + Environment.NewLine + Environment.NewLine + "See the Output\\Debug window for details.";
                 if (log != null)
                 {
@@ -160,7 +156,6 @@ namespace Uriah65.EnumComposerVSP
             EnumDbReader reader = new EnumDbReader();
             ComposerStrings composer = new ComposerStrings(reader, log);
             ApplyComposer(document, composer);
-
         }
 
         //public void ApplyComposer_New(TextDocument document, ComposerStrings composer)
@@ -172,7 +167,6 @@ namespace Uriah65.EnumComposerVSP
         //    /* run composer */
         //    string text = startEdit.GetText(document.EndPoint);
         //    composer.Compose(text);
-
 
         //    int ixLastInsert = text.Length;
 
@@ -202,7 +196,7 @@ namespace Uriah65.EnumComposerVSP
             EditPoint endEdit = document.EndPoint.CreateEditPoint();
 
             /* run composer */
-            string text = startEdit.GetText(document.EndPoint);           
+            string text = startEdit.GetText(document.EndPoint);
             composer.Compose(text);
             text = composer.GetResultFile();
 
@@ -210,9 +204,6 @@ namespace Uriah65.EnumComposerVSP
             startEdit.Delete(endEdit);
             startEdit.Insert(text);
         }
-
-
-
 
         public string Reverse(string text)
         {

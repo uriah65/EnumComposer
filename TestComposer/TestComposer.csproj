@@ -55,6 +55,7 @@
     <Compile Include="T20\Input.cs" />
     <Compile Include="T21\Input.cs" />
     <Compile Include="T30\Input.cs" />
+    <Compile Include="T02_ConfigurationFiles.cs" />
     <Content Include="T30\Input2.cs" />
     <Content Include="T30\Output2.cs" />
     <Content Include="T31\Input.cs" />
@@ -84,13 +85,18 @@
     <Content Include="T31\Input3.cs" />
     <Content Include="T32\Output.cs" />
     <Content Include="T32\Data.txt" />
+    <None Include="T02\App.config" />
+    <None Include="T02\T02-1\App1.config" />
+    <None Include="T02\T02-1\T02-2\Web.config" />
     <None Include="T32\Data2.csv" />
     <Content Include="T33\AccessTest.accdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="T33\Output.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="T02\T02-3\" />
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

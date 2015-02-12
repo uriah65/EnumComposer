@@ -10,6 +10,30 @@ namespace TestComposer
             get { return Environment.MachineName.ToLower() != "dellstudioxps"; }
         }
 
+        public static string StripSpace(string str)
+        {
+            if (str == null)
+            {
+                return null;
+            }
+
+            str = str.Replace(" ", "");
+            str = str.Replace(Environment.NewLine, "");
+            str = str.Replace("\t", "");
+            return str;
+        }
+
+        public static string RemoveTextBetween(this string text, string fromPart, string toPart)
+        {
+            int ix1 = text.IndexOf(fromPart) + fromPart.Length;
+            int ix2 = text.IndexOf(toPart, ix1);
+
+            string result = text.Remove(ix1, ix2 - ix1);
+            return result;
+        }
+
+        #region Custom Asserts
+
         public static void AssertSpaceEqual(string expected, string actual, string message)
         {
             actual = StripSpace(actual);
@@ -38,26 +62,21 @@ namespace TestComposer
             Assert.AreEqual(expected, actual, message);
         }
 
-        public static string StripSpace(string str)
+        public static void AssertConnectionString(string expectedProvider, string expectedConnectionString, string[] actual, string message)
         {
-            if (str == null)
+            if (expectedProvider == null)
             {
-                return null;
+                Assert.AreEqual(null, actual, message);
             }
-
-            str = str.Replace(" ", "");
-            str = str.Replace(Environment.NewLine, "");
-            str = str.Replace("\t", "");
-            return str;
+            else
+            {
+                Assert.AreNotEqual(null, actual, message);
+                Assert.AreEqual(actual.Length, 2, message);
+                Assert.AreEqual(expectedProvider, actual[0], message);
+                Assert.AreEqual(expectedConnectionString, actual[1], message);
+            }            
         }
 
-        public static string RemoveTextBetween(this string text, string fromPart, string toPart)
-        {
-            int ix1 = text.IndexOf(fromPart) + fromPart.Length;
-            int ix2 = text.IndexOf(toPart, ix1);
-
-            string result = text.Remove(ix1, ix2 - ix1);
-            return result;
-        }
+        #endregion Custom Asserts
     }
 }
