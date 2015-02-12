@@ -91,24 +91,9 @@ namespace EnumComposer
 
                 model.SpanStart = enumeration.OpenBraceToken.SpanStart + 1;
                 model.SpanEnd = enumeration.CloseBraceToken.SpanStart;
-
-#if TRIVIA && DEBUG
-
                 var lineSpan = tree.GetLineSpan(enumeration.OpenBraceToken.Span);
                 model.OpenBraceCharacterPosition = lineSpan.StartLinePosition.Character;
-                //{
-                //    int spanEnd = model.SpanEnd;
-                //    var triviaList = enumeration.CloseBraceToken.LeadingTrivia;
-                //    foreach (SyntaxTrivia trivia in triviaList)
-                //    {
-                //        if (trivia.SpanStart < spanEnd)
-                //        {
-                //            spanEnd = trivia.SpanStart;
-                //        }
-                //    }
-                //    model.SpanEnd = spanEnd;
-                //}
-#endif
+
 
                 /* loop all enumeration values*/
                 foreach (EnumMemberDeclarationSyntax syntax in enumeration.Members)

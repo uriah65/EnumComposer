@@ -22,8 +22,19 @@ namespace TestComposer
                     string difference = actual.Substring(i);
                 }
             }
+            Assert.AreEqual(expected, actual, message);
+        }
 
-
+        public static void AssertFormatEqual(string expected, string actual, string message)
+        {
+            for (int i = 0; i < actual.Length; i++)
+            {
+                if (actual[i] != expected[i])
+                {
+                    string actualDiff = actual.Substring(i);
+                    string expectedDiff = expected.Substring(i);
+                }
+            }
             Assert.AreEqual(expected, actual, message);
         }
 

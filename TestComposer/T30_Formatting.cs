@@ -60,7 +60,7 @@ namespace TestComposer
         public void Formatting()
         {
             string inputFile = @"..\..\T30\Input.cs";
-            string expectedFile = @"..\..\T30\Output.cs";
+            string expectedFile = @"..\..\T30\Output2.cs";
 
             ComposerFiles composer = new ComposerFiles();
 
@@ -70,7 +70,7 @@ namespace TestComposer
             string output = File.ReadAllText(outputFile);
             string expected = File.ReadAllText(expectedFile);
             ConstantsPR.AssertSpaceEqual(expected, output, "Output should have expected syntax.");
-            Assert.AreEqual(expected, output, "Output should be formatted as expected");
+            ConstantsPR.AssertFormatEqual(expected, output, "Output should have expected format.");
         }
 
 

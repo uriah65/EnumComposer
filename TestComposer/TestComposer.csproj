@@ -55,6 +55,7 @@
     <Compile Include="T20\Input.cs" />
     <Compile Include="T21\Input.cs" />
     <Compile Include="T30\Input.cs" />
+    <Content Include="T30\Output2.cs" />
     <Content Include="T31\Input.cs" />
     <Content Include="T30\Output.cs" />
     <Compile Include="T32\Input.cs" />

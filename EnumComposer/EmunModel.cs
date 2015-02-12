@@ -6,6 +6,9 @@ namespace EnumComposer
 {
     public class EnumModel //: IEnumModel
     {
+
+        private const string TAB = "    ";  //"\t"
+
         public string SqlServer { get; set; }
 
         public string SqlDatabase { get; set; }
@@ -92,11 +95,11 @@ namespace EnumComposer
 
             if (OpenBraceCharacterPosition > 0)
             {
-                LeadingTrivia = openBracePad + "\t";
+                LeadingTrivia = openBracePad + TAB;
             }
             else
             {
-                LeadingTrivia = "\t\t";
+                LeadingTrivia = TAB + TAB;
             }
 
             string result = Environment.NewLine;
