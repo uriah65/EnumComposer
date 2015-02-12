@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
-using EnumComposer.Interfaces;
 using EnumComposer;
 
 namespace TestComposer
@@ -9,7 +8,7 @@ namespace TestComposer
     [TestClass]
     public class T02_ConfigurationFiles
     {
-        IEnumConfigFileLocator _reader;
+        ConfigReader _reader;
         string[] _connection;
 
         [TestInitialize()]
@@ -44,11 +43,15 @@ namespace TestComposer
         }
 
         [TestMethod]
-        public void VisitingConfigFiles()
+        public void Visiting_ConfigFiles()
         {
             string startPath = @"..\..\T02\T02-1\T02-2";
             string endPath = @"..\..\T02";
-            
+
+            /* read connection all way to the top */
+            _connection = _reader.GetConnection("NoExist", startPath, endPath);
+            ConstantsPR.AssertConnectionString(null, null, _connection, "Expected equal.");
+
             /* read connection from the T02 */
             _connection = _reader.GetConnection("cNn1", startPath, endPath);
             ConstantsPR.AssertConnectionString("System.Data.ProviderName", "Valid Connection String;", _connection, "Expected equal.");
