@@ -86,7 +86,7 @@
     <Content Include="T32\Output.cs" />
     <Content Include="T32\Data.txt" />
     <None Include="T02\App.config" />
-    <None Include="T02\T02-1\App1.config" />
+    <None Include="T02\T02-1\App.config" />
     <None Include="T02\T02-1\T02-2\Web.config" />
     <None Include="T32\Data2.csv" />
     <Content Include="T33\AccessTest.accdb">

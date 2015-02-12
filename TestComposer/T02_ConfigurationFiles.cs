@@ -43,17 +43,18 @@ namespace TestComposer
             ConstantsPR.AssertConnectionString(null, "", _connection, "Expected equal.");
         }
 
+        [TestMethod]
         public void VisitingConfigFiles()
         {
             string startPath = @"..\..\T02\T02-1\T02-2";
             string endPath = @"..\..\T02";
-
+            
             /* read connection from the T02 */
-            _reader.GetConnection("cNn1", startPath, endPath);
+            _connection = _reader.GetConnection("cNn1", startPath, endPath);
             ConstantsPR.AssertConnectionString("System.Data.ProviderName", "Valid Connection String;", _connection, "Expected equal.");
 
             /* read connection from the T02-2 */
-            _reader.GetConnection("ZzZ", startPath, endPath);
+            _connection = _reader.GetConnection("ZzZ", startPath, endPath);
             ConstantsPR.AssertConnectionString("providerZZ", "cnnZZcnn", _connection, "Expected equal.");
         }
     }
