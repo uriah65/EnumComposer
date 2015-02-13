@@ -48,30 +48,32 @@ namespace EnumComposer
         }
 
         public void ReadEnumeration_Inner(EnumModel model)
-        { 
+        {
             /* once new database location provided, the consecutive EnumModels will be using it */
             if (model.SqlServer == CONFIG_MARKER)
             {
-                /* if configuration file is specified */ 
+                /* if configuration file is specified */
                 string connectionName = "EnumComposer";
                 if (string.IsNullOrWhiteSpace(model.SqlDatabase) == false)
                 {
                     connectionName = model.SqlDatabase;
                 }
-                string[] values = _readConfigFunction(connectionName);
-                _scnn = BuildConnection(values[0], values[1]);
+                //string[] values = _readConfigFunction(connectionName);
+                //_scnn = BuildConnection(values[0], values[1]);
+                _scnn = ReadConfig(connectionName);
             }
             else if (string.IsNullOrWhiteSpace(model.SqlServer) == false)
             {
-               /* other wise another MARKERS are processed */
+                /* other wise another MARKERS are processed */
                 _scnn = BuildConnection(model.SqlServer, model.SqlDatabase);
             }
 
             if (string.IsNullOrWhiteSpace(_scnn) && _readConfigFunction != null)
             {
                 /* if there is still no connection string, attempt to obtain default values from the configuration files */
-                string[] values = _readConfigFunction("EnumComposer");
-                _scnn = BuildConnection(values[0], values[1]);
+                //string[] values = _readConfigFunction("EnumComposer");
+                //_scnn = BuildConnection(values[0], values[1]);
+                _scnn = ReadConfig("EnumComposer");
             }
 
             if (string.IsNullOrWhiteSpace(_scnn))
@@ -259,8 +261,10 @@ namespace EnumComposer
                 {
                     case "system.data.sqlclient":
                         return SQL_MARKER;
+
                     case "system.data.oledb":
                         return OLEDB_MARKER;
+
                     case "system.data.odbc":
                         return ODBC_MARKER;
                 }
@@ -270,5 +274,16 @@ namespace EnumComposer
         }
 
         #endregion Provider Parsing
+
+        private string ReadConfig(string connectionName)
+        {
+            string[] values = _readConfigFunction(connectionName);
+            if (values == null)
+            {
+                return null;
+            }
+
+            return BuildConnection(values[0], values[1]);
+        }
     }
 }

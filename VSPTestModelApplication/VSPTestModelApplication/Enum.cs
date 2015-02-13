@@ -9,6 +9,19 @@ namespace VSPTestModelApplication
 {
     class Enum
     {
+        [EnumSqlCnn("#CONFIG", @"Access")]
+        [EnumSqlSelect("SELECT id, name, notes FROM T_Colors")]
+        public enum AccessEnum
+        {
+        }
+
+        [EnumSqlCnn("#CONFIG", @"Text")]
+        [EnumSqlSelect(@"SELECT * FROM [data.csv]")]
+        public enum OdbcEnum
+        {
+        }
+
+        /*
         [EnumSqlCnn("#OleDb", @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=c:\temp\database.accdb;Persist Security Info=False")]
         [EnumSqlSelect("SELECT id, name, notes FROM T_Colors")]
         public enum AccessEnum
@@ -20,5 +33,6 @@ namespace VSPTestModelApplication
         public enum OdbcEnum
         {
         }
+        */
     }
 }
