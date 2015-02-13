@@ -22,7 +22,7 @@ namespace VSPTestModelApplication
         {
         }
 
-        [EnumSqlCnn("(local)", "AdwentureWorks2014")]
+        [EnumSqlCnn("(local)", "AdventureWorks2014")]
         [EnumSqlSelect("SELECT ContactTypeID, Name, Name FROM Person.ContactType")]
         public enum ContactType2Enum
         {
