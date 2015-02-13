@@ -13,6 +13,7 @@ namespace EnumComposer
         private DbTypeEnum _dbType;
         private string _scnn;
 
+        private const string CONFIG_MARKER = "#CONFIG";
         private const string SQL_MARKER = "#SQL";
         private const string OLEDB_MARKER = "#OLEDB";
         private const string ODBC_MARKER = "#ODBC";
@@ -47,23 +48,35 @@ namespace EnumComposer
         }
 
         public void ReadEnumeration_Inner(EnumModel model)
-        {
-            if (string.IsNullOrWhiteSpace(model.SqlServer) == false)
+        { 
+            /* once new database location provided, the consecutive EnumModels will be using it */
+            if (model.SqlServer == CONFIG_MARKER)
             {
-                /* once new database location provided, the consecutive EnumModels will be using it */
+                /* if configuration file is specified */ 
+                string connectionName = "EnumComposer";
+                if (string.IsNullOrWhiteSpace(model.SqlDatabase) == false)
+                {
+                    connectionName = model.SqlDatabase;
+                }
+                string[] values = _readConfigFunction(connectionName);
+                _scnn = BuildConnection(values[0], values[1]);
+            }
+            else if (string.IsNullOrWhiteSpace(model.SqlServer) == false)
+            {
+               /* other wise another MARKERS are processed */
                 _scnn = BuildConnection(model.SqlServer, model.SqlDatabase);
             }
 
             if (string.IsNullOrWhiteSpace(_scnn) && _readConfigFunction != null)
             {
-                /* attempt to obtain values from the configuration files */
+                /* if there is still no connection string, attempt to obtain default values from the configuration files */
                 string[] values = _readConfigFunction("EnumComposer");
                 _scnn = BuildConnection(values[0], values[1]);
             }
 
             if (string.IsNullOrWhiteSpace(_scnn))
             {
-
+                /* all attempts failed */
                 throw new ApplicationException(string.Format("Connection string for the enumeration '{0}' is blank.", model.Name));
             }
 
