@@ -22,7 +22,14 @@ namespace Uriah65.EnumComposerVSP
             if (outputPane != null)
             {
                 string message = string.Format("{0}{1} EnumComposer: ", Environment.NewLine, DateTime.Now.ToString("HH:mm:ss"));
-                message += string.Format(format, arguments);
+                if (arguments.Length != 0)
+                {
+                    message += string.Format(format, arguments);
+                }
+                else
+                {
+                    message += format;
+                }
                 outputPane.OutputString(message);
                 outputPane.Activate();
             }
