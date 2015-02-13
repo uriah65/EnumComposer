@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VSPTestModelAppLib;
-
-namespace VSPTestModelApplication
+﻿namespace VSPTestModelAppLib.Folder1
 {
-    class Enum
+    internal class Enum1Config
     {
-
         [EnumSqlSelect("SELECT ContactTypeID, Name FROM Person.ContactType")]
         public enum ContactTypeEnum
         {
@@ -26,6 +18,5 @@ namespace VSPTestModelApplication
         public enum OdbcEnum
         {
         }
-
     }
 }

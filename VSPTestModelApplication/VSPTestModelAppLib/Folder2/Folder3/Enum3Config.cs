@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VSPTestModelAppLib.Folder2.Folder3
 {
-    class Enum3
+    class Enum3Config
     {
 
 

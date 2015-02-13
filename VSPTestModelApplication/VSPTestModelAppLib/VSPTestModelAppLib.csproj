@@ -42,8 +42,8 @@
     <Compile Include="Enum2.cs" />
     <Compile Include="EnumSqlCnnAttribute.cs" />
     <Compile Include="EnumSqlSelectAttribute.cs" />
-    <Compile Include="Folder1\Enum1.cs" />
-    <Compile Include="Folder2\Folder3\Enum3.cs" />
+    <Compile Include="Folder1\Enum1Config.cs" />
+    <Compile Include="Folder2\Folder3\Enum3Config.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
