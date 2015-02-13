@@ -8,5 +8,30 @@ namespace VSPTestModelAppLib.Folder1
 {
     class Enum1
     {
+        [EnumSqlCnn("#CONFIG", @"Access")]
+        [EnumSqlSelect("SELECT id, name, notes FROM T_Colors")]
+        public enum AccessEnum
+        {
+        }
+
+        [EnumSqlCnn("#CONFIG", @"Text")]
+        [EnumSqlSelect(@"SELECT * FROM [data.csv]")]
+        public enum OdbcEnum
+        {
+        }
+
+        /*
+        [EnumSqlCnn("#OleDb", @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=c:\temp\database.accdb;Persist Security Info=False")]
+        [EnumSqlSelect("SELECT id, name, notes FROM T_Colors")]
+        public enum AccessEnum
+        {
+        }
+
+        [EnumSqlCnn("#ODBC", @"Driver={Microsoft Text Driver (*.txt; *.csv)};Dbq=c:\temp\;Extensions=asc,csv,tab,txt;Persist Security Info=False")]
+        [EnumSqlSelect(@"SELECT * FROM [data.csv]")]
+        public enum OdbcEnum
+        {
+        }
+        */
     }
 }
