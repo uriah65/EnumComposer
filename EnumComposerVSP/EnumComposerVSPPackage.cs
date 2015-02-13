@@ -177,7 +177,7 @@ namespace Uriah65.EnumComposerVSP
                 {
                     string solutionPath = System.IO.Path.GetDirectoryName(applicationObject.Solution.FullName);
                     configReader = new ConfigReader(docPath, solutionPath, log);
-                    dbReader._readConfigFunction = configReader.ExtractConnection; /* we provide config search function only if all is OK. */
+                    dbReader._readConfigFunction = configReader.LocateConnectionInVSP; /* we provide config search function only if all is OK. */
                 }
             }
             catch (Exception ex)

@@ -21,7 +21,7 @@ namespace EnumComposer
         /* a fake imitation of SQL server build in this class to ease e2e testing */
         private const string FAKE_SQL_SINATURE = "server=fakesqlserver;database=fakedb";
 
-        public Func<string, string, string[]> _readConfigFunction = null;
+        public Func<string, string[]> _readConfigFunction = null;
 
         public DbReader()
         {
@@ -57,7 +57,7 @@ namespace EnumComposer
             if (string.IsNullOrWhiteSpace(_scnn) && _readConfigFunction != null)
             {
                 /* attempt to obtain values from the configuration files */
-                string[] values = _readConfigFunction(model.SqlServer, model.SqlDatabase);
+                string[] values = _readConfigFunction("EnumComposer");
                 _scnn = BuildConnection(values[0], values[1]);
             }
 
