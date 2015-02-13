@@ -54,6 +54,12 @@ namespace EnumComposer
 
             if (string.IsNullOrWhiteSpace(_scnn))
             {
+                // todo: parse for config
+            }
+
+            if (string.IsNullOrWhiteSpace(_scnn))
+            {
+                
                 throw new ApplicationException(string.Format("Connection string for the enumeration '{0}' is blank.", model.Name));
             }
 

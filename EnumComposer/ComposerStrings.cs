@@ -35,12 +35,13 @@ namespace EnumComposer
 
         public void Compose(string sourceText)
         {
-            /* This test reads a C# source file and parse it through Roslyn compiler.
+            /* Method reads a C# source file and parse it through Roslyn compiler.
             *  Enumeration model get filled for all enumerations found in the source file, and SQL statements get extracted
             */
             SourceText = sourceText;
             EnumModels = new List<EnumModel>();
             ParseSourceEnumerations(SourceText);
+
             UpdateModelsFromBD();
         }
 

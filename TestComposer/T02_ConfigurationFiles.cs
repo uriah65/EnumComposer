@@ -24,6 +24,18 @@ namespace TestComposer
         }
 
         [TestMethod]
+        public void Test_DirectoryInner()
+        { 
+            Assert.AreEqual(false, _reader.IsInside(@"C:\a", @"D:\") , "Non equal start.");
+
+            Assert.AreEqual(true, _reader.IsInside(@"C:\a", @"C:\") , "Correct inset.");
+            Assert.AreEqual(true, _reader.IsInside(@"C:\aa\dddd\e\f", @"C:\aa\dddd\e"), "Correct inset. Parent without \\");
+            Assert.AreEqual(true, _reader.IsInside(@"C:\aa\dddd\e\f\", @"C:\aa\dddd\e\"), "Correct inset. Parent with \\");
+
+            Assert.AreEqual(false, _reader.IsInside(@"C:\aa\dddd\efe", @"C:\aa\dddd\e"), "Non equal tail.");
+        }
+
+        [TestMethod]
         public void Parsing_ConfigFile()
         {
             string inputFile = @"..\..\T02\App.config";
