@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 
 namespace EnumComposer
 {
-    public class EnumDbReader : IEnumDbReader
+    public class DbReader : IEnumDbReader
     {
         private DbTypeEnum _dbType;
         private string _scnn;
@@ -21,11 +21,13 @@ namespace EnumComposer
         /* a fake imitation of SQL server build in this class to ease e2e testing */
         private const string FAKE_SQL_SINATURE = "server=fakesqlserver;database=fakedb";
 
-        public EnumDbReader()
+        public Func<string, string, string[]> _readConfigFunction = null;
+
+        public DbReader()
         {
         }
 
-        public EnumDbReader(string sqlServer, string sqlDatabase)
+        public DbReader(string sqlServer, string sqlDatabase)
         {
             _scnn = BuildConnection(sqlServer, sqlDatabase);
         }
@@ -52,14 +54,16 @@ namespace EnumComposer
                 _scnn = BuildConnection(model.SqlServer, model.SqlDatabase);
             }
 
-            if (string.IsNullOrWhiteSpace(_scnn))
+            if (string.IsNullOrWhiteSpace(_scnn) && _readConfigFunction != null)
             {
-                // todo: parse for config
+                /* attempt to obtain values from the configuration files */
+                string[] values = _readConfigFunction(model.SqlServer, model.SqlDatabase);
+                _scnn = BuildConnection(values[0], values[1]);
             }
 
             if (string.IsNullOrWhiteSpace(_scnn))
             {
-                
+
                 throw new ApplicationException(string.Format("Connection string for the enumeration '{0}' is blank.", model.Name));
             }
 
@@ -230,5 +234,28 @@ namespace EnumComposer
         }
 
         #endregion Fake Database
+
+        #region Provider Parsing
+
+        public static string ProviderNameParsing(string netProvoderName)
+        {
+            if (netProvoderName != null)
+            {
+                netProvoderName = netProvoderName.ToLowerInvariant();
+                switch (netProvoderName)
+                {
+                    case "system.data.sqlclient":
+                        return SQL_MARKER;
+                    case "system.data.oledb":
+                        return OLEDB_MARKER;
+                    case "system.data.odbc":
+                        return ODBC_MARKER;
+                }
+            }
+
+            throw new ApplicationException("Provider '" + netProvoderName + "' is not supported by the EnumComposer");
+        }
+
+        #endregion Provider Parsing
     }
 }

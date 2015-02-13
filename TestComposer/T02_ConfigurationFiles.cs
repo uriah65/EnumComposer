@@ -14,7 +14,7 @@ namespace TestComposer
         [TestInitialize()]
         public void Initialize()
         {
-            _reader = new ConfigReader();
+            _reader = new ConfigReader("", "", null);
         }
 
         [TestCleanup()]

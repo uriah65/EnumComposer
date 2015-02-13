@@ -57,7 +57,7 @@ namespace EnumComposerConsole
             }
 
             IEnumLog log = _options.Verbose ? log = new Log() : null;
-            IEnumDbReader dbReader = new EnumDbReader(_options.SqlServer, _options.SqlDatabase);
+            IEnumDbReader dbReader = new DbReader(_options.SqlServer, _options.SqlDatabase);
 
             ComposerFiles composer = new ComposerFiles();
             composer.Compose(_options.InputFile, _options.OutputFile, dbReader, log);

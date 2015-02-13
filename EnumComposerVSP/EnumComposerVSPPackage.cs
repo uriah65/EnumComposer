@@ -138,6 +138,19 @@ namespace Uriah65.EnumComposerVSP
             }
         }
 
+        //private string SolutionPath()
+        //{
+        //    //todo: do better
+        //    string solutionDirectory = ((EnvDTE.DTE)System.Runtime
+        //                                                 .InteropServices
+        //                                                 .Marshal
+        //                                                 .GetActiveObject("VisualStudio.DTE.10.0"))
+        //                                      .Solution.FullName;
+        //    solutionDirectory = System.IO.Path.GetDirectoryName(solutionDirectory);
+
+        //    return solutionDirectory;
+        //}
+
         private void RunComposerScan_Inner()
         {
             DTE2 applicationObject = (DTE2)GetService(typeof(SDTE));
@@ -153,8 +166,31 @@ namespace Uriah65.EnumComposerVSP
                 return;
             }
 
-            EnumDbReader reader = new EnumDbReader();
-            ComposerStrings composer = new ComposerStrings(reader, log);
+            DbReader dbReader = new DbReader();
+            ConfigReader configReader = null;
+
+            try
+            {
+                string docPath = applicationObject.ActiveDocument.Path;
+                string solutionName = applicationObject.Solution.FullName;
+                if (solutionName != "")
+                {
+                    string solutionPath = System.IO.Path.GetDirectoryName(applicationObject.Solution.FullName);
+                    configReader = new ConfigReader(docPath, solutionPath, log);
+                    dbReader._readConfigFunction = configReader.ExtractConnection; /* we provide config search function only if all is OK. */
+                }
+            }
+            catch (Exception ex)
+            {
+                if (log != null)
+                {
+                    string logMessage = DedbugLog.ExceptionMessage(ex);
+                    log.WriteLine(logMessage);
+                }
+            }
+
+            
+            ComposerStrings composer = new ComposerStrings(dbReader, log);
             ApplyComposer(document, composer);
         }
 

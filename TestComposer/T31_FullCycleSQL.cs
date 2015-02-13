@@ -14,7 +14,7 @@ namespace TestComposer
         [TestInitialize()]
         public void Initialize()
         {
-            _dbReader = new EnumDbReader();
+            _dbReader = new DbReader();
         }
 
         [TestCleanup()]

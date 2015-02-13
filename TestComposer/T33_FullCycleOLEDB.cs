@@ -27,7 +27,7 @@ namespace TestComposer
             string inputFile = @"..\..\T33\Input.cs";
             string expectedFile = @"..\..\T33\Output.cs";
 
-            _dbReader = new EnumDbReader();
+            _dbReader = new DbReader();
             ComposerFiles composer = new ComposerFiles();
 
             // do it first time

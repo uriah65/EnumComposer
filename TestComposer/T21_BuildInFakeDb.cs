@@ -15,7 +15,7 @@ namespace TestComposer
         [TestInitialize()]
         public void Initialize()
         {
-            _dbReader = new EnumDbReader();
+            _dbReader = new DbReader();
         }
 
         [TestCleanup()]
@@ -51,7 +51,7 @@ namespace TestComposer
             string sourceText = File.ReadAllText(path);
             sourceText = sourceText.Replace("T_Weekdays", "T_Wds");
 
-            ComposerStrings composer = new ComposerStrings(new EnumDbReader());
+            ComposerStrings composer = new ComposerStrings(new DbReader());
             /* Build-in Database response only to T_Weekdays table name */
             composer.Compose(sourceText);
         }
