@@ -65,7 +65,7 @@
         <Parent guid="guidEnumComposerVSPCmdSet" id="MyMenuGroup" />
         <Icon guid="guidImages" id="bmpPic1" />
         <Strings>
-          <ButtonText>RunEnumComposer</ButtonText>
+          <ButtonText>Run Enumeration Composer</ButtonText>
         </Strings>
       </Button>
 

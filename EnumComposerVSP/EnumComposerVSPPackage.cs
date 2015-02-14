@@ -57,7 +57,7 @@ namespace Uriah65.EnumComposerVSP
         /// </summary>
         protected override void Initialize()
         {
-            Debug.WriteLine(string.Format(CultureInfo.CurrentCulture, "Entering Initialize() of: {0}", this.ToString()));
+            //Debug.WriteLine(string.Format(CultureInfo.CurrentCulture, "Entering Initialize() of: {0}", this.ToString()));
             base.Initialize();
 
             // Add our command handlers for menu (commands must exist in the .vsct file)
@@ -67,6 +67,7 @@ namespace Uriah65.EnumComposerVSP
                 // Create the command for the menu item.
                 CommandID menuCommandID = new CommandID(GuidList.guidEnumComposerVSPCmdSet, (int)PkgCmdIDList.cmdidRunEnumComposer);
                 MenuCommand menuItem = new MenuCommand(MenuItemCallback, menuCommandID);
+                
                 mcs.AddCommand(menuItem);
             }
         }

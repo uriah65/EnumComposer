@@ -9,7 +9,7 @@ namespace EnumComposerConsole
         public void WriteLine(string format, params object[] arguments)
         {
             string message = string.Format("{0} EnumComposer: ", DateTime.Now.ToString("HH:mm:ss"));
-            if (arguments != null)
+            if (arguments.Length != 0)
             {
                 message += string.Format(format, arguments);
             }
