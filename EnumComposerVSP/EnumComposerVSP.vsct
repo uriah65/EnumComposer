@@ -63,7 +63,7 @@
 
       <Button guid="guidEnumComposerVSPCmdSet" id="cmdidRunEnumComposer" priority="0x0100" type="Button">
         <Parent guid="guidEnumComposerVSPCmdSet" id="MyMenuGroup" />
-        <Icon guid="guidImages" id="bmpPic1" />
+        <Icon guid="guidImages" id="bmpPicSearch" />
         <Strings>
           <ButtonText>Run Enumeration Composer</ButtonText>
         </Strings>
