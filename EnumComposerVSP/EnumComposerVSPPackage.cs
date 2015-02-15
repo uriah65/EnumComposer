@@ -67,7 +67,7 @@ namespace Uriah65.EnumComposerVSP
                 // Create the command for the menu item.
                 CommandID menuCommandID = new CommandID(GuidList.guidEnumComposerVSPCmdSet, (int)PkgCmdIDList.cmdidRunEnumComposer);
                 MenuCommand menuItem = new MenuCommand(MenuItemCallback, menuCommandID);
-                
+
                 mcs.AddCommand(menuItem);
             }
         }
@@ -111,6 +111,7 @@ namespace Uriah65.EnumComposerVSP
         {
             try
             {
+
                 RunComposerScan_Inner();
             }
             catch (Exception ex)
@@ -156,6 +157,9 @@ namespace Uriah65.EnumComposerVSP
         {
             DTE2 applicationObject = (DTE2)GetService(typeof(SDTE));
 
+            ///applicationObject.Solution
+
+
             if (applicationObject.ActiveDocument == null)
             {
                 return;
@@ -190,7 +194,7 @@ namespace Uriah65.EnumComposerVSP
                 }
             }
 
-            
+
             ComposerStrings composer = new ComposerStrings(dbReader, log);
             ApplyComposer(document, composer);
         }
@@ -235,11 +239,15 @@ namespace Uriah65.EnumComposerVSP
             /* run composer */
             string text = startEdit.GetText(document.EndPoint);
             composer.Compose(text);
-            text = composer.GetResultFile();
+            if (composer.EnumModels != null && composer.EnumModels.Count > 0)
+            {
+                /* get new file*/
+                text = composer.GetResultFile();
 
-            /* delete and re-insert full document */
-            startEdit.Delete(endEdit);
-            startEdit.Insert(text);
+                /* delete and re-insert full document */
+                startEdit.Delete(endEdit);
+                startEdit.Insert(text);
+            }
         }
 
         public string Reverse(string text)
