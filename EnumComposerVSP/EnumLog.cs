@@ -21,7 +21,7 @@ namespace Uriah65.EnumComposerVSP
             _outputWindow.GetPane(ref generalPaneGuid, out outputPane);
             if (outputPane != null)
             {
-                string message = string.Format("{0}{1} EnumComposer: ", Environment.NewLine, DateTime.Now.ToString("HH:mm:ss"));
+                string message = string.Format("{0}{1} EC: ", Environment.NewLine, DateTime.Now.ToString("HH:mm:ss"));
                 if (arguments.Length != 0)
                 {
                     message += string.Format(format, arguments);

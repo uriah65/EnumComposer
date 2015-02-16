@@ -32,7 +32,7 @@ namespace Uriah65.EnumComposerVSP
     [Guid(GuidList.guidEnumComposerVSPPkgString)]
     public sealed class EnumComposerVSPPackage : Package
     {
-        private IEnumLog log;
+        
 
         /// <summary>
         /// Default constructor of the package.
@@ -43,7 +43,6 @@ namespace Uriah65.EnumComposerVSP
         /// </summary>
         public EnumComposerVSPPackage()
         {
-            //Debug.WriteLine(string.Format(CultureInfo.CurrentCulture, "Entering constructor for: {0}", this.ToString()));
         }
 
         /////////////////////////////////////////////////////////////////////////////
@@ -57,7 +56,6 @@ namespace Uriah65.EnumComposerVSP
         /// </summary>
         protected override void Initialize()
         {
-            //Debug.WriteLine(string.Format(CultureInfo.CurrentCulture, "Entering Initialize() of: {0}", this.ToString()));
             base.Initialize();
 
             // Add our command handlers for menu (commands must exist in the .vsct file)
@@ -99,20 +97,19 @@ namespace Uriah65.EnumComposerVSP
             ////           out result));
 
             IVsOutputWindow outWindow = Package.GetGlobalService(typeof(SVsOutputWindow)) as IVsOutputWindow;
-            log = new EnumLog(outWindow);
+            IEnumLog log = new EnumLog(outWindow);
 
             log.WriteLine("");
-            log.WriteLine("Started.");
-            RunComposerScan();
-            log.WriteLine("Finished.");
+            log.WriteLine("started.");
+            RunComposerScan(log);
+            log.WriteLine("finished.");
         }
 
-        private void RunComposerScan()
+        private void RunComposerScan(IEnumLog  log)
         {
             try
             {
-
-                RunComposerScan_Inner();
+                RunComposerScan_Inner(log);
             }
             catch (Exception ex)
             {
@@ -153,29 +150,44 @@ namespace Uriah65.EnumComposerVSP
         //    return solutionDirectory;
         //}
 
-        private void RunComposerScan_Inner()
+        private void RunComposerScan_Inner(IEnumLog log)
         {
-            DTE2 applicationObject = (DTE2)GetService(typeof(SDTE));
+            DTE2 applicationObject = null;
+            TextDocument document = null;
 
-            ///applicationObject.Solution
-
-
-            if (applicationObject.ActiveDocument == null)
+            try
             {
+                /* query DTE can cause exception if e.f. VS is not fully initialized yet. */
+                applicationObject = (DTE2)GetService(typeof(SDTE));
+
+                /* query ActiveDocument can cause exception if active document f.e. is project properties */
+                if (applicationObject.ActiveDocument == null)
+                {
+                    log.WriteLine("no C# document.");
+                    return;
+                }
+
+                document = (TextDocument)applicationObject.ActiveDocument.Object("TextDocument");
+                if (document == null)
+                {
+                    log.WriteLine("no C# document.");
+                    return;
+                }
+            }
+            catch
+            {
+                /* see notes in try{} */
+                log.WriteLine("no C# document.");
                 return;
             }
 
-            TextDocument document = (TextDocument)applicationObject.ActiveDocument.Object("TextDocument");
-            if (document == null)
-            {
-                return;
-            }
 
             DbReader dbReader = new DbReader();
             ConfigReader configReader = null;
 
             try
             {
+                // setting up configuration reader
                 string docPath = applicationObject.ActiveDocument.Path;
                 string solutionName = applicationObject.Solution.FullName;
                 if (solutionName != "")
@@ -193,7 +205,6 @@ namespace Uriah65.EnumComposerVSP
                     log.WriteLine(logMessage);
                 }
             }
-
 
             ComposerStrings composer = new ComposerStrings(dbReader, log);
             ApplyComposer(document, composer);

@@ -9,9 +9,9 @@ namespace EnumComposer
 
         private const string TAB = "    ";  //"\t"
 
-        public string SqlServer { get; set; }
+        public string SqlProvider { get; set; }
 
-        public string SqlDatabase { get; set; }
+        public string SqlDatasource { get; set; }
 
         public string SqlSelect { get; set; }
 

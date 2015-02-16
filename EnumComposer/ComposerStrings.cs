@@ -42,6 +42,15 @@ namespace EnumComposer
             EnumModels = new List<EnumModel>();
             ParseSourceEnumerations(SourceText);
 
+            if (EnumModels == null || EnumModels.Count == 0)
+            {
+                _log.WriteLine("no enumerations found.");
+            }
+            else
+            {
+                _log.WriteLine("" + EnumModels.Count() + " enumeration(s) found.");
+            }
+
             UpdateModelsFromBD();
         }
 
@@ -77,8 +86,8 @@ namespace EnumComposer
                                 throw new ApplicationException(string.Format("Invalid number of arguments {0} (expected 2), in EnumSqlCnnAttribute for {1} enumeration.",
                                     attribute.ArgumentList.Arguments.Count, model.Name));
                             }
-                            model.SqlServer = GetAttributeValue(attribute.ArgumentList.Arguments[0]);
-                            model.SqlDatabase = GetAttributeValue(attribute.ArgumentList.Arguments[1]);
+                            model.SqlProvider = GetAttributeValue(attribute.ArgumentList.Arguments[0]);
+                            model.SqlDatasource = GetAttributeValue(attribute.ArgumentList.Arguments[1]);
                         }
                     }
                 }
@@ -140,7 +149,7 @@ namespace EnumComposer
         {
             if (_dbReader != null)
             {
-                _log.WriteLine("'{0}' enumeration. Reading database.", model.Name);
+                _log.WriteLine("updating '{0}' enumeration.", model.Name);
                 _dbReader.ReadEnumeration(model);
             }
         }

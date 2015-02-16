@@ -13,6 +13,7 @@ namespace EnumComposer
         private DbTypeEnum _dbType;
         private string _scnn;
 
+        private const string DEFAULT_CONNECTION_NAME = "EnumComposer";
         private const string CONFIG_MARKER = "#CONFIG";
         private const string SQL_MARKER = "#SQL";
         private const string OLEDB_MARKER = "#OLEDB";
@@ -50,30 +51,26 @@ namespace EnumComposer
         public void ReadEnumeration_Inner(EnumModel model)
         {
             /* once new database location provided, the consecutive EnumModels will be using it */
-            if (model.SqlServer == CONFIG_MARKER)
+            if (model.SqlProvider == CONFIG_MARKER)
             {
                 /* if configuration file is specified */
-                string connectionName = "EnumComposer";
-                if (string.IsNullOrWhiteSpace(model.SqlDatabase) == false)
+                string connectionName = DEFAULT_CONNECTION_NAME;
+                if (string.IsNullOrWhiteSpace(model.SqlDatasource) == false)
                 {
-                    connectionName = model.SqlDatabase;
+                    connectionName = model.SqlDatasource;
                 }
-                //string[] values = _readConfigFunction(connectionName);
-                //_scnn = BuildConnection(values[0], values[1]);
                 _scnn = ReadConfig(connectionName);
             }
-            else if (string.IsNullOrWhiteSpace(model.SqlServer) == false)
+            else if (string.IsNullOrWhiteSpace(model.SqlProvider) == false)
             {
                 /* other wise another MARKERS are processed */
-                _scnn = BuildConnection(model.SqlServer, model.SqlDatabase);
+                _scnn = BuildConnection(model.SqlProvider, model.SqlDatasource);
             }
 
             if (string.IsNullOrWhiteSpace(_scnn) && _readConfigFunction != null)
             {
                 /* if there is still no connection string, attempt to obtain default values from the configuration files */
-                //string[] values = _readConfigFunction("EnumComposer");
-                //_scnn = BuildConnection(values[0], values[1]);
-                _scnn = ReadConfig("EnumComposer");
+                _scnn = ReadConfig(DEFAULT_CONNECTION_NAME);
             }
 
             if (string.IsNullOrWhiteSpace(_scnn))
