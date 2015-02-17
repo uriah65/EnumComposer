@@ -6,7 +6,6 @@ namespace EnumComposer
 {
     public class EnumModel //: IEnumModel
     {
-
         private const string TAB = "    ";  //"\t"
 
         public string SqlProvider { get; set; }
