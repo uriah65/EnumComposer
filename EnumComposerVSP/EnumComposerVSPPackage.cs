@@ -163,21 +163,21 @@ namespace Uriah65.EnumComposerVSP
                 /* query ActiveDocument can cause exception if active document f.e. is project properties */
                 if (applicationObject.ActiveDocument == null)
                 {
-                    log.WriteLine("no C# document.");
+                    log.WriteLine("not a C# file.");
                     return;
                 }
 
                 document = (TextDocument)applicationObject.ActiveDocument.Object("TextDocument");
                 if (document == null)
                 {
-                    log.WriteLine("no C# document.");
+                    log.WriteLine("not a C# file.");
                     return;
                 }
             }
             catch
             {
                 /* see notes in try{} */
-                log.WriteLine("no C# document.");
+                log.WriteLine("not a C# file.");
                 return;
             }
 
