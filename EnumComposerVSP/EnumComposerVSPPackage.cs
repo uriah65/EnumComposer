@@ -182,7 +182,7 @@ namespace Uriah65.EnumComposerVSP
             }
 
 
-            DbReader dbReader = new DbReader();
+            DbReader dbReader = new DbReader(null, null, log);
             ConfigReader configReader = null;
 
             try

@@ -149,7 +149,7 @@ namespace EnumComposer
         {
             if (_dbReader != null)
             {
-                _log.WriteLine("updating '{0}' enumeration.", model.Name);
+                //_log.WriteLine("updating '{0}' enumeration.", model.Name);
                 _dbReader.ReadEnumeration(model);
             }
         }

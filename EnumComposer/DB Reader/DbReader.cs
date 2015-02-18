@@ -10,6 +10,9 @@ namespace EnumComposer
 {
     public class DbReader : IEnumDbReader
     {
+        private IEnumLog _log;
+        public Func<string, string[]> _readConfigFunction = null;
+
         private DbTypeEnum _dbType;
         private string _scnn;
 
@@ -23,15 +26,21 @@ namespace EnumComposer
         /* a fake imitation of SQL server build in this class to ease e2e testing */
         private const string FAKE_SQL_SINATURE = "server=fakesqlserver;database=fakedb";
 
-        public Func<string, string[]> _readConfigFunction = null;
+        
 
-        public DbReader()
-        {
-        }
+        //public DbReader()
+        //{
+        //}
 
-        public DbReader(string sqlServer, string sqlDatabase)
+        public DbReader(string sqlServer, string sqlDatabase, IEnumLog log)
         {
-            _scnn = BuildConnection(sqlServer, sqlDatabase);
+            _log = log;
+            if (_log == null)
+            {
+                _log = new DedbugLog();
+            }
+
+            _scnn = BuildSqlConnectionString(sqlServer, sqlDatabase);
         }
 
         public void ReadEnumeration(EnumModel model)
@@ -50,34 +59,14 @@ namespace EnumComposer
 
         public void ReadEnumeration_Inner(EnumModel model)
         {
-            /* once new database location provided, the consecutive EnumModels will be using it */
-            if (model.SqlProvider == CONFIG_MARKER)
+            /* once new connection string provided, the consecutive EnumModels will be using it */
+            bool newConnection = BuildConnectionString(model);
+            if (newConnection)
             {
-                /* if configuration file is specified */
-                string connectionName = DEFAULT_CONNECTION_NAME;
-                if (string.IsNullOrWhiteSpace(model.SqlDatasource) == false)
-                {
-                    connectionName = model.SqlDatasource;
-                }
-                _scnn = ReadConfig(connectionName);
-            }
-            else if (string.IsNullOrWhiteSpace(model.SqlProvider) == false)
-            {
-                /* other wise another MARKERS are processed */
-                _scnn = BuildConnection(model.SqlProvider, model.SqlDatasource);
+                _log.WriteLine("conn:\t {0}.", _scnn);
             }
 
-            if (string.IsNullOrWhiteSpace(_scnn) && _readConfigFunction != null)
-            {
-                /* if there is still no connection string, attempt to obtain default values from the configuration files */
-                _scnn = ReadConfig(DEFAULT_CONNECTION_NAME);
-            }
-
-            if (string.IsNullOrWhiteSpace(_scnn))
-            {
-                /* all attempts failed */
-                throw new ApplicationException(string.Format("Connection string for the enumeration '{0}' is blank.", model.Name));
-            }
+            _log.WriteLine("enum:\t {0}\t\t {1}.", model.Name, model.SqlSelect);
 
             switch (_dbType)
             {
@@ -99,14 +88,55 @@ namespace EnumComposer
             }
         }
 
-        private string BuildConnection(string part1, string part2)
+        private bool BuildConnectionString(EnumModel model)
         {
-            _dbType = DbTypeEnum.SqlServer;
-            string scnn;
+            if (model.SqlProvider == CONFIG_MARKER)
+            {
+                /* if configuration file is specified */
+                string connectionName = DEFAULT_CONNECTION_NAME;
+                if (string.IsNullOrWhiteSpace(model.SqlDatasource) == false)
+                {
+                    connectionName = model.SqlDatasource;
+                }
+                _scnn = ReadConfig(connectionName);
+                return true;
+            }
+            else if (string.IsNullOrWhiteSpace(model.SqlProvider) == false)
+            {
+                /* other wise another MARKERS are processed */
+                _scnn = BuildSqlConnectionString(model.SqlProvider, model.SqlDatasource);
+                return true;
+            }
+
+            if (string.IsNullOrWhiteSpace(_scnn) && _readConfigFunction != null)
+            {
+                /* if there is still no connection string, attempt to obtain default values from the configuration files */
+                _scnn = ReadConfig(DEFAULT_CONNECTION_NAME);
+                return true;
+            }
+
+            if (string.IsNullOrWhiteSpace(_scnn))
+            {
+                /* all attempts failed */
+                throw new ApplicationException(string.Format("Connection string for the enumeration '{0}' is blank.", model.Name));
+            }
+
+            return false;
+        }
+
+        private string BuildSqlConnectionString(string part1, string part2)
+        {
+            _dbType = DbTypeEnum.SqlServer;           
 
             part1 = ("" + part1).Trim();
             part2 = ("" + part2).Trim();
 
+            if (string.IsNullOrWhiteSpace(part1) || string.IsNullOrWhiteSpace(part2))
+            {
+                return "";
+            }
+
+            string scnn = "";
             switch (part1.ToUpper())
             {
                 case SQL_MARKER:
@@ -280,7 +310,7 @@ namespace EnumComposer
                 return null;
             }
 
-            return BuildConnection(values[0], values[1]);
+            return BuildSqlConnectionString(values[0], values[1]);
         }
     }
 }

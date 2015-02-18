@@ -14,7 +14,7 @@ namespace TestComposer
         [TestInitialize()]
         public void Initialize()
         {
-            _dbReader = new DbReader();
+            _dbReader = new DbReader(null, null, null);
         }
 
         [TestCleanup()]
