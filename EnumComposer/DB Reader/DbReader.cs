@@ -26,11 +26,6 @@ namespace EnumComposer
         /* a fake imitation of SQL server build in this class to ease e2e testing */
         private const string FAKE_SQL_SINATURE = "server=fakesqlserver;database=fakedb";
 
-        
-
-        //public DbReader()
-        //{
-        //}
 
         public DbReader(string sqlServer, string sqlDatabase, IEnumLog log)
         {
