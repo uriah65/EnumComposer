@@ -11,7 +11,7 @@ namespace EnumComposer
     public class DbReader : IEnumDbReader
     {
         private IEnumLog _log;
-        public Func<string, string[]> _readConfigFunction = null;
+        public Func<string, Tuple<string, string>> _readConfigFunction = null;
 
         private DbTypeEnum _dbType;
         private string _scnn;
@@ -299,13 +299,13 @@ namespace EnumComposer
 
         private string ReadConfig(string connectionName)
         {
-            string[] values = _readConfigFunction(connectionName);
+            Tuple<string, string> values = _readConfigFunction(connectionName);
             if (values == null)
             {
                 return null;
             }
 
-            return BuildSqlConnectionString(values[0], values[1]);
+            return BuildSqlConnectionString(values.Item1, values.Item2);
         }
     }
 }

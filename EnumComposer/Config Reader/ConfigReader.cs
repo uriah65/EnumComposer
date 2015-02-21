@@ -8,9 +8,9 @@ namespace EnumComposer
 {
     public class ConfigReader
     {
-        string _fromBottomDirectory;
-        string _toUpDirectory;
-        IEnumLog _log;
+        private string _fromBottomDirectory;
+        private string _toUpDirectory;
+        private IEnumLog _log;
 
         public ConfigReader(string fromBottomDirectory, string toUpDirectory, IEnumLog log)
         {
@@ -19,25 +19,21 @@ namespace EnumComposer
             _log = log;
         }
 
-        public string[] LocateConnectionInVSP(string connectionName) //todo: too tight coupling here
+        public Tuple<string, string> LocateConnectionInVSP(string connectionName) //todo: too tight coupling here
         {
             try
             {
-                string[] values = GetConnection(connectionName, _fromBottomDirectory, _toUpDirectory);
+                Tuple < string, string> values = GetConnection(connectionName, _fromBottomDirectory, _toUpDirectory);
                 if (values == null)
                 {
                     return null;
                 }
 
-                if (values.Length != 2)
-                {
-                    throw new ApplicationException("Error"); //todo: text
-                }
 
-                string provider = DbReader.ProviderNameParsing(values[0]);
-                string scnn = values[1];
+                string provider = DbReader.ProviderNameParsing(values.Item1);
+                string scnn = values.Item2;
 
-                return new string[] { provider, scnn };
+                return new Tuple<string, string>(provider, scnn);
             }
             catch (Exception ex)
             {
@@ -48,7 +44,7 @@ namespace EnumComposer
             return null;
         }
 
-        public string[] GetConnection(string connectionName, string fromBottomDirectory, string upToDirectory)
+        public Tuple<string, string> GetConnection(string connectionName, string fromBottomDirectory, string upToDirectory)
         {
             DirectoryInfo bottom = new DirectoryInfo(fromBottomDirectory);
             DirectoryInfo top = new DirectoryInfo(upToDirectory);
@@ -59,12 +55,12 @@ namespace EnumComposer
                 throw new ApplicationException("Invalid path order. From '" + bottom.FullName + "' to '" + top.FullName + "'.");
             }
 
-            string[] cnn = GetConnection_Inner(connectionName, bottom, top.FullName);
+            Tuple<string, string> cnn = GetConnection_Inner(connectionName, bottom, top.FullName);
 
             return cnn;
         }
 
-        private string[] GetConnection_Inner(string connectionName, DirectoryInfo dirInfo, string topFullName)
+        private Tuple<string, string> GetConnection_Inner(string connectionName, DirectoryInfo dirInfo, string topFullName)
         {
             List<FileInfo> fileInfos = dirInfo.GetFiles("App.config").ToList();
             fileInfos.AddRange(dirInfo.GetFiles("Web.config"));
@@ -72,7 +68,7 @@ namespace EnumComposer
             foreach (FileInfo fileInfo in fileInfos)
             {
                 string text = File.ReadAllText(fileInfo.FullName);
-                string[] cnn = ExtractConnection(connectionName, text);
+                Tuple<string, string> cnn = ExtractConnection(connectionName, text);
                 if (cnn != null)
                 {
                     return cnn;
@@ -96,7 +92,7 @@ namespace EnumComposer
             return GetConnection_Inner(connectionName, dirInfo, topFullName);
         }
 
-        public string[] ExtractConnection(string connectionName, string configFileText)
+        public Tuple<string, string> ExtractConnection(string connectionName, string configFileText)
         {
             if (string.IsNullOrWhiteSpace(connectionName) || string.IsNullOrWhiteSpace(configFileText))
             {
@@ -120,7 +116,7 @@ namespace EnumComposer
 
             string provider = cnn.Attribute("providerName").Value;
             string connection = cnn.Attribute("connectionString").Value;
-            return new string[] { provider, connection };
+            return new Tuple<string, string>(provider, connection);
         }
 
         public bool IsInside(string childPath, string parentPath)

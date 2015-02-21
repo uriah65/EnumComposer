@@ -137,18 +137,6 @@ namespace Uriah65.EnumComposerVSP
             }
         }
 
-        //private string SolutionPath()
-        //{
-        //    //todo: do better
-        //    string solutionDirectory = ((EnvDTE.DTE)System.Runtime
-        //                                                 .InteropServices
-        //                                                 .Marshal
-        //                                                 .GetActiveObject("VisualStudio.DTE.10.0"))
-        //                                      .Solution.FullName;
-        //    solutionDirectory = System.IO.Path.GetDirectoryName(solutionDirectory);
-
-        //    return solutionDirectory;
-        //}
 
         private void RunComposerScan_Inner(IEnumLog log)
         {

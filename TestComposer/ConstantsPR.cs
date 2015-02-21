@@ -62,7 +62,7 @@ namespace TestComposer
             Assert.AreEqual(expected, actual, message);
         }
 
-        public static void AssertConnectionString(string expectedProvider, string expectedConnectionString, string[] actual, string message)
+        public static void AssertConnectionString(string expectedProvider, string expectedConnectionString, Tuple<string, string> actual, string message)
         {
             if (expectedProvider == null)
             {
@@ -71,9 +71,8 @@ namespace TestComposer
             else
             {
                 Assert.AreNotEqual(null, actual, message);
-                Assert.AreEqual(actual.Length, 2, message);
-                Assert.AreEqual(expectedProvider, actual[0], message);
-                Assert.AreEqual(expectedConnectionString, actual[1], message);
+                Assert.AreEqual(expectedProvider, actual.Item1, message);
+                Assert.AreEqual(expectedConnectionString, actual.Item2, message);
             }            
         }
 

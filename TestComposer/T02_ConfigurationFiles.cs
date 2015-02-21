@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using EnumComposer;
+using Uriah65.EnumComposerVSP;
 
 namespace TestComposer
 {
@@ -9,7 +10,7 @@ namespace TestComposer
     public class T02_ConfigurationFiles
     {
         ConfigReader _reader;
-        string[] _connection;
+        Tuple<string, string> _connection;
 
         [TestInitialize()]
         public void Initialize()
@@ -52,6 +53,10 @@ namespace TestComposer
             /* read not valid connection */
             _connection = _reader.ExtractConnection("BAD_Cnn1", inputText);
             ConstantsPR.AssertConnectionString(null, "", _connection, "Expected equal.");
+
+
+            Helpers.ExtractConnectionString(inputFile, "cnn1");
+
         }
 
         [TestMethod]

@@ -74,6 +74,10 @@
     <Compile Include="T31_FullCycleSQL.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EnumComposerVSP\EnumComposerVSP.csproj">
+      <Project>{af1310e8-8885-4706-aecd-a767c8156b4e}</Project>
+      <Name>EnumComposerVSP</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EnumComposer\EnumComposer.csproj">
       <Project>{006e6350-feb9-40d9-aba1-951a301c69c4}</Project>
       <Name>EnumComposer</Name>
