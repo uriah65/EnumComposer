@@ -1,11 +1,14 @@
-﻿using System;
+﻿#define FILE_CONFIG_NO
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 
+#if FILE_CONFIF
 namespace EnumComposer
 {
+
     public class ConfigReader : IEnumConfigReader
     {
         private string _fromBottomDirectory;
@@ -162,3 +165,4 @@ namespace EnumComposer
 
     }
 }
+#endif

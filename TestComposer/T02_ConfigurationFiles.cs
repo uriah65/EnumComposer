@@ -1,9 +1,11 @@
-﻿using System;
+﻿#define FILE_CONFIG_NO
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using EnumComposer;
 using Uriah65.EnumComposerVSP;
 
+#if FILE_CONFIF
 namespace TestComposer
 {
     [TestClass]
@@ -79,3 +81,4 @@ namespace TestComposer
         }
     }
 }
+#endif

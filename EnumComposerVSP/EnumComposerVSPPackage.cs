@@ -1,12 +1,12 @@
-﻿using EnumComposer;
+﻿#define FILE_CONFIG_NO
+
+using EnumComposer;
 using EnvDTE;
 using EnvDTE80;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using System;
 using System.ComponentModel.Design;
-using System.Diagnostics;
-using System.Globalization;
 using System.Runtime.InteropServices;
 
 namespace Uriah65.EnumComposerVSP
@@ -32,8 +32,6 @@ namespace Uriah65.EnumComposerVSP
     [Guid(GuidList.guidEnumComposerVSPPkgString)]
     public sealed class EnumComposerVSPPackage : Package
     {
-        
-
         /// <summary>
         /// Default constructor of the package.
         /// Inside this method you can place any initialization code that does not require
@@ -105,7 +103,7 @@ namespace Uriah65.EnumComposerVSP
             log.WriteLine("finished.");
         }
 
-        private void RunComposerScan(IEnumLog  log)
+        private void RunComposerScan(IEnumLog log)
         {
             try
             {
@@ -137,102 +135,24 @@ namespace Uriah65.EnumComposerVSP
             }
         }
 
-
         private void RunComposerScan_Inner(IEnumLog log)
         {
-            DTE2 applicationObject = null;
-            TextDocument document = null;
+            DTE2 applicationObject = (DTE2)GetService(typeof(SDTE));
 
-            try
+            TextDocument document = ObtainActiveDocument(applicationObject);
+            if (document == null)
             {
-                /* query DTE can cause exception if e.f. VS is not fully initialized yet. */
-                applicationObject = (DTE2)GetService(typeof(SDTE));
-
-                /* query ActiveDocument can cause exception if active document f.e. is project properties */
-                if (applicationObject.ActiveDocument == null)
-                {
-                    log.WriteLine("not a C# file.");
-                    return;
-                }
-
-                document = (TextDocument)applicationObject.ActiveDocument.Object("TextDocument");
-                if (document == null)
-                {
-                    log.WriteLine("not a C# file.");
-                    return;
-                }
-            }
-            catch
-            {
-                /* see notes in try{} */
                 log.WriteLine("not a C# file.");
                 return;
             }
 
-
             DbReader dbReader = new DbReader(null, null, log);
-            //ConfigReader configReader = null;
-
-            try
-            {
-                // setting up configuration reader
-                string docPath = applicationObject.ActiveDocument.Path;
-                string solutionName = applicationObject.Solution.FullName;
-                if (solutionName != "")
-                {
-#if FileSearch
-                    string solutionPath = System.IO.Path.GetDirectoryName(applicationObject.Solution.FullName);
-                    ConfigReader configReader = new ConfigReader(docPath, solutionPath, log);
-                    dbReader._configReader = configReader; /* we provide config search function only if all is OK. */
-#endif
-                    IEnumConfigReader configReaderVsp = new ConfigReaderVsp(applicationObject.ActiveDocument.ProjectItem.ContainingProject);
-                    dbReader._configReader = configReaderVsp;
-
-                }
-            }
-            catch (Exception ex)
-            {
-                if (log != null)
-                {
-                    string logMessage = DedbugLog.ExceptionMessage(ex);
-                    log.WriteLine(logMessage);
-                }
-            }
+            IEnumConfigReader configReaderVsp = new ConfigReaderVsp(applicationObject.ActiveDocument.ProjectItem.ContainingProject);
+            dbReader._configReader = configReaderVsp;
 
             ComposerStrings composer = new ComposerStrings(dbReader, log);
             ApplyComposer(document, composer);
         }
-
-        //public void ApplyComposer_New(TextDocument document, ComposerStrings composer)
-        //{
-        //    /* get document bounds */
-        //    EditPoint startEdit = document.CreateEditPoint(document.StartPoint);
-        //    EditPoint endEdit = document.EndPoint.CreateEditPoint();
-
-        //    /* run composer */
-        //    string text = startEdit.GetText(document.EndPoint);
-        //    composer.Compose(text);
-
-        //    int ixLastInsert = text.Length;
-
-        //    foreach (var model in composer.EnumModels.OrderByDescending(e => e.SpanEnd))
-        //    {
-        //        if (model.SpanEnd > ixLastInsert)
-        //        {
-        //            throw new ApplicationException("Invalid enumeration order for '" + model.Name + "'.");
-        //        }
-
-        //        EditPoint from = document.CreateEditPoint(document.StartPoint);
-        //        EditPoint to = document.CreateEditPoint(document.StartPoint);
-        //        int ix = endEdit.AbsoluteCharOffset;
-        //        from.MoveToAbsoluteOffset(model.SpanStart);
-        //        to.MoveToAbsoluteOffset(model.SpanEnd);
-
-        //        from.Delete(to);
-        //        from.Insert(model.ToCSharp());
-
-        //    }
-        //}
 
         public void ApplyComposer(TextDocument document, ComposerStrings composer)
         {
@@ -264,6 +184,26 @@ namespace Uriah65.EnumComposerVSP
                 reverse += cArray[i];
             }
             return reverse;
+        }
+
+        private TextDocument ObtainActiveDocument(DTE2 applicationObject)
+        {
+            try
+            {
+                /* query ActiveDocument can cause exception if active document f.e. is project properties */
+                if (applicationObject.ActiveDocument == null)
+                {
+                    return null;
+                }
+
+                TextDocument document = (TextDocument)applicationObject.ActiveDocument.Object("TextDocument");
+                return document;
+            }
+            catch
+            {
+                /* see notes in try{} */
+                return null;
+            }
         }
     }
 }

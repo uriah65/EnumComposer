@@ -124,7 +124,6 @@
     <Compile Include="Config Reader\ConfigReaderVsp.cs" />
     <Compile Include="EnumLog.cs" />
     <Compile Include="Guids.cs" />
-    <Compile Include="Helpers.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
