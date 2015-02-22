@@ -7,7 +7,7 @@
         {
         }
 
-        [EnumSqlCnn("#CONFIG", @"Access")]
+        [EnumSqlCnn("#CONFItG", @"Access")]
         [EnumSqlSelect("SELECT id, name, notes FROM T_Colors")]
         public enum AccessEnum
         {

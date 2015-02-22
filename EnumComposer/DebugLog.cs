@@ -23,7 +23,7 @@ namespace EnumComposer
             string message = "";
             while (ex != null)
             {
-                message += Environment.NewLine;
+               // message += Environment.NewLine;
                 message += "Exception has occurred." + Environment.NewLine;
                 message += "Message:  " + ex.Message + Environment.NewLine;
                 message += "Stack:    " + ex.StackTrace + Environment.NewLine;
