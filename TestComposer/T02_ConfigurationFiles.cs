@@ -55,7 +55,7 @@ namespace TestComposer
             ConstantsPR.AssertConnectionString(null, "", _connection, "Expected equal.");
 
 
-            Helpers.ExtractConnectionString(inputFile, "cnn1");
+            //Helpers.ExtractConnectionString(inputFile, "cnn1");
 
         }
 

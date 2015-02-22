@@ -79,6 +79,7 @@
     <Compile Include="EnumModelValue.cs" />
     <Compile Include="Attributes\EnumSqlAttribute.cs" />
     <Compile Include="DB Reader\DbReader.cs" />
+    <Compile Include="Interfaces\IEnumConfigReader.cs" />
     <Compile Include="Interfaces\IEnumDbReader.cs" />
     <Compile Include="Interfaces\IEnumLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

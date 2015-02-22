@@ -11,7 +11,9 @@ namespace EnumComposer
     public class DbReader : IEnumDbReader
     {
         private IEnumLog _log;
-        public Func<string, Tuple<string, string>> _readConfigFunction = null;
+
+        //public Func<string, Tuple<string, string>> _readConfigFunction = null;
+        public IEnumConfigReader _configReader = null;
 
         private DbTypeEnum _dbType;
         private string _scnn;
@@ -25,7 +27,6 @@ namespace EnumComposer
 
         /* a fake imitation of SQL server build in this class to ease e2e testing */
         private const string FAKE_SQL_SINATURE = "server=fakesqlserver;database=fakedb";
-
 
         public DbReader(string sqlServer, string sqlDatabase, IEnumLog log)
         {
@@ -59,6 +60,12 @@ namespace EnumComposer
             if (newConnection)
             {
                 _log.WriteLine("conn:\t {0}.", _scnn);
+            }
+
+            if (string.IsNullOrWhiteSpace(_scnn))
+            {
+                /* all attempts failed */
+                throw new ApplicationException(string.Format("Connection string for the enumeration '{0}' is blank.", model.Name));
             }
 
             _log.WriteLine("enum:\t {0}\t\t {1}.", model.Name, model.SqlSelect);
@@ -103,17 +110,11 @@ namespace EnumComposer
                 return true;
             }
 
-            if (string.IsNullOrWhiteSpace(_scnn) && _readConfigFunction != null)
+            if (string.IsNullOrWhiteSpace(_scnn) && _configReader != null)
             {
                 /* if there is still no connection string, attempt to obtain default values from the configuration files */
                 _scnn = ReadConfig(DEFAULT_CONNECTION_NAME);
-                return true;
-            }
-
-            if (string.IsNullOrWhiteSpace(_scnn))
-            {
-                /* all attempts failed */
-                throw new ApplicationException(string.Format("Connection string for the enumeration '{0}' is blank.", model.Name));
+                 return true;
             }
 
             return false;
@@ -121,7 +122,7 @@ namespace EnumComposer
 
         private string BuildSqlConnectionString(string part1, string part2)
         {
-            _dbType = DbTypeEnum.SqlServer;           
+            _dbType = DbTypeEnum.SqlServer;
 
             part1 = ("" + part1).Trim();
             part2 = ("" + part2).Trim();
@@ -299,13 +300,15 @@ namespace EnumComposer
 
         private string ReadConfig(string connectionName)
         {
-            Tuple<string, string> values = _readConfigFunction(connectionName);
+            Tuple<string, string> values = _configReader.GetConnectionString(connectionName);
             if (values == null)
             {
                 return null;
             }
 
-            return BuildSqlConnectionString(values.Item1, values.Item2);
+            string provider = DbReader.ProviderNameParsing(values.Item1);
+
+            return BuildSqlConnectionString(provider, values.Item2);
         }
     }
 }

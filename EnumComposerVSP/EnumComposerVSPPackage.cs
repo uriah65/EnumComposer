@@ -171,7 +171,7 @@ namespace Uriah65.EnumComposerVSP
 
 
             DbReader dbReader = new DbReader(null, null, log);
-            ConfigReader configReader = null;
+            //ConfigReader configReader = null;
 
             try
             {
@@ -180,9 +180,14 @@ namespace Uriah65.EnumComposerVSP
                 string solutionName = applicationObject.Solution.FullName;
                 if (solutionName != "")
                 {
+#if FileSearch
                     string solutionPath = System.IO.Path.GetDirectoryName(applicationObject.Solution.FullName);
-                    configReader = new ConfigReader(docPath, solutionPath, log);
-                    dbReader._readConfigFunction = configReader.LocateConnectionInVSP; /* we provide config search function only if all is OK. */
+                    ConfigReader configReader = new ConfigReader(docPath, solutionPath, log);
+                    dbReader._configReader = configReader; /* we provide config search function only if all is OK. */
+#endif
+                    IEnumConfigReader configReaderVsp = new ConfigReaderVsp(applicationObject.ActiveDocument.ProjectItem.ContainingProject);
+                    dbReader._configReader = configReaderVsp;
+
                 }
             }
             catch (Exception ex)

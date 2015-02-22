@@ -6,7 +6,7 @@ using System.Xml.Linq;
 
 namespace EnumComposer
 {
-    public class ConfigReader
+    public class ConfigReader : IEnumConfigReader
     {
         private string _fromBottomDirectory;
         private string _toUpDirectory;
@@ -19,11 +19,11 @@ namespace EnumComposer
             _log = log;
         }
 
-        public Tuple<string, string> LocateConnectionInVSP(string connectionName) //todo: too tight coupling here
+        public Tuple<string, string> GetConnectionString(string connectionStringName) //todo: too tight coupling here
         {
             try
             {
-                Tuple < string, string> values = GetConnection(connectionName, _fromBottomDirectory, _toUpDirectory);
+                Tuple < string, string> values = GetConnection(connectionStringName, _fromBottomDirectory, _toUpDirectory);
                 if (values == null)
                 {
                     return null;
@@ -158,5 +158,7 @@ namespace EnumComposer
 
             return false;
         }
+
+
     }
 }
