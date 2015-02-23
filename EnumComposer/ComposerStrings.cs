@@ -69,7 +69,8 @@ namespace EnumComposer
                 {
                     foreach (AttributeSyntax attribute in attibutes.Attributes)
                     {
-                        if (attribute.Name.ToString() == "EnumSqlSelect")
+                        string attributeName = attribute.Name.ToString();
+                        if (attributeName == "EnumSqlSelect" || attributeName == "EnumSqlSelectAttribute")
                         {
                             /* extract SqlSelect statement from EnumSqlSelectAttribute */
                             if (attribute.ArgumentList.Arguments.Count != 1)
@@ -79,7 +80,7 @@ namespace EnumComposer
                             }
                             model.SqlSelect = GetAttributeValue(attribute.ArgumentList.Arguments[0]);
                         }
-                        if (attribute.Name.ToString() == "EnumSqlCnn")
+                        if (attributeName == "EnumSqlCnn" || attributeName == "EnumSqlCnnAttribute")
                         {
                             if (attribute.ArgumentList.Arguments.Count != 2)
                             {
