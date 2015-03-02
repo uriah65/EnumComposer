@@ -4,7 +4,7 @@ namespace EnumComposer
 {
     public class EnumNameConverter
     {
-        private static Hashtable keywordsTable;
+        private const string EMPTY = "empty";
 
         private static string[] keywords = new string[]  {
                 "abstract","event","new","struct","as","explicit","null","switch","base","extern",
@@ -20,6 +20,8 @@ namespace EnumComposer
                 "decimal","int","sbyte","short","double","long","string","void",
                 "partial", "yield", "where"};
 
+        private static Hashtable keywordsTable;
+
         public static string MakeValidDescription(string description)
         {
             if (description == null)
@@ -32,8 +34,6 @@ namespace EnumComposer
 
         public static string MakeValidIdentifier(string identifier)
         {
-            const string EMPTY = "empty";
-
             if (identifier == null)
             {
                 return EMPTY;
@@ -112,7 +112,7 @@ namespace EnumComposer
             {
                 if (keywordsTable == null)
                 {
-                    keywordsTable = new System.Collections.Hashtable();
+                    keywordsTable = new Hashtable();
                     foreach (string keyword in keywords)
                     {
                         keywordsTable.Add(keyword, keyword);

@@ -28,7 +28,6 @@ namespace EnumComposer
 
         public EnumModel()
         {
-            //_converter = new EnumNameConverter();
             Values = new List<EnumModelValue>();
         }
 
