@@ -6,8 +6,8 @@
     <Description xml:space="preserve">Generate and update C# enumerations using data from a MS SQL Server, ODBC or OLEDB data sources.</Description>
     <MoreInfo>https://github.com/uriah65/EnumComposer/wiki</MoreInfo>
     <License>License_EnumComposer.txt</License>
-    <Icon>ec_icon_32x32.png</Icon>
-    <PreviewImage>ec_icon_white_back200x200.png</PreviewImage>
+    <Icon>Resources\Package.ico</Icon>
+    <PreviewImage>Resources\Package.ico</PreviewImage>
   </Metadata>
   <Installation InstalledByMsi="false">
     <InstallationTarget Id="Microsoft.VisualStudio.Pro" Version="[14.0]" />
