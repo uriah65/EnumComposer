@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Enum.cs" />
     <Compile Include="EnumExplicite.cs" />
+    <Compile Include="EnumMinimalDemo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
