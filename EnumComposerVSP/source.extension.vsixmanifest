@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="a9d36138-b3cc-4978-802d-208260eefcef" Version="1.4" Language="en-US" Publisher="Uriah65" />
+    <Identity Id="a9d36138-b3cc-4978-802d-208260eefcef" Version="1.5" Language="en-US" Publisher="Uriah65" />
     <DisplayName>Enum Composer</DisplayName>
     <Description xml:space="preserve">Generate and update C# enumerations using data from a MS SQL Server, ODBC or OLEDB data sources.</Description>
     <MoreInfo>https://github.com/uriah65/EnumComposer/wiki</MoreInfo>
     <License>License_EnumComposer.txt</License>
+    <Icon>ec_icon_32x32.ico</Icon>
+    <PreviewImage>ec_icon_white_back200x200.ico</PreviewImage>
   </Metadata>
   <Installation InstalledByMsi="false">
     <InstallationTarget Id="Microsoft.VisualStudio.Pro" Version="[14.0]" />
