@@ -5,9 +5,9 @@ using System;
 namespace EnumComposerConsole
 {
     internal class Program
-    {
-        private static ConsoleColor _originalColor;
+    {        
         private static Options _options;
+        private static ConsoleColor _originalColor;
 
         private static int Main(string[] args)
         {

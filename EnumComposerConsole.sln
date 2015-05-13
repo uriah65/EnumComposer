@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnumComposer", "EnumCompose
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnumComposerVSP", "EnumComposerVSP\EnumComposerVSP.csproj", "{AF1310E8-8885-4706-AECD-A767C8156B4E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Licenses2", "_Licenses2", "{31FCD18F-928F-458E-AB08-286BC0626075}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Licenses", "_Licenses", "{31FCD18F-928F-458E-AB08-286BC0626075}"
 	ProjectSection(SolutionItems) = preProject
 		_Lisenses\License_CommandLineParserLibrary.txt = _Lisenses\License_CommandLineParserLibrary.txt
 		_Lisenses\License_EnumComposer.txt = _Lisenses\License_EnumComposer.txt
