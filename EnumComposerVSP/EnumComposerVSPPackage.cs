@@ -174,18 +174,6 @@ namespace Uriah65.EnumComposerVSP
             }
         }
 
-        public string Reverse(string text)
-        {
-            /* test method, not used */
-            char[] cArray = text.ToCharArray();
-            string reverse = "";
-            for (int i = cArray.Length - 1; i > -1; i--)
-            {
-                reverse += cArray[i];
-            }
-            return reverse;
-        }
-
         private TextDocument ObtainActiveDocument(DTE2 applicationObject)
         {
             try
@@ -205,5 +193,18 @@ namespace Uriah65.EnumComposerVSP
                 return null;
             }
         }
+
+        public string Reverse(string text)
+        {
+            /* test method, not used */
+            char[] cArray = text.ToCharArray();
+            string reverse = "";
+            for (int i = cArray.Length - 1; i > -1; i--)
+            {
+                reverse += cArray[i];
+            }
+            return reverse;
+        }
+
     }
 }

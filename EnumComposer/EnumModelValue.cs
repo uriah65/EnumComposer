@@ -38,7 +38,6 @@ namespace EnumComposer
                 result = leadingTrivia + description + Environment.NewLine + result;
             }
 
-
             return result;
         }
     }

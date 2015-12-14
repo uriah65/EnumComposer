@@ -69,7 +69,7 @@ namespace EnumComposer
         private static string SyntaxCompline(string identifier)
         {
             /* check 1st character */
-            if (is_identifier_start_character(identifier[0]) == false)
+            if (Is_identifier_start_character(identifier[0]) == false)
             {
                 identifier = "_" + identifier;
             }
@@ -79,7 +79,7 @@ namespace EnumComposer
             /* check the rest characters */
             for (int i = 1; i < identifier.Length; i++)
             {
-                if (is_identifier_part_character(identifier[i]))
+                if (Is_identifier_part_character(identifier[i]))
                 {
                     result += identifier[i];
                 }
@@ -96,12 +96,12 @@ namespace EnumComposer
             return result;
         }
 
-        private static bool is_identifier_start_character(char c)
+        private static bool Is_identifier_start_character(char c)
         {
             return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c == '_' || c == '@' || char.IsLetter(c);
         }
 
-        private static bool is_identifier_part_character(char c)
+        private static bool Is_identifier_part_character(char c)
         {
             return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c == '_' || (c >= '0' && c <= '9') || char.IsLetter(c);
         }
