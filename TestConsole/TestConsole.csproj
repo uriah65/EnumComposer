@@ -56,7 +56,7 @@
     <Compile Include="T02_AutoRuns.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="__TestConsole.md" />
+    <None Include="__ReadMe.md" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
