@@ -97,7 +97,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="T33\Output.cs" />
-    <None Include="__ReadMe.md" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="T02\T02-3\" />

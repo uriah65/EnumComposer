@@ -69,6 +69,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\EnumReverseSqlAttribute.cs" />
     <Compile Include="ComposerFiles.cs" />
     <Compile Include="ComposerStrings.cs" />
     <Compile Include="Attributes\EnumCnnAttribute.cs" />
