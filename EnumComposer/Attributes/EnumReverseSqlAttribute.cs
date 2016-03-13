@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace EnumComposer.Attributes
 {
-    [System.AttributeUsage(AttributeTargets.Method)]
-    public class EnumReverseSqlSelectAttribute : Attribute
+    [System.AttributeUsage(AttributeTargets.Field)]
+    public class EnumDictionarySqlSelectAttribute : Attribute
     {
-        public EnumReverseSqlSelectAttribute(string selectSQL) { }
+        public EnumDictionarySqlSelectAttribute(string selectSQL) { }
     }
 }

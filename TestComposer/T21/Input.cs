@@ -1,4 +1,5 @@
 ﻿using EnumComposer;
+using EnumComposer.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,10 @@ namespace UtComposer
         public enum Weekdays
         {
         }
+
+        [EnumDictionarySqlSelect("SELECT id, name FROM T_Weekdays")]
+        public Dictionary<int, string> Dic = new Dictionary<int, string>()
+        { };
 
         [EnumSqlCnn("FakeSqlServer", "FakeDb")]
         [EnumSqlSelect("SELECT id, name, description FROM T_Weekdays")]
