@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\EnumReverseSqlAttribute.cs" />
+    <Compile Include="CodeScanner.cs" />
     <Compile Include="ComposerFiles.cs" />
     <Compile Include="ComposerStrings.cs" />
     <Compile Include="Attributes\EnumCnnAttribute.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Interfaces\IEnumDbReader.cs" />
     <Compile Include="Interfaces\IEnumLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ModelSql.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Key.snk" />

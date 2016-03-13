@@ -45,7 +45,9 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
       </ItemGroup>
     </Otherwise>
   </Choose>
@@ -56,12 +58,14 @@
     <Compile Include="T21\Input.cs" />
     <Compile Include="T30\Input.cs" />
     <Compile Include="T02_ConfigurationFiles.cs" />
+    <Compile Include="T33\Input.cs" />
+    <Compile Include="T40_NewAttribute.cs" />
     <Content Include="T30\Input2.cs" />
     <Content Include="T30\Output2.cs" />
     <Content Include="T31\Input.cs" />
     <Content Include="T30\Output.cs" />
     <Compile Include="T32\Input.cs" />
-    <Compile Include="T33\Input.cs" />
+    <Compile Include="T40\Input.cs" />
     <Compile Include="Fake_DbReader.cs" />
     <Compile Include="T01_NameConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
